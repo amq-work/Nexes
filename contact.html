@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Digital Nexes — Start a Project or Partnership</title>
+  <meta name="description" content="Get in touch with Digital Nexes for project inquiries, service requests, partnership opportunities, career applications, or community access. We respond within 24 hours." />
+  <meta property="og:title" content="Contact Digital Nexes — Let's Build Something" />
+  <meta property="og:type" content="website" />
+  <meta name="google-site-verification" content="fBCWCPBUqQz6GWeuxFCkisb5FXFLLVc3yzmfD9mjaHs" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body>
+  <div id="page-loader" aria-hidden="true"><div class="loader-brand"><svg width="32" height="32" viewBox="0 0 26 26" fill="none"><polygon points="13,1 25,7.5 25,18.5 13,25 1,18.5 1,7.5" stroke="#ffffff" stroke-width="1.5" fill="none"/><circle cx="13" cy="13" r="2.5" fill="#ffffff"/></svg><span>Digital Nexes</span></div><div class="loader-bar-wrap"><div class="loader-bar"></div></div><p class="loader-copy">Digital Growth Studio</p></div>
+  <div id="cursor-dot" aria-hidden="true"></div><div id="cursor-ring" aria-hidden="true"></div><div id="scroll-progress" aria-hidden="true"></div>
+
+      <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="/" class="logo" id="logo-link">
+        <svg class="logo-mark" width="26" height="26" viewBox="0 0 26 26" fill="none">
+          <polygon points="13,1 25,7.5 25,18.5 13,25 1,18.5 1,7.5" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" fill="none"/>
+          <polygon points="13,7 19,10.5 19,17.5 13,21 7,17.5 7,10.5" fill="rgba(255,255,255,0.06)"/>
+          <circle cx="13" cy="13" r="2.5" fill="#ffffff"/>
+        </svg>
+        <span>Digital Nexes</span>
+      </a>
+      <nav class="nav-links" id="nav-links" role="navigation" aria-label="Primary navigation">
+        <a href="/"       data-page="index">Home</a>
+        <a href="/about"       data-page="about">About</a>
+        <a href="/services"    data-page="services">Services</a>
+        <a href="/projects"    data-page="projects">Work</a>
+        <a href="/careers"     data-page="careers">Careers</a>
+        <a href="/blog"        data-page="blog">Insights</a>
+        <a href="/contact"     data-page="contact">Contact</a>
+      </nav>
+      <a href="/contact" class="btn-primary nav-cta" id="nav-cta">Let's Talk</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+  <!-- HERO -->
+  <section class="page-hero page-hero-compact" id="contact-hero">
+    <div class="hero-glass-grid"></div>
+    <div class="container page-hero-inner">
+      <p class="eyebrow reveal-hero">Get in Touch</p>
+      <h1 class="page-hero-title reveal-hero scramble">Let's Build<br /><span class="gradient-text">Something Great</span></h1>
+      <p class="page-hero-sub reveal-hero">Whether you have a project in mind, a question about our services, or simply want to explore what's possible — we're here and we respond within 24 hours.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT LAYOUT -->
+  <section class="section" id="contact-main" style="padding-top: 80px;">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- INQUIRY TYPE SELECTOR + FORM -->
+        <div class="contact-form-side">
+          <div class="contact-type-selector" id="contact-type-selector" role="group" aria-label="Inquiry type">
+            <button class="ctype-btn active" data-type="project" id="ctype-project">Project Inquiry</button>
+            <button class="ctype-btn" data-type="service" id="ctype-service">Service Request</button>
+            <button class="ctype-btn" data-type="partnership" id="ctype-partnership">Partnership</button>
+            <button class="ctype-btn" data-type="community" id="ctype-community">Community</button>
+            <button class="ctype-btn" data-type="career" id="ctype-career">Career / Internship</button>
+            <button class="ctype-btn" data-type="general" id="ctype-general">General</button>
+          </div>
+
+          <!-- PROJECT INQUIRY FORM -->
+          <form class="contact-form active" id="form-project" data-type="project" novalidate>
+            <input type="hidden" name="inquiry_type" value="Project Inquiry" />
+            <div class="form-row">
+              <div class="form-group"><label for="pi-name">Full Name *</label><input type="text" id="pi-name" name="name" required placeholder="Your full name" /></div>
+              <div class="form-group"><label for="pi-email">Email Address *</label><input type="email" id="pi-email" name="email" required placeholder="your@company.com" /></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label for="pi-company">Company</label><input type="text" id="pi-company" name="company" placeholder="Your company name" /></div>
+              <div class="form-group"><label for="pi-budget">Estimated Budget</label>
+                <select id="pi-budget" name="budget">
+                  <option value="">Select a range</option>
+                  <option>Under $2,000</option>
+                  <option>$2,000 – $5,000</option>
+                  <option>$5,000 – $15,000</option>
+                  <option>$15,000 – $50,000</option>
+                  <option>$50,000+</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group"><label for="pi-services">Services Needed</label>
+              <div class="checkbox-group">
+                <label><input type="checkbox" name="services" value="UI/UX Design" /> UI/UX Design</label>
+                <label><input type="checkbox" name="services" value="Website Development" /> Website Development</label>
+                <label><input type="checkbox" name="services" value="Web Application" /> Web Application</label>
+                <label><input type="checkbox" name="services" value="Custom Software" /> Custom Software</label>
+                <label><input type="checkbox" name="services" value="SEO" /> SEO</label>
+                <label><input type="checkbox" name="services" value="Digital Marketing" /> Digital Marketing</label>
+                <label><input type="checkbox" name="services" value="Branding" /> Branding</label>
+                <label><input type="checkbox" name="services" value="Business Development" /> Business Development</label>
+              </div>
+            </div>
+            <div class="form-group"><label for="pi-timeline">Project Timeline</label>
+              <select id="pi-timeline" name="timeline">
+                <option value="">Select timeline</option>
+                <option>ASAP (within 2 weeks)</option>
+                <option>1–3 months</option>
+                <option>3–6 months</option>
+                <option>6+ months</option>
+                <option>Ongoing / Retainer</option>
+              </select>
+            </div>
+            <div class="form-group"><label for="pi-message">Project Description *</label><textarea id="pi-message" name="message" rows="5" required placeholder="Tell us about your project — what are you building, what problem does it solve, and what does success look like?"></textarea></div>
+            <button type="submit" class="btn-primary form-submit" id="pi-submit">Send Project Inquiry →</button>
+          </form>
+
+          <!-- SERVICE REQUEST FORM -->
+          <form class="contact-form" id="form-service" data-type="service" novalidate style="display:none;">
+            <input type="hidden" name="inquiry_type" value="Service Request" />
+            <div class="form-row">
+              <div class="form-group"><label for="sr-name">Full Name *</label><input type="text" id="sr-name" name="name" required placeholder="Your full name" /></div>
+              <div class="form-group"><label for="sr-email">Email Address *</label><input type="email" id="sr-email" name="email" required placeholder="your@company.com" /></div>
+            </div>
+            <div class="form-group"><label for="sr-service">Primary Service Needed *</label>
+              <select id="sr-service" name="service" required>
+                <option value="">Select a service</option>
+                <option>UI/UX Design</option><option>Website Development</option><option>Web Application</option><option>Custom Software</option><option>SEO</option><option>Digital Marketing</option><option>Branding & Identity</option><option>Business Development</option><option>Automation</option><option>Technology Consulting</option>
+              </select>
+            </div>
+            <div class="form-group"><label for="sr-message">What do you need? *</label><textarea id="sr-message" name="message" rows="5" required placeholder="Describe what you're looking for as specifically as possible."></textarea></div>
+            <button type="submit" class="btn-primary form-submit" id="sr-submit">Send Service Request →</button>
+          </form>
+
+          <!-- PARTNERSHIP FORM -->
+          <form class="contact-form" id="form-partnership" data-type="partnership" novalidate style="display:none;">
+            <input type="hidden" name="inquiry_type" value="Partnership" />
+            <div class="form-row">
+              <div class="form-group"><label for="pa-name">Full Name *</label><input type="text" id="pa-name" name="name" required /></div>
+              <div class="form-group"><label for="pa-email">Email *</label><input type="email" id="pa-email" name="email" required /></div>
+            </div>
+            <div class="form-group"><label for="pa-org">Organization</label><input type="text" id="pa-org" name="organization" placeholder="Your company or project name" /></div>
+            <div class="form-group"><label for="pa-type">Partnership Type</label>
+              <select id="pa-type" name="partnership_type"><option>Technology Partnership</option><option>Agency Partnership</option><option>Referral Partnership</option><option>Ecosystem Collaboration</option><option>Joint Venture</option></select>
+            </div>
+            <div class="form-group"><label for="pa-message">Tell Us About the Opportunity *</label><textarea id="pa-message" name="message" rows="5" required placeholder="Describe the partnership opportunity and what mutual value it creates."></textarea></div>
+            <button type="submit" class="btn-primary form-submit" id="pa-submit">Send Partnership Inquiry →</button>
+          </form>
+
+          <!-- COMMUNITY / CAREER / GENERAL (shared simple form) -->
+          <form class="contact-form" id="form-general" data-type="community career general" novalidate style="display:none;">
+            <input type="hidden" name="inquiry_type" id="general-type-hidden" value="General" />
+            <div class="form-row">
+              <div class="form-group"><label for="g-name">Full Name *</label><input type="text" id="g-name" name="name" required /></div>
+              <div class="form-group"><label for="g-email">Email *</label><input type="email" id="g-email" name="email" required /></div>
+            </div>
+            <div class="form-group"><label for="g-subject">Subject</label><input type="text" id="g-subject" name="subject" placeholder="What's this about?" /></div>
+            <div class="form-group"><label for="g-message">Message *</label><textarea id="g-message" name="message" rows="6" required placeholder="Write your message here..."></textarea></div>
+            <button type="submit" class="btn-primary form-submit" id="g-submit">Send Message →</button>
+          </form>
+
+        </div>
+
+        <!-- INFO SIDE -->
+        <div class="contact-info-side">
+          <div class="contact-info-card reveal-right">
+            <h3>Direct Contact</h3>
+            <div class="contact-info-item">
+              <span class="ci-label">Email</span>
+              <a href="mailto:info@digitalnexes.com" class="ci-value">info@digitalnexes.com</a>
+            </div>
+            <div class="contact-info-item">
+              <span class="ci-label">Response Time</span>
+              <span class="ci-value">Within 24 hours</span>
+            </div>
+          </div>
+
+          <div class="contact-info-card reveal-right" style="margin-top: 16px;">
+            <h3>What Happens Next</h3>
+            <div class="contact-next-steps">
+              <div class="cns-step"><div class="cns-num">01</div><p>We review your inquiry within 24 hours</p></div>
+              <div class="cns-step"><div class="cns-num">02</div><p>We schedule a discovery call at your convenience</p></div>
+              <div class="cns-step"><div class="cns-num">03</div><p>We prepare a scoped proposal with timeline and investment</p></div>
+              <div class="cns-step"><div class="cns-num">04</div><p>We kick off — with full ownership from day one</p></div>
+            </div>
+          </div>
+
+          <div class="contact-info-card reveal-right" style="margin-top: 16px;">
+            <h3>Quick Links</h3>
+            <div class="contact-quick-links">
+              <a href="/services" class="cql-link">↗ Explore Services</a>
+              <a href="/process" class="cql-link">↗ Our Process</a>
+              <a href="/projects" class="cql-link">↗ View Our Work</a>
+              <a href="/careers" class="cql-link">↗ Join the Team</a>
+              <a href="/community" class="cql-link">↗ Join Community</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+    
+  
+
+</main>
+
+      <footer class="footer" id="footer">
+    <div class="container footer-inner">
+
+      <div class="footer-lead-form glass-card">
+        <div class="flf-content">
+          <h3>Let's Build Something Great Together</h3>
+          <p>Interested in working with Digital Nexes? Tell us about your project and start the conversation directly through WhatsApp.</p>
+        </div>
+        <form id="whatsapp-lead-form" class="flf-form">
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text" id="wa-name" placeholder="Enter your full name" required />
+            </div>
+            <div class="form-group">
+              <input type="email" id="wa-email" placeholder="Enter your email address" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <select id="wa-service" required>
+              <option value="" disabled selected>Service Required</option>
+              <option value="UI/UX Design">UI/UX Design</option>
+              <option value="Website Development">Website Development</option>
+              <option value="Web Application Development">Web Application Development</option>
+              <option value="Custom Software Development">Custom Software Development</option>
+              <option value="SEO">SEO</option>
+              <option value="Digital Marketing">Digital Marketing</option>
+              <option value="Branding">Branding</option>
+              <option value="Business Development">Business Development</option>
+              <option value="Automation Solutions">Automation Solutions</option>
+              <option value="Technology Consulting">Technology Consulting</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <textarea id="wa-message" placeholder="Tell us about your project, goals, requirements, or challenges..." required rows="4"></textarea>
+          </div>
+          <button type="submit" class="btn-primary">Start Conversation</button>
+        </form>
+      </div>
+
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="/" class="logo footer-logo" id="footer-logo">
+            <svg class="logo-mark" width="24" height="24" viewBox="0 0 26 26" fill="none">
+              <polygon points="13,1 25,7.5 25,18.5 13,25 1,18.5 1,7.5" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" fill="none"/>
+              <polygon points="13,7 19,10.5 19,17.5 13,21 7,17.5 7,10.5" fill="rgba(255,255,255,0.05)"/>
+              <circle cx="13" cy="13" r="2.5" fill="#ffffff"/>
+            </svg>
+            <span>Digital Nexes</span>
+          </a>
+          <p class="footer-tagline">A growth-focused digital studio helping businesses establish, optimize, and scale their digital presence.</p>
+        </div>
+        <div class="footer-links-group">
+          <div class="footer-col">
+            <h5>Services</h5>
+            <a href="/services">UI/UX Design</a>
+            <a href="/services">Website Development</a>
+            <a href="/services">SEO</a>
+            <a href="/services">Digital Marketing</a>
+            <a href="/services">Branding &amp; Identity</a>
+            <a href="/services">Business Development</a>
+            <a href="/services">Custom Software</a>
+          </div>
+          <div class="footer-col">
+            <h5>Company</h5>
+            <a href="/#why-us">Why Us</a>
+            <a href="/projects">Our Work</a>
+            <a href="/about">Team</a>
+            <a href="/about#roadmap">Roadmap</a>
+            <a href="/#faq">FAQ</a>
+          </div>
+          <div class="footer-col">
+            <h5>Contact</h5>
+            <a href="mailto:info@digitalnexes.com">info@digitalnexes.com</a>
+            <a href="tel:03455073802">03455073802</a>
+            <a href="/careers">Careers</a>
+            <a href="/community">Community</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 Digital Nexes. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Contact type switcher
+    const typeBtns = document.querySelectorAll('.ctype-btn');
+    const forms = { project: document.getElementById('form-project'), service: document.getElementById('form-service'), partnership: document.getElementById('form-partnership'), community: document.getElementById('form-general'), career: document.getElementById('form-general'), general: document.getElementById('form-general') };
+    const genHidden = document.getElementById('general-type-hidden');
+    typeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        typeBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const t = btn.dataset.type;
+        // Hide all forms
+        document.querySelectorAll('.contact-form').forEach(f => f.style.display = 'none');
+        // Show relevant form
+        const form = forms[t];
+        if (form) { form.style.display = ''; if (genHidden && ['community','career','general'].includes(t)) { genHidden.value = t.charAt(0).toUpperCase() + t.slice(1); } }
+      });
+    });
+    // Pre-select from URL param
+    const urlType = new URLSearchParams(window.location.search).get('type');
+    if (urlType) { const btn = document.querySelector(`.ctype-btn[data-type="${urlType}"]`); if (btn) btn.click(); }
+  </script>
+  <script type="module" src="/src/page.js"></script>
+</body>
+</html>

@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Nexes — Digital Growth Studio</title>
+  <meta name="description" content="Digital Nexes is a premium digital growth studio helping businesses establish, optimize, and scale through technology, strategic marketing, and user-centered design." />
+  <meta name="keywords" content="UI UX design, website development, SEO, digital marketing, branding, custom software, Pakistan" />
+  <meta property="og:title" content="Digital Nexes — Digital Growth Studio" />
+  <meta property="og:description" content="Seven disciplines. One integrated team. Building digital products that establish, optimize, and scale." />
+  <meta property="og:type" content="website" />
+  <meta name="google-site-verification" content="fBCWCPBUqQz6GWeuxFCkisb5FXFLLVc3yzmfD9mjaHs" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ══ PAGE LOADER ═══════════════════════════════════════════════════════ -->
+  <div id="page-loader" aria-hidden="true">
+    <div class="loader-brand">
+      <svg width="32" height="32" viewBox="0 0 26 26" fill="none">
+        <polygon points="13,1 25,7.5 25,18.5 13,25 1,18.5 1,7.5" stroke="#ffffff" stroke-width="1.5" fill="none"/>
+        <polygon points="13,7 19,10.5 19,17.5 13,21 7,17.5 7,10.5" fill="#ffffff" opacity="0.08"/>
+        <circle cx="13" cy="13" r="2.5" fill="#ffffff"/>
+      </svg>
+      <span>Digital Nexes</span>
+    </div>
+    <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+    <p class="loader-copy">Digital Growth Studio</p>
+  </div>
+
+  <!-- ══ CUSTOM CURSOR ══════════════════════════════════════════════════════ -->
+  <div id="cursor-dot"  aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+
+  <!-- ══ SCROLL PROGRESS ═══════════════════════════════════════════════════ -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ══ WEBGL SHADER BACKGROUND ══════════════════════════════════════════ -->
+  <canvas id="gradient-canvas" aria-hidden="true"></canvas>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       NAVBAR
+  ════════════════════════════════════════════════════════════════════════════ -->
+      <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="/" class="logo" id="logo-link">
+        <svg class="logo-mark" width="26" height="26" viewBox="0 0 26 26" fill="none">
+          <polygon points="13,1 25,7.5 25,18.5 13,25 1,18.5 1,7.5" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" fill="none"/>
+          <polygon points="13,7 19,10.5 19,17.5 13,21 7,17.5 7,10.5" fill="rgba(255,255,255,0.06)"/>
+          <circle cx="13" cy="13" r="2.5" fill="#ffffff"/>
+        </svg>
+        <span>Digital Nexes</span>
+      </a>
+      <nav class="nav-links" id="nav-links" role="navigation" aria-label="Primary navigation">
+        <a href="/"       data-page="index">Home</a>
+        <a href="/about"       data-page="about">About</a>
+        <a href="/services"    data-page="services">Services</a>
+        <a href="/projects"    data-page="projects">Work</a>
+        <a href="/careers"     data-page="careers">Careers</a>
+        <a href="/blog"        data-page="blog">Insights</a>
+        <a href="/contact"     data-page="contact">Contact</a>
+      </nav>
+      <a href="/contact" class="btn-primary nav-cta" id="nav-cta">Let's Talk</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════════════════════════════════════════ -->
+  <main>
+
+  <section class="hero" id="hero">
+    <div class="container hero-container" style="text-align: center; max-width: 900px; margin: 0 auto; position: relative; z-index: 2;">
+      <div class="hero-content">
+        <p class="hero-badge" id="hero-badge" style="margin: 0 auto 32px;">
+          <span class="badge-dot"></span>
+          Digital Growth Studio
+        </p>
+        <h1 class="hero-title" id="hero-title" style="font-size: clamp(3.5rem, 8vw, 6rem);">
+          We Build<br />
+          Digital Products<br />
+          <span class="gradient-text">that Scale.</span>
+        </h1>
+        <p class="hero-sub" id="hero-sub" style="margin: 32px auto 48px; max-width: 600px;">
+          Seven disciplines — one integrated studio. We help businesses establish, optimize, and scale through design, engineering, marketing, and strategy.
+        </p>
+        <div class="hero-ctas" id="hero-ctas" style="justify-content: center;">
+          <a href="#services" class="btn-primary" id="hero-cta-1">Explore Services &rarr;</a>
+          <a href="#work"     class="btn-ghost"   id="hero-cta-2">View Our Work</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Abstract Glass Grid Background -->
+    <div class="hero-glass-grid"></div>
+
+    
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       TECH / TOOLS MARQUEE
+  ════════════════════════════════════════════════════════════════════════════ -->
+  <div class="tech-marquee" aria-label="Technologies and tools we use">
+    <div class="marquee-row m-fwd hover-pause">
+      <div class="marquee-inner">
+        <span>React</span><span class="m-sep">·</span>
+        <span>Next.js</span><span class="m-sep">·</span>
+        <span>TypeScript</span><span class="m-sep">·</span>
+        <span>Node.js</span><span class="m-sep">·</span>
+        <span>Three.js</span><span class="m-sep">·</span>
+        <span>WebGL / GLSL</span><span class="m-sep">·</span>
+        <span>GSAP</span><span class="m-sep">·</span>
+        <span>Figma</span><span class="m-sep">·</span>
+        <span>Adobe Suite</span><span class="m-sep">·</span>
+        <span>Webflow</span><span class="m-sep">·</span>
+        <span>React</span><span class="m-sep">·</span>
+        <span>Next.js</span><span class="m-sep">·</span>
+        <span>TypeScript</span><span class="m-sep">·</span>
+        <span>Node.js</span><span class="m-sep">·</span>
+        <span>Three.js</span><span class="m-sep">·</span>
+        <span>WebGL / GLSL</span><span class="m-sep">·</span>
+        <span>GSAP</span><span class="m-sep">·</span>
+        <span>Figma</span><span class="m-sep">·</span>
+        <span>Adobe Suite</span><span class="m-sep">·</span>
+        <span>Webflow</span><span class="m-sep">·</span>
+      </div>
+    </div>
+    <div class="marquee-row m-rev hover-pause">
+      <div class="marquee-inner">
+        <span>Google Ads</span><span class="m-sep">·</span>
+        <span>Meta Ads</span><span class="m-sep">·</span>
+        <span>SEMrush</span><span class="m-sep">·</span>
+        <span>GA4 Analytics</span><span class="m-sep">·</span>
+        <span>WordPress</span><span class="m-sep">·</span>
+        <span>Shopify</span><span class="m-sep">·</span>
+        <span>GitHub</span><span class="m-sep">·</span>
+        <span>Vercel</span><span class="m-sep">·</span>
+        <span>AWS</span><span class="m-sep">·</span>
+        <span>Python</span><span class="m-sep">·</span>
+        <span>Google Ads</span><span class="m-sep">·</span>
+        <span>Meta Ads</span><span class="m-sep">·</span>
+        <span>SEMrush</span><span class="m-sep">·</span>
+        <span>GA4 Analytics</span><span class="m-sep">·</span>
+        <span>WordPress</span><span class="m-sep">·</span>
+        <span>Shopify</span><span class="m-sep">·</span>
+        <span>GitHub</span><span class="m-sep">·</span>
+        <span>Vercel</span><span class="m-sep">·</span>
+        <span>AWS</span><span class="m-sep">·</span>
+        <span>Python</span><span class="m-sep">·</span>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       COMPANY OVERVIEW & VISION
+  ════════════════════════════════════════════════════════════════════════════ -->
+  <section class="section" id="overview">
+    <div class="container">
+      <div class="overview-grid">
+
+        <!-- Left: text -->
+        <div>
+          <p class="eyebrow reveal-text">Who We Are</p>
+          <h2 class="overview-headline reveal-text">End-to-end digital transformation for growth‑focused brands.</h2>
+          <p class="overview-body reveal-text">Digital Nexes is a multidisciplinary technology company focused on helping businesses grow through design, development, marketing, SEO, branding, software solutions, and business development. We serve startups, SMEs, healthcare organizations, and enterprises worldwide.</p>
+          <a href="#services" class="btn-primary reveal-text">Explore Services &rarr;</a>
+        </div>
+
+        <!-- Right: Vision, Mission, Values cards -->
+        <div class="vm-cards">
+          <div class="vm-card reveal-right">
+            <div class="vm-card-title">
+              <div class="vm-icon">✦</div>
+              Vision
+            </div>
+            <p class="vm-body">To become a globally recognized technology and innovation company operating across IT, digital transformation, architecture technology, AI, and robotics.</p>
+          </div>
+          <div class="vm-card reveal-right">
+            <div class="vm-card-title">
+              <div class="vm-icon">⌖</div>
+              Mission
+            </div>
+            <p class="vm-body">To help organizations leverage technology, design, and strategic growth systems to achieve sustainable and scalable business success.</p>
+          </div>
+          <div class="vm-card reveal-right">
+            <div class="vm-card-title">
+              <div class="vm-icon">◈</div>
+              Core Values
+            </div>
+            <div class="values-tags">
+              <span class="value-tag">Innovation</span>
+              <span class="value-tag">Excellence</span>
+              <span class="value-tag">Integrity</span>
+              <span class="value-tag">Accountability</span>
+              <span class="value-tag">Growth Mindset</span>
+              <span class="value-tag">Learning</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SERVICES — HORIZONTAL STICKY SCROLL
+  ════════════════════════════════════════════════════════════════════════════ -->
+  <section class="section services-section" id="services" style="padding: 0;">
+    <!-- This outer div creates the scroll space for the sticky pin -->
+    <div class="services-sticky-outer" id="services-outer" style="height: 500vh;">
+      <div class="services-sticky-inner" id="services-sticky">
+        <div class="services-sticky-header">
+          <div>
+            <p class="eyebrow">What We Do</p>
+            <h2 class="section-title" style="margin-bottom: 0; text-align: left;">Our Core Services</h2>
+          </div>
+          <div class="services-progress" id="svc-progress">
+            <div class="svc-dot active" id="sdot-0"></div>
+            <div class="svc-dot" id="sdot-1"></div>
+            <div class="svc-dot" id="sdot-2"></div>
+            <div class="svc-dot" id="sdot-3"></div>
+            <div class="svc-dot" id="sdot-4"></div>
+            <div class="svc-dot" id="sdot-5"></div>
+            <div class="svc-dot" id="sdot-6"></div>
+          </div>
+        </div>
+        <div class="services-track-wrap">
+          <div class="services-track" id="services-track">
+
+            <a href="/service-ui-ux" class="svc-card" id="svc-uiux" style="text-decoration: none;">
+              <span class="svc-number">01</span>
+              <div class="svc-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              </div>
+              <h3 class="svc-title">UI/UX Design</h3>
+              <p class="svc-body">User-centered interfaces built from research, not assumptions. Wireframes, prototypes, and high-fidelity designs that convert and delight.</p>
+              <span class="svc-tag">Design</span>
+            </a>
+
+            <a href="/service-web-dev" class="svc-card" id="svc-web" style="text-decoration: none;">
+              <span class="svc-number">02</span>
+              <div class="svc-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
+              <h3 class="svc-title">Website Development</h3>
+              <p class="svc-body">Performant, scalable web applications built with modern frameworks. From marketing sites to complex platforms — clean code guaranteed.</p>
+              <span class="svc-tag">Development</span>
+            </a>
+
+            <a href="/service-seo" class="svc-card" id="svc-seo" style="text-decoration: none;">
+              <span class="svc-number">03</span>
+              <div class="svc-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+              </div>
+              <h3 class="svc-title">SEO</h3>
+              <p class="svc-body">Data-driven search optimization that builds organic authority. Technical audits, on-page optimization, content strategy, and structured reporting.</p>
+              <span class="svc-tag">Growth</span>
+            </a>
+
+            <a href="/service-marketing" class="svc-card" id="svc-mkt" style="text-decoration: none;">
+              <span class="svc-number">04</span>
+              <div class="svc-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <h3 class="svc-title">Digital Marketing</h3>
+              <p class="svc-body">Full-funnel campaigns across paid, social, and email. Strategy, creative, targeting, and analytics — managed as a unified growth engine.</p>
+              <span class="svc-tag">Marketing</span>
+            </a>
+
+            <a href="/service-branding" class="svc-card" id="svc-brand" style="text-decoration: none;">
+              <span class="svc-number">05</span>
+              <div class="svc-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
+              </div>
+              <h3 class="svc-title">Branding &amp; Identity</h3>
+              <p class="svc-body">Strategic brand systems that differentiate and endure. Logo, color, type, voice, and visual language — built to scale across every touchpoint.</p>
+              <span class="svc-tag">Branding</span>
+            </a>
+
+            <a href="/service-business" class="svc-card" id="svc-biz" style="text-decoration: none;">
+              <span class="svc-number">06</span>
+              <div class="svc-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <h3 class="svc-title">Business Development</h3>
+              <p class="svc-body">Go-to-market strategy, partnership development, pitch decks, and growth frameworks. We help you scale with purpose and precision.</p>
+              <span class="svc-tag">Strategy</span>
+            </a>
+
+            <a href="/service-software" class="svc-card" id="svc-sw" style="text-decoration: none;">
+              <span class="svc-number">07</span>
+              <div class="svc-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              </div>
+              <h3 class="svc-title">Custom Software</h3>
+              <p class="svc-body">Bespoke SaaS platforms, web apps, dashboards, and internal tools. From MVP to enterprise — engineered for reliability and growth at every stage.</p>
+              <span class="svc-tag">Engineering</span>
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       PROCESS — SCROLL-DRIVEN 5 STAGES
+  ════════════════════════════════════════════════════════════════════════════ -->
+  <section id="process" class="process-outer" style="height: 600vh;">
+    <div class="process-pin-wrap" id="process-pin-wrap">
+      <div class="process-header">
+        <p class="eyebrow">Five Stages, Zero Guesswork</p>
+        <h2 class="section-title scramble" style="text-align:center;">How We Work</h2>
+      </div>
+      <div class="process-stage-area" style="position:relative; height:320px; width:100%; max-width:860px;">
+
+        <!-- Abstract Scroll Line -->
+        <svg class="process-scroll-line" viewBox="0 0 100 400" preserveAspectRatio="none" style="position:absolute; top:0; left:80px; width:100px; height:100%; transform:translateX(-50%); z-index:0; overflow:visible;">
+          <path id="process-path" d="M 50 0 C 80 100, 20 200, 50 300 S 80 400, 50 400" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2" />
+          <path id="process-path-active" d="M 50 0 C 80 100, 20 200, 50 300 S 80 400, 50 400" fill="none" stroke="#fff" stroke-width="4" stroke-dasharray="1000" stroke-dashoffset="1000" />
+        </svg>
+
+        <!-- Stage 1 -->
+        <div class="process-stage" id="ps-1" style="position:absolute;inset:0; z-index:2;">
+          <div class="process-stage-num">01</div>
+          <div class="process-stage-content" style="background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); padding: 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+            <h3>Discover</h3>
+            <p>We start with deep listening — stakeholder interviews, user research, competitive landscape analysis, and goal alignment. No assumptions, only data.</p>
+          </div>
+        </div>
+
+        <!-- Stage 2 -->
+        <div class="process-stage" id="ps-2" style="position:absolute;inset:0; z-index:2;">
+          <div class="process-stage-num">02</div>
+          <div class="process-stage-content" style="background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); padding: 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+            <h3>Strategize</h3>
+            <p>Insights become blueprints. We define clear success metrics, map user journeys, establish the tech stack, and build a phased roadmap with ownership at every step.</p>
+          </div>
+        </div>
+
+        <!-- Stage 3 -->
+        <div class="process-stage" id="ps-3" style="position:absolute;inset:0; z-index:2;">
+          <div class="process-stage-num">03</div>
+          <div class="process-stage-content" style="background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); padding: 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+            <h3>Design</h3>
+            <p>From wireframes to pixel-perfect high-fidelity designs. Every screen is backed by UX principles and validated through rapid iteration cycles with your team.</p>
+          </div>
+        </div>
+
+        <!-- Stage 4 -->
+        <div class="process-stage" id="ps-4" style="position:absolute;inset:0; z-index:2;">
+          <div class="process-stage-num">04</div>
+          <div class="process-stage-content" style="background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); padding: 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+            <h3>Build</h3>
+            <p>Production-grade development with rigorous QA. We build in public, with regular demos and checkpoints so you always know exactly where things stand.</p>
+          </div>
+        </div>
+
+        <!-- Stage 5 -->
+        <div class="process-stage" id="ps-5" style="position:absolute;inset:0; z-index:2;">
+          <div class="process-stage-num">05</div>
+          <div class="process-stage-content" style="background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); padding: 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+            <h3>Launch &amp; Grow</h3>
+            <p>Go live with confidence. Post-launch, we monitor performance, optimize based on real data, and continue iterating toward sustainable, compounding growth.</p>
+          </div>
+        </div>
+
+      </div>
+      <div class="process-dots" id="process-dots">
+        <button class="pdot active" id="pdot-0" aria-label="Stage 1"></button>
+        <button class="pdot" id="pdot-1" aria-label="Stage 2"></button>
+        <button class="pdot" id="pdot-2" aria-label="Stage 3"></button>
+        <button class="pdot" id="pdot-3" aria-label="Stage 4"></button>
+        <button class="pdot" id="pdot-4" aria-label="Stage 5"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       WHY US / CORE VALUES
+  ════════════════════════════════════════════════════════════════════════════ -->
+  <section class="section" id="why-us">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow reveal-text">Why Digital Nexes</p>
+        <h2 class="section-title scramble reveal-text">The Studio Advantage</h2>
+        <p class="section-sub reveal-text">Six reasons why growth-focused businesses choose us as their long-term digital partner.</p>
+      </div>
+      <div class="why-list">
+
+        <a href="/blog-integrated-studio" class="why-row reveal-card" id="why-1" style="text-decoration: none;">
+          <div class="why-row-num">01</div>
+          <div class="why-row-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="why-row-title">Integrated Studio Model</div>
+          <div class="why-row-body">Design, development, marketing, and strategy under one roof. No handoff friction — your brand and product stay coherent from day one.</div>
+          <div class="why-row-arrow">↗</div>
+        </a>
+
+        <a href="/blog-rapid-delivery" class="why-row reveal-card" id="why-2" style="text-decoration: none;">
+          <div class="why-row-num">02</div>
+          <div class="why-row-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="why-row-title">Rapid, Structured Delivery</div>
+          <div class="why-row-body">We move fast without breaking things. Every project runs on a clear timeline with milestones, demos, and accountability checkpoints built in.</div>
+          <div class="why-row-arrow">↗</div>
+        </a>
+
+        <a href="/blog-results-obsessed" class="why-row reveal-card" id="why-3" style="text-decoration: none;">
+          <div class="why-row-num">03</div>
+          <div class="why-row-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div class="why-row-title">Results-Obsessed</div>
+          <div class="why-row-body">We don't ship and disappear. Every decision is tied to measurable business outcomes — traffic, conversion, retention, or revenue.</div>
+          <div class="why-row-arrow">↗</div>
+        </a>
+
+        <a href="/blog-client-first" class="why-row reveal-card" id="why-4" style="text-decoration: none;">
+          <div class="why-row-num">04</div>
+          <div class="why-row-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="why-row-title">Client-First Culture</div>
+          <div class="why-row-body">Your success is our success. We act as a genuine partner — transparent about risks, proactive with solutions, and invested in your long-term growth.</div>
+          <div class="why-row-arrow">↗</div>
+        </a>
+
+        <a href="/blog-data-led" class="why-row reveal-card" id="why-5" style="text-decoration: none;">
+          <div class="why-row-num">05</div>
+          <div class="why-row-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+          </div>
+          <div class="why-row-title">Data-Led Decisions</div>
+          <div class="why-row-body">Intuition is validated with data. From UX research to campaign analytics, we let the numbers guide every creative and strategic call.</div>
+          <div class="why-row-arrow">↗</div>
+        </a>
+
+        <a href="/blog-proven-industry" class="why-row reveal-card" id="why-6" style="text-decoration: none;">
+          <div class="why-row-num">06</div>
+          <div class="why-row-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="why-row-title">Proven Across Industries</div>
+          <div class="why-row-body">Healthcare, tech, real estate, education, e-commerce, and more. Our cross-sector experience means tested solutions, not costly experiments.</div>
+          <div class="why-row-arrow">↗</div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       INDUSTRIES SERVED
+  ════════════════════════════════════════════════════════════════════════════ -->
+  <section class="section" id="industries">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow reveal-text">Who We Work With</p>
+        <h2 class="section-title scramble reveal-text">Industries Served</h2>
+        <p class="section-sub reveal-text">Delivering specialized digital growth solutions across diverse sectors.</p>
+      </div>
+      <div class="industries-grid">
+        <div class="industry-card reveal-card">
+          <h4 class="industry-name">Healthcare</h4>
+          <p class="industry-body">HIPAA-aware platforms, patient portals, and specialized digital marketing to grow medical practices and health networks.</p>
+        </div>
+        <div class="industry-card reveal-card">
+          <h4 class="industry-name">Technology</h4>
+          <p class="industry-body">Scalable SaaS architecture, tech branding, and go-to-market strategies for software companies and digital-first businesses.</p>
+        </div>
+        <div class="industry-card reveal-card">
+          <h4 class="industry-name">Real Estate</h4>
+          <p class="industry-body">Property platforms, virtual tours, CRM integrations, and high-converting lead funnels for agents and developers.</p>
+        </div>
+        <div class="industry-card reveal-card">
+          <h4 class="industry-name">Education</h4>
+          <p class="industry-body">E-learning systems, enrollment portals, and digital campuses designed for modern learners and institutions.</p>
+        </div>
+        <div class="industry-card reveal-card">
+          <h4 class="industry-name">E-commerce</h4>
+          <p class="industry-body">High-performance storefronts optimized for seamless checkout experiences and maximum conversion rates.</p>
+        </div>
+        <div class="industry-card reveal-card">
+          <h4 class="industry-name">Startups</h4>
+          <p class="industry-body">Agile MVP development, foundational branding, and rapid growth systems to reach product-market fit fast.</p>
+        </div>
+        <div class="industry-card reveal-card">
+          <h4 class="industry-name">Agencies</h4>
+          <p class="industry-body">White-label development, overflow design support, and technical partnerships to help agencies deliver at scale.</p>
+        </div>
+        <div class="industry-card reveal-card">
+          <h4 class="industry-name">Professional Services</h4>
+          <p class="industry-body">Authoritative branding, secure client portals, and inbound marketing for law firms, advisors, and consultants.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       FEATURED WORK
+  ════════════════════════════════════════════════════════════════════════════ -->
+  <section class="section" id="work">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow reveal-text">Featured Work</p>
+        <h2 class="section-title scramble reveal-text">Projects We're Proud Of</h2>
+        <p class="section-sub reveal-text">A look at digital products and solutions we've shipped for real clients.</p>
+      </div>
+
+      <div class="projects-list">
+
+        <!-- Project 1 -->
+        <article class="project-item reveal-card" id="proj-1">
+          <div class="project-num">01</div>
+          <div class="project-visual">
+            <div class="project-gradient pg-1"></div>
+            <div class="project-visual-label">Platform · 2024</div>
+          </div>
+          <div class="project-info">
+            <div class="project-tags-top">
+              <span class="proj-tag">Custom Software</span>
+              <span class="proj-tag">UI/UX Design</span>
+              <span class="proj-tag">Development</span>
+            </div>
+            <h3 class="project-title">Team Time Track</h3>
+            <p class="project-desc">A team productivity and time-monitoring platform featuring analytics dashboards, project-level reporting, and manager-facing insights for distributed teams.</p>
+            <div class="project-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+              View Case Study
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-item reveal-card" id="proj-2">
+          <div class="project-num">02</div>
+          <div class="project-visual">
+            <div class="project-gradient pg-2"></div>
+            <div class="project-visual-label">System · 2024</div>
+          </div>
+          <div class="project-info">
+            <div class="project-tags-top">
+              <span class="proj-tag">Custom Software</span>
+              <span class="proj-tag">UX Design</span>
+            </div>
+            <h3 class="project-title">Freelance PM System</h3>
+            <p class="project-desc">End-to-end project tracking: client management, milestones, payments, and invoicing — all in one platform built for modern freelancers.</p>
+            <div class="project-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+              View Case Study
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project-item reveal-card" id="proj-3">
+          <div class="project-num">03</div>
+          <div class="project-visual">
+            <div class="project-gradient pg-3"></div>
+            <div class="project-visual-label">Case Study · 2024</div>
+          </div>
+          <div class="project-info">
+            <div class="project-tags-top">
+              <span class="proj-tag">SEO</span>
+              <span class="proj-tag">UI/UX Consultation</span>
+            </div>
+            <h3 class="project-title">Al Ahad Dental Care</h3>
+            <p class="project-desc">Website redesign consultation, content strategy, and SEO enhancements to significantly boost organic visibility and patient conversions.</p>
+            <div class="project-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+              View Case Study
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       TEAM
+  ════════════════════════════════════════════════════════════════════════════ -->
+  <section class="section" id="team">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow reveal-text">The Team</p>
+        <h2 class="section-title scramble reveal-text">The People Behind It</h2>
+        <p class="section-sub reveal-text">Five specialists across design, engineering, marketing, and strategy — working as one integrated studio.</p>
+      </div>
+      <!-- Featured Lead Card -->
+      <div class="team-featured reveal-card" id="team-1">
+        <div class="team-feat-left">
+          <div class="team-feat-avatar">AQ</div>
+        </div>
+        <div class="team-feat-right">
+          <div class="team-feat-tag">Leadership</div>
+          <h3 class="team-feat-name">Aayan Mahmood Qureshi</h3>
+          <div class="team-feat-role">CEO &amp; Founder</div>
+          <p class="team-feat-bio">Leads vision, strategy, and client relationships. Drives the business-oriented culture at Digital Nexes and defines the long-term trajectory of the studio.</p>
+          <div class="team-feat-disciplines">
+            <span>Strategy</span><span>Leadership</span><span>Business Dev</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Supporting Team -->
+      <div class="team-list">
+
+        <div class="team-row reveal-card" id="team-2">
+          <div class="team-row-initials">SQ</div>
+          <div class="team-row-info">
+            <div class="team-row-name">Shayan Mahmood Qureshi</div>
+            <div class="team-row-role">CGO &amp; Co-Founder</div>
+          </div>
+          <p class="team-row-bio">Owns growth, partnerships, and go-to-market strategy for sustainable long-term outcomes.</p>
+          <div class="team-row-tags"><span>Growth</span><span>Partnerships</span></div>
+        </div>
+
+        <div class="team-row reveal-card" id="team-3">
+          <div class="team-row-initials">MM</div>
+          <div class="team-row-info">
+            <div class="team-row-name">Muhammad Momin</div>
+            <div class="team-row-role">Senior Design Manager</div>
+          </div>
+          <p class="team-row-bio">Leads UI/UX, branding, and visual systems. Shapes the aesthetic direction for every client.</p>
+          <div class="team-row-tags"><span>UI/UX</span><span>Branding</span></div>
+        </div>
+
+        <div class="team-row reveal-card" id="team-4">
+          <div class="team-row-initials">FA</div>
+          <div class="team-row-info">
+            <div class="team-row-name">Farhan Ahmad</div>
+            <div class="team-row-role">Senior Developer Manager</div>
+          </div>
+          <p class="team-row-bio">Oversees technical execution across web and software. Champion of clean architecture and performance.</p>
+          <div class="team-row-tags"><span>Engineering</span><span>Architecture</span></div>
+        </div>
+
+        <div class="team-row reveal-card" id="team-5">
+          <div class="team-row-initials">AM</div>
+          <div class="team-row-info">
+            <div class="team-row-name">M. Ahmad Malik</div>
+            <div class="team-row-role">Senior Marketing Manager</div>
+          </div>
+          <p class="team-row-bio">Turns data signals into campaigns that consistently grow organic reach and conversions.</p>
+          <div class="team-row-tags"><span>Marketing</span><span>SEO</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       TESTIMONIALS
+  ════════════════════════════════════════════════════════════════════════════ -->
+  <section class="section" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow reveal-text">Client Words</p>
+        <h2 class="section-title reveal-text">What Clients Say</h2>
+      </div>
+      <div class="testimonials-wrapper reveal-text">
+        <div class="testimonials-track" id="testimonials-track">
+          <div class="testimonial-slide active" id="testi-1">
+            <div class="testimonial-card">
+              <span class="testimonial-quote-mark">"</span>
+              <blockquote>
+                <p>Digital Nexes provided valuable insights for improving our website content and online presence. Their understanding of both design and SEO made a real difference in how we appear to patients online.</p>
+                <footer><cite>
+                  <span class="testi-name">Al Ahad Dental Care</span>
+                  <span class="testi-role">Healthcare Client</span>
+                </cite></footer>
+              </blockquote>
+            </div>
+          </div>
+          <div class="testimonial-slide" id="testi-2">
+            <div class="testimonial-card">
+              <span class="testimonial-quote-mark">"</span>
+              <blockquote>
+                <p>Their combination of design thinking and business strategy makes them more than just a service provider — they think like a partner. That approach is rare and genuinely valuable when you're building something from scratch.</p>
+                <footer><cite>
+                  <span class="testi-name">Startup Client</span>
+                  <span class="testi-role">Early-Stage Founder</span>
+                </cite></footer>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-dots" id="testimonial-dots">
+          <button class="testimonial-dot active" id="dot-0" aria-label="Testimonial 1"></button>
+          <button class="testimonial-dot" id="dot-1" aria-label="Testimonial 2"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       FUTURE ROADMAP
+  ════════════════════════════════════════════════════════════════════════════ -->
+  <section class="section" id="roadmap">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow reveal-text">Looking Ahead</p>
+        <h2 class="section-title scramble reveal-text">Future Roadmap</h2>
+        <p class="section-sub reveal-text">Our continuous evolution beyond services into products, AI, and advanced technologies.</p>
+      </div>
+      <div class="roadmap-flex" id="roadmap-flex">
+        <div class="roadmap-card reveal-card">
+          <div class="roadmap-meta">Phase 1</div>
+          <h3 class="roadmap-title">SaaS Products</h3>
+          <p class="roadmap-body">Transitioning from custom agency work to building, launching, and scaling proprietary Software-as-a-Service platforms designed to solve specialized industry challenges on a global scale.</p>
+        </div>
+
+        <div class="roadmap-card reveal-card stagger-1">
+          <div class="roadmap-meta">Phase 2</div>
+          <h3 class="roadmap-title">AI-Powered Business Solutions</h3>
+          <p class="roadmap-body">Integrating advanced AI models — LLMs, generative AI, and machine learning — into everyday business workflows for unprecedented automation, deep data insights, and operational efficiency.</p>
+        </div>
+
+        <div class="roadmap-card reveal-card stagger-2">
+          <div class="roadmap-meta">Phase 3</div>
+          <h3 class="roadmap-title">Architecture Tech &amp; Robotics</h3>
+          <p class="roadmap-body">Expanding into the physical-digital intersection. Investing in R&amp;D for architecture technology, smart automation systems, and robotics applications that bridge hardware with our software expertise.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       FAQ
+  ════════════════════════════════════════════════════════════════════════════ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow reveal-text">FAQ</p>
+        <h2 class="section-title scramble reveal-text">Frequently Asked</h2>
+        <p class="section-sub reveal-text">Common questions about working with Digital Nexes across our seven service areas.</p>
+      </div>
+      <div class="faq-columns">
+        <div class="faq-col">
+          <div class="faq-item reveal-card" id="faq-1">
+            <button class="faq-btn" aria-expanded="false" id="faq-btn-1">
+              <span class="faq-num">01</span>
+              <span class="faq-q-text">What does your UI/UX design process look like?</span>
+              <span class="faq-chevron" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-body" id="faq-body-1"><p>We start with discovery — user research, stakeholder interviews, and competitive analysis. From there: wireframing, interactive prototyping, and iterative user testing before finalizing high-fidelity designs with a full design system.</p></div>
+          </div>
+          <div class="faq-item reveal-card" id="faq-2">
+            <button class="faq-btn" aria-expanded="false" id="faq-btn-2">
+              <span class="faq-num">02</span>
+              <span class="faq-q-text">How long does a typical website development project take?</span>
+              <span class="faq-chevron" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-body" id="faq-body-2"><p>A focused marketing website typically takes 3–6 weeks. A larger web application with custom features runs 8–16 weeks depending on scope. We provide a detailed timeline in our proposal after the discovery call.</p></div>
+          </div>
+          <div class="faq-item reveal-card" id="faq-3">
+            <button class="faq-btn" aria-expanded="false" id="faq-btn-3">
+              <span class="faq-num">03</span>
+              <span class="faq-q-text">How do you approach SEO for a new or existing website?</span>
+              <span class="faq-chevron" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-body" id="faq-body-3"><p>For new sites we build SEO fundamentals in from day one — architecture, technical health, structured data, and keyword-mapped content. For existing sites we start with a full technical audit and deliver a phased optimization roadmap.</p></div>
+          </div>
+        </div>
+        <div class="faq-col">
+          <div class="faq-item reveal-card" id="faq-4">
+            <button class="faq-btn" aria-expanded="false" id="faq-btn-4">
+              <span class="faq-num">04</span>
+              <span class="faq-q-text">What's included in Digital Marketing services?</span>
+              <span class="faq-chevron" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-body" id="faq-body-4"><p>Paid advertising (Google, Meta), social media strategy, email marketing, content marketing, and analytics — treated as a connected system so messaging and data stay consistent across every touchpoint.</p></div>
+          </div>
+          <div class="faq-item reveal-card" id="faq-5">
+            <button class="faq-btn" aria-expanded="false" id="faq-btn-5">
+              <span class="faq-num">05</span>
+              <span class="faq-q-text">Can you handle both branding and custom software for our startup?</span>
+              <span class="faq-chevron" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-body" id="faq-body-5"><p>Absolutely — that integrated capability is one of our key strengths. Having design and engineering in the same studio ensures brand and product stay coherent from launch onward. No handoff friction.</p></div>
+          </div>
+          <div class="faq-item reveal-card" id="faq-6">
+            <button class="faq-btn" aria-expanded="false" id="faq-btn-6">
+              <span class="faq-num">06</span>
+              <span class="faq-q-text">How do we get started working with Digital Nexes?</span>
+              <span class="faq-chevron" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-body" id="faq-body-6"><p>Reach out via the contact form or email. We'll schedule a 30-minute discovery call, then within a few days you'll receive a tailored proposal — scope, deliverables, timeline, and pricing. No obligation, no pressure.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+    
+  
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════════════════════════════════════ -->
+  
+</main>
+
+      <footer class="footer" id="footer">
+    <div class="container footer-inner">
+
+      <div class="footer-lead-form glass-card">
+        <div class="flf-content">
+          <h3>Let's Build Something Great Together</h3>
+          <p>Interested in working with Digital Nexes? Tell us about your project and start the conversation directly through WhatsApp.</p>
+        </div>
+        <form id="whatsapp-lead-form" class="flf-form">
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text" id="wa-name" placeholder="Enter your full name" required />
+            </div>
+            <div class="form-group">
+              <input type="email" id="wa-email" placeholder="Enter your email address" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <select id="wa-service" required>
+              <option value="" disabled selected>Service Required</option>
+              <option value="UI/UX Design">UI/UX Design</option>
+              <option value="Website Development">Website Development</option>
+              <option value="Web Application Development">Web Application Development</option>
+              <option value="Custom Software Development">Custom Software Development</option>
+              <option value="SEO">SEO</option>
+              <option value="Digital Marketing">Digital Marketing</option>
+              <option value="Branding">Branding</option>
+              <option value="Business Development">Business Development</option>
+              <option value="Automation Solutions">Automation Solutions</option>
+              <option value="Technology Consulting">Technology Consulting</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <textarea id="wa-message" placeholder="Tell us about your project, goals, requirements, or challenges..." required rows="4"></textarea>
+          </div>
+          <button type="submit" class="btn-primary">Start Conversation</button>
+        </form>
+      </div>
+
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="/" class="logo footer-logo" id="footer-logo">
+            <svg class="logo-mark" width="24" height="24" viewBox="0 0 26 26" fill="none">
+              <polygon points="13,1 25,7.5 25,18.5 13,25 1,18.5 1,7.5" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" fill="none"/>
+              <polygon points="13,7 19,10.5 19,17.5 13,21 7,17.5 7,10.5" fill="rgba(255,255,255,0.05)"/>
+              <circle cx="13" cy="13" r="2.5" fill="#ffffff"/>
+            </svg>
+            <span>Digital Nexes</span>
+          </a>
+          <p class="footer-tagline">A growth-focused digital studio helping businesses establish, optimize, and scale their digital presence.</p>
+        </div>
+        <div class="footer-links-group">
+          <div class="footer-col">
+            <h5>Services</h5>
+            <a href="/services">UI/UX Design</a>
+            <a href="/services">Website Development</a>
+            <a href="/services">SEO</a>
+            <a href="/services">Digital Marketing</a>
+            <a href="/services">Branding &amp; Identity</a>
+            <a href="/services">Business Development</a>
+            <a href="/services">Custom Software</a>
+          </div>
+          <div class="footer-col">
+            <h5>Company</h5>
+            <a href="/#why-us">Why Us</a>
+            <a href="/projects">Our Work</a>
+            <a href="/about">Team</a>
+            <a href="/about#roadmap">Roadmap</a>
+            <a href="/#faq">FAQ</a>
+          </div>
+          <div class="footer-col">
+            <h5>Contact</h5>
+            <a href="mailto:info@digitalnexes.com">info@digitalnexes.com</a>
+            <a href="tel:03455073802">03455073802</a>
+            <a href="/careers">Careers</a>
+            <a href="/community">Community</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 Digital Nexes. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══ Scripts ════════════════════════════════════════════════════════════ -->
+  <script src="/gradient.js"></script>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
