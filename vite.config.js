@@ -30,6 +30,7 @@ function cleanUrlsPlugin() {
 
 export default defineConfig({
   root: '.',
+  base: './',
   publicDir: 'public',
   plugins: [cleanUrlsPlugin()],
   build: {
