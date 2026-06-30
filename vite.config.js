@@ -35,7 +35,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     emptyOutDir: true,
-    assetsDir: '',
+    assetsDir: 'assets',
     // Increase chunk size warning limit (Three.js is large by design)
     chunkSizeWarningLimit: 700,
     rollupOptions: {
