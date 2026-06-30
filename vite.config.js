@@ -37,6 +37,13 @@ export default defineConfig({
     outDir: 'dist',
     emptyOutDir: true,
     assetsDir: 'assets',
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      }
+    },
     // Increase chunk size warning limit (Three.js is large by design)
     chunkSizeWarningLimit: 700,
     rollupOptions: {
