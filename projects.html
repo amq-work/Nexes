@@ -11,10 +11,23 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  
+    <link rel="icon" type="image/png" href="/favicon.png">
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
-  <div id="page-loader" aria-hidden="true"><div class="loader-brand"><svg width="32" height="32" viewBox="0 0 26 26" fill="none"><polygon points="13,1 25,7.5 25,18.5 13,25 1,18.5 1,7.5" stroke="#ffffff" stroke-width="1.5" fill="none"/><circle cx="13" cy="13" r="2.5" fill="#ffffff"/></svg><span>Digital Nexes</span></div><div class="loader-bar-wrap"><div class="loader-bar"></div></div><p class="loader-copy">Digital Growth Studio</p></div>
+  <div id="page-loader" class="skeleton-screen" aria-hidden="true">
+    <div class="sk-nav">
+      <div class="sk-logo"></div>
+      <div class="sk-links"></div>
+    </div>
+    <div class="sk-hero">
+      <div class="sk-title"></div>
+      <div class="sk-title short"></div>
+      <div class="sk-sub"></div>
+      <div class="sk-btn"></div>
+    </div>
+  </div>
   <div id="cursor-dot" aria-hidden="true"></div>
   <div id="cursor-ring" aria-hidden="true"></div>
   <div id="scroll-progress" aria-hidden="true"></div>
@@ -22,12 +35,7 @@
       <header class="navbar" id="navbar">
     <div class="container nav-inner">
       <a href="/" class="logo" id="logo-link">
-        <svg class="logo-mark" width="26" height="26" viewBox="0 0 26 26" fill="none">
-          <polygon points="13,1 25,7.5 25,18.5 13,25 1,18.5 1,7.5" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" fill="none"/>
-          <polygon points="13,7 19,10.5 19,17.5 13,21 7,17.5 7,10.5" fill="rgba(255,255,255,0.06)"/>
-          <circle cx="13" cy="13" r="2.5" fill="#ffffff"/>
-        </svg>
-        <span>Digital Nexes</span>
+        <img src="/logo.png" alt="Digital Nexes Logo" class="logo-mark" style="height: 48px; width: auto;">
       </a>
       <nav class="nav-links" id="nav-links" role="navigation" aria-label="Primary navigation">
         <a href="/"       data-page="index">Home</a>
@@ -52,13 +60,13 @@
     <div class="hero-glass-grid"></div>
     <div class="container page-hero-inner">
       <p class="eyebrow reveal-hero">Portfolio</p>
-      <h1 class="page-hero-title reveal-hero scramble">Work We're<br /><span class="gradient-text">Proud Of</span></h1>
+      <h1 class="page-hero-title reveal-hero"><span class="scramble">Work We're</span><br /><span class="gradient-text scramble">Proud Of</span></h1>
       <p class="page-hero-sub reveal-hero">Real digital products built for real clients — across platforms, industries, and use cases. Every project here solved a specific problem and delivered measurable impact.</p>
     </div>
   </section>
 
   <!-- FILTER BAR -->
-  <section class="section" id="projects-filter" style="padding-top: 0; padding-bottom: 32px;">
+  <section class="section" id="projects-filter" style="padding-top: 48px; padding-bottom: 32px;">
     <div class="container">
       <div class="filter-bar" id="filter-bar" role="group" aria-label="Project categories">
         <button class="filter-btn active" data-filter="all">All</button>
@@ -342,6 +350,8 @@
           <div class="form-group">
             <textarea id="wa-message" placeholder="Tell us about your project, goals, requirements, or challenges..." required rows="4"></textarea>
           </div>
+          
+            <div class="g-recaptcha" data-sitekey="6Lfl4j0tAAAAAHPe3u3URXHoq5BSRYO6njcJOsJg" style="margin-bottom: 20px;"></div>
           <button type="submit" class="btn-primary">Start Conversation</button>
         </form>
       </div>
@@ -349,12 +359,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="/" class="logo footer-logo" id="footer-logo">
-            <svg class="logo-mark" width="24" height="24" viewBox="0 0 26 26" fill="none">
-              <polygon points="13,1 25,7.5 25,18.5 13,25 1,18.5 1,7.5" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" fill="none"/>
-              <polygon points="13,7 19,10.5 19,17.5 13,21 7,17.5 7,10.5" fill="rgba(255,255,255,0.05)"/>
-              <circle cx="13" cy="13" r="2.5" fill="#ffffff"/>
-            </svg>
-            <span>Digital Nexes</span>
+            <img src="/logo.png" alt="Digital Nexes Logo" class="logo-mark" style="height: 48px; width: auto;">
           </a>
           <p class="footer-tagline">A growth-focused digital studio helping businesses establish, optimize, and scale their digital presence.</p>
         </div>
@@ -382,7 +387,7 @@
             <a href="mailto:info@digitalnexes.com">info@digitalnexes.com</a>
             <a href="tel:03455073802">03455073802</a>
             <a href="/careers">Careers</a>
-            <a href="/community">Community</a>
+            
           </div>
         </div>
       </div>

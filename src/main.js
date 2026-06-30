@@ -16,37 +16,35 @@ initWhatsAppForm();
 // ── 1. Page Loader ───────────────────────────────────────────────────────────
 const loader = document.getElementById('page-loader');
 window.addEventListener('load', () => {
-  setTimeout(() => loader?.classList.add('done'), 900);
+  setTimeout(() => loader?.classList.add('done'), 200); // reduced for efficiency
 });
 
 // ── 2. Lenis smooth scroll ───────────────────────────────────────────────────
+// Disable smooth-scroll entirely on mobile — native scroll is faster
+const IS_MOBILE_SCROLL = window.innerWidth <= 768;
 const lenis = new Lenis({
-  duration: 1.4,
+  smoothWheel: !IS_MOBILE_SCROLL,   // desktop only
+  duration: 1.2,                    // slightly snappier (was 1.4)
   easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
   orientation: 'vertical',
-  smoothWheel: true,
-  touchMultiplier: 2.4,
+  touchMultiplier: IS_MOBILE_SCROLL ? 1.0 : 1.4, // reduced (was 2.4)
 });
 gsap.ticker.add((time) => lenis.raf(time * 1000));
 gsap.ticker.lagSmoothing(0);
-lenis.on('scroll', ScrollTrigger.update);
 
-// ── 3. Feed scroll to WebGL gradient shader ──────────────────────────────────
-lenis.on('scroll', ({ scroll, limit }) => {
-  if (window.GradientShader && limit > 0)
-    window.GradientShader.setScroll(scroll / limit);
-});
-
-// ── 4. Scroll progress bar ───────────────────────────────────────────────────
+// ── 3–5. Consolidated scroll handler (single callback = less overhead) ────────
 const progressBar = document.getElementById('scroll-progress');
-lenis.on('scroll', ({ scroll, limit }) => {
-  if (progressBar && limit > 0)
-    progressBar.style.width = ((scroll / limit) * 100) + '%';
-});
-
-// ── 5. Navbar scroll class ───────────────────────────────────────────────────
 const navbar = document.getElementById('navbar');
-lenis.on('scroll', ({ scroll }) => {
+lenis.on('scroll', ({ scroll, limit }) => {
+  // Update ScrollTrigger
+  ScrollTrigger.update();
+  if (limit <= 0) return;
+  const pct = scroll / limit;
+  // Gradient shader
+  if (window.GradientShader) window.GradientShader.setScroll(pct);
+  // Progress bar
+  if (progressBar) progressBar.style.width = (pct * 100) + '%';
+  // Navbar
   navbar?.classList.toggle('scrolled', scroll > 60);
 });
 
@@ -129,7 +127,7 @@ if (!IS_TOUCH && !IS_REDUCED) {
       gsap.to(btn, { x: dx * 10, y: dy * 6, duration: 0.4, ease: 'power3.out' });
     });
     btn.addEventListener('mouseleave', () => {
-      gsap.to(btn, { x: 0, y: 0, duration: 0.8, ease: 'elastic.out(1, 0.5)' });
+      gsap.to(btn, { x: 0, y: 0, duration: 1.2, ease: 'elastic.out(1, 0.5)' });
     });
   });
 }
@@ -226,12 +224,12 @@ if (!IS_REDUCED) {
   });
 
   // Card reveals (staggered within parent)
-  document.querySelectorAll('.why-grid, .industries-grid, .roadmap-flex, .vm-cards, .faq-col').forEach(parent => {
+  document.querySelectorAll('.why-grid, .industries-grid, .vm-cards, .faq-col').forEach(parent => {
     const cards = parent.querySelectorAll('.reveal-card');
     if (!cards.length) return;
     gsap.from(cards, {
       scrollTrigger: { trigger: parent, start: 'top 85%', once: true },
-      opacity: 0, y: 48, duration: 0.8, ease: 'power3.out', stagger: 0.1,
+      opacity: 0, y: 48, duration: 1.2, ease: 'power3.out', stagger: 0.1,
     });
   });
 
@@ -275,7 +273,7 @@ if (!IS_REDUCED) {
     start: 'top top',
     end: 'bottom bottom',
     onEnter() {
-      gsap.to(cards, { x: 0, opacity: 1, duration: 0.8, ease: 'power3.out', stagger: 0.08 });
+      gsap.to(cards, { x: 0, opacity: 1, duration: 1.2, ease: 'power3.out', stagger: 0.08 });
     },
     onUpdate(self) {
       // Calculate how far to scroll the track horizontally
@@ -283,7 +281,7 @@ if (!IS_REDUCED) {
       const viewportW  = window.innerWidth;
       const maxScroll  = trackWidth - viewportW + 64; // 64px padding buffer
       const x = -(self.progress * maxScroll);
-      gsap.to(track, { x, duration: 0.5, ease: 'power3.out', overwrite: true });
+      gsap.to(track, { x, duration: 0.8, ease: 'power3.out', overwrite: true });
 
       // Update active dot
       const activeDotIdx = Math.min(
@@ -295,73 +293,83 @@ if (!IS_REDUCED) {
   });
 })();
 
-// ── 13. Process — Scroll-driven 5-stage pin ────────────────────────────────────
-(function initProcessPin() {
-  const outer  = document.getElementById('process');
-  const stages = Array.from(document.querySelectorAll('.process-stage'));
-  const dots   = Array.from(document.querySelectorAll('.pdot'));
-  const TOTAL  = stages.length;
-  if (!outer || !TOTAL) return;
+// ── 13. Process — Timeline GSAP ────────────────────────────────────────────────
+(function initTimelineAnimation() {
+  const container = document.querySelector('.timeline-container');
+  if (!container) return;
 
-  let currentStage = 0;
+  const glowPath = document.getElementById('process-glow-path');
+  const items = gsap.utils.toArray('.timeline-item');
 
-  stages.forEach((s, i) => {
-    gsap.set(s, i === 0
-      ? { opacity: 1, y: 0, pointerEvents: 'auto' }
-      : { opacity: 0, y: 60, pointerEvents: 'none' }
-    );
-  });
-
-  let stageTl = null;
-  function goToStage(idx, dir) {
-    if (idx === currentStage) return;
+  // SVG Line Animation
+  if (glowPath) {
+    const pathLength = glowPath.getTotalLength() || 2000;
+    gsap.set(glowPath, { strokeDasharray: pathLength, strokeDashoffset: pathLength });
     
-    // Kill any ongoing animation to prevent overlap
-    if (stageTl) stageTl.kill();
-    
-    // Hide everything else immediately to ensure no ghosting
-    stages.forEach((s, i) => {
-      if (i !== currentStage && i !== idx) gsap.set(s, { opacity: 0, pointerEvents: 'none' });
+    ScrollTrigger.create({
+      trigger: container,
+      start: "top center",
+      end: "bottom center",
+      animation: gsap.to(glowPath, { strokeDashoffset: 0, ease: "none" }),
+      scrub: true
     });
-
-    const outStage = stages[currentStage];
-    const inStage  = stages[idx];
-    const outY     = dir > 0 ? -60 : 60;
-    const inYStart = dir > 0 ?  60 : -60;
-
-    gsap.set(inStage, { y: inYStart, opacity: 0, pointerEvents: 'none' });
+  }
+  
+  items.forEach((item, i) => {
+    // Initial state: hidden and slightly pushed down
+    gsap.set(item, { opacity: 0, y: 60 });
+    const dot = item.querySelector('.timeline-dot');
     
-    stageTl = gsap.timeline();
-    stageTl.to(outStage, { opacity: 0, y: outY, duration: 0.35, ease: 'power2.inOut',
-      onComplete: () => gsap.set(outStage, { pointerEvents: 'none' }) });
-    stageTl.to(inStage,  { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out',
-      onComplete: () => gsap.set(inStage, { pointerEvents: 'auto' }) }, '-=0.1');
-
-    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
-    currentStage = idx;
-  }
-
-  const pathActive = document.getElementById('process-path-active');
-  let pathLen = 1000;
-  if (pathActive) {
-    pathLen = pathActive.getTotalLength() || 1000;
-    pathActive.style.strokeDasharray = pathLen;
-    pathActive.style.strokeDashoffset = pathLen;
-  }
-
-  ScrollTrigger.create({
-    trigger: outer,
-    start: 'top top',
-    end: 'bottom bottom',
-    onUpdate(self) {
-      const rawIdx = Math.min(TOTAL - 1, Math.floor(self.progress * TOTAL * 1.001));
-      const dir = rawIdx > currentStage ? 1 : -1;
-      goToStage(rawIdx, dir);
-      
-      if (pathActive) {
-        pathActive.style.strokeDashoffset = pathLen - (self.progress * pathLen);
+    ScrollTrigger.create({
+      trigger: item,
+      start: "top 65%", // Trigger when top of item is 65% down the viewport
+      onEnter: () => {
+        gsap.to(item, { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" });
+        if (dot) dot.classList.add('active');
+      },
+      onLeaveBack: () => {
+        gsap.to(item, { opacity: 0, y: 60, duration: 0.8, ease: "power2.in" });
+        if (dot) dot.classList.remove('active');
       }
-    },
+    });
+  });
+})();
+
+// ── 13a. Roadmap Timeline GSAP ──────────────────────────────────────────────────
+(function initRoadmapTimeline() {
+  const container = document.querySelector('.roadmap-timeline');
+  if (!container) return;
+
+  const progressLine = document.getElementById('roadmap-progress');
+  const items = gsap.utils.toArray('.roadmap-step');
+
+  if (progressLine) {
+    gsap.set(progressLine, { height: '0%' });
+    ScrollTrigger.create({
+      trigger: container,
+      start: "top center",
+      end: "bottom center",
+      animation: gsap.to(progressLine, { height: '100%', ease: "none" }),
+      scrub: true
+    });
+  }
+
+  items.forEach((item, i) => {
+    gsap.set(item, { opacity: 0, y: 60 });
+    const dot = item.querySelector('.roadmap-dot');
+    
+    ScrollTrigger.create({
+      trigger: item,
+      start: "top 75%",
+      onEnter: () => {
+        gsap.to(item, { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" });
+        if (dot) gsap.to(dot, { scale: 1.3, backgroundColor: '#fff', duration: 0.4 });
+      },
+      onLeaveBack: () => {
+        gsap.to(item, { opacity: 0, y: 60, duration: 0.8, ease: "power2.in" });
+        if (dot) gsap.to(dot, { scale: 1, backgroundColor: '#000', duration: 0.4 });
+      }
+    });
   });
 })();
 
@@ -373,7 +381,7 @@ if (!IS_REDUCED) {
     gsap.fromTo(item,
       { opacity: 0, x: -40 },
       {
-        opacity: 1, x: 0, duration: 0.8, ease: 'power3.out',
+        opacity: 1, x: 0, duration: 1.2, ease: 'power3.out',
         scrollTrigger: { trigger: item, start: 'top 85%', once: true },
         delay: i * 0.12,
       }
@@ -428,7 +436,7 @@ if (!IS_TOUCH && !IS_REDUCED) {
 if (!IS_TOUCH && !IS_REDUCED) {
   document.querySelectorAll('.work-card').forEach(card => {
     card.addEventListener('mouseenter', () => {
-      gsap.to(card, { scale: 1.025, duration: 0.5, ease: 'power3.out' });
+      gsap.to(card, { scale: 1.025, duration: 0.8, ease: 'power3.out' });
     });
     card.addEventListener('mouseleave', () => {
       gsap.to(card, { scale: 1, duration: 0.6, ease: 'power3.out' });
@@ -468,7 +476,7 @@ document.querySelectorAll('.faq-item').forEach(item => {
     if (!isOpen) {
       item.classList.add('open');
       btn.setAttribute('aria-expanded', 'true');
-      gsap.to(body, { maxHeight: body.scrollHeight + 40, duration: 0.5, ease: 'power3.out' });
+      gsap.to(body, { maxHeight: body.scrollHeight + 40, duration: 0.8, ease: 'power3.out' });
     }
   });
 });
@@ -532,3 +540,65 @@ if (!IS_REDUCED) {
 
 // ── 23. Particle Rocket (3D Three.js) ─────────────────────────────────────────
 buildRocketScene();
+
+// ── 14. Stacking Testimonials GSAP ───────────────────────────────────────────────
+(function initTestimonialsStack() {
+  const cards = gsap.utils.toArray('.testi-stack-card');
+  if (!cards.length) return;
+
+  cards.forEach((card, i) => {
+    // We don't animate the last card because nothing stacks on top of it
+    if (i === cards.length - 1) return;
+
+    const inner = card.querySelector('.testi-stack-inner');
+    
+    ScrollTrigger.create({
+      trigger: card,
+      start: "top 15%", // When it becomes sticky
+      endTrigger: cards[i + 1],
+      end: "top 25%", // When the next card comes up over it
+      animation: gsap.to(inner, {
+        scale: 0.9,
+        opacity: 0.5,
+        filter: "blur(4px)",
+        ease: "none"
+      }),
+      scrub: true
+    });
+  });
+})();
+
+// ── 15. Creative Scrubbing Testimonials GSAP ─────────────────────────────────────
+(function initTestimonialsScrub() {
+  const scrubTexts = document.querySelectorAll('[data-scrub-text]');
+  if (!scrubTexts.length) return;
+
+  scrubTexts.forEach(el => {
+    const text = el.innerText;
+    el.innerHTML = '';
+    
+    // Split text into words and wrap in spans
+    text.split(' ').forEach(word => {
+      const span = document.createElement('span');
+      span.innerText = word + ' ';
+      // We start them dimmed
+      span.style.opacity = 0.15;
+      el.appendChild(span);
+    });
+
+    const words = el.querySelectorAll('span');
+    
+    // Create ScrollTrigger to scrub the opacity from 0.15 to 1
+    ScrollTrigger.create({
+      trigger: el,
+      start: "top 80%",
+      end: "bottom 50%",
+      scrub: true,
+      animation: gsap.to(words, {
+        opacity: 1,
+        stagger: 0.1,
+        ease: "none"
+      })
+    });
+  });
+})();

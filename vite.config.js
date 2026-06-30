@@ -1,4 +1,4 @@
-﻿import { defineConfig } from 'vite';
+import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import fs from 'fs';
 
@@ -35,8 +35,25 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     emptyOutDir: true,
+    assetsDir: '',
+    // Increase chunk size warning limit (Three.js is large by design)
+    chunkSizeWarningLimit: 700,
     rollupOptions: {
       input: inputMap,
+      output: {
+        // Split vendor libraries into separate chunks for better browser caching
+        manualChunks(id) {
+          if (id.includes('node_modules/three')) {
+            return 'vendor-three'; // Three.js in its own chunk
+          }
+          if (id.includes('node_modules/gsap')) {
+            return 'vendor-gsap';  // GSAP in its own chunk
+          }
+          if (id.includes('node_modules/@studio-freight/lenis')) {
+            return 'vendor-lenis'; // Lenis in its own chunk
+          }
+        },
+      },
     },
   },
   server: {

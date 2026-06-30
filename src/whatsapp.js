@@ -17,7 +17,7 @@ export function initWhatsAppForm() {
       }
       const waText = `Hello Digital Nexes,\n\nI would like to discuss a project.\n\nName: ${name}\nEmail: ${email}\nService Required: ${service}\n\nProject Details:\n${message}\n\nPlease get back to me regarding this inquiry.\n\nThank you.`;
       const encodedText = encodeURIComponent(waText);
-      window.open(`https://wa.me/923455073802?text=${encodedText}`, '_blank');
+      window.open(`https://wa.me/923455073802?text=${encodedText}`, '_blank', 'noopener,noreferrer');
       form.reset();
     });
   });
@@ -29,6 +29,13 @@ export function initWhatsAppForm() {
       e.preventDefault();
       
       const type = form.querySelector('input[name="inquiry_type"]')?.value || 'General Inquiry';
+      
+      const recaptchaResponse = form.querySelector('.g-recaptcha-response');
+      if (recaptchaResponse && !recaptchaResponse.value) {
+        alert('Please complete the reCAPTCHA to verify you are human.');
+        return;
+      }
+
       let waText = `Hello Digital Nexes,\n\nI am reaching out regarding: ${type}\n\n`;
 
       if (form.id === 'form-project') {
@@ -76,7 +83,7 @@ export function initWhatsAppForm() {
       waText += `\n\nPlease get back to me.\n\nThank you.`;
       
       const encodedText = encodeURIComponent(waText);
-      window.open(`https://wa.me/923455073802?text=${encodedText}`, '_blank');
+      window.open(`https://wa.me/923455073802?text=${encodedText}`, '_blank', 'noopener,noreferrer');
       form.reset();
     });
   });

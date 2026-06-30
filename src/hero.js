@@ -1,5 +1,5 @@
 // ── hero.js — Three.js hero particle network + CTA icosahedron ────────────
-// Uses UnrealBloomPass for glowing particle post-processing
+// Performance-optimized: IntersectionObserver pause, lower counts, capped DPR
 import * as THREE from 'three';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { RenderPass }     from 'three/examples/jsm/postprocessing/RenderPass.js';
@@ -9,6 +9,9 @@ import { OutputPass }      from 'three/examples/jsm/postprocessing/OutputPass.js
 // ── Shared state ─────────────────────────────────────────────────────────────
 const IS_REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const MOBILE     = window.innerWidth < 768;
+// Low-end device: <= 2 CPU cores or saves-data hint
+const LOW_END    = (navigator.hardwareConcurrency <= 2) ||
+                   (navigator.connection && navigator.connection.saveData);
 const MOUSE      = new THREE.Vector2(0.5, 0.5);
 
 window.addEventListener('mousemove', e => {
@@ -23,8 +26,20 @@ function buildHeroScene() {
   const canvas = document.getElementById('hero-canvas');
   if (!canvas) return;
 
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, MOBILE ? 1 : 1.8));
+  // Disable on very low-end mobile to avoid total freeze
+  if (MOBILE && LOW_END) {
+    canvas.style.display = 'none';
+    return;
+  }
+
+  const renderer = new THREE.WebGLRenderer({
+    canvas,
+    antialias: !MOBILE,   // antialias off on mobile saves GPU fill-rate
+    alpha: true,
+    powerPreference: 'high-performance',
+  });
+  // Cap pixel ratio: mobile=1.0, desktop=1.5 (was 1.8)
+  renderer.setPixelRatio(MOBILE ? 1.0 : Math.min(window.devicePixelRatio, 1.5));
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.1;
   renderer.setClearColor(0x000000, 0);
@@ -33,9 +48,11 @@ function buildHeroScene() {
   const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 200);
   camera.position.set(0, 0, 18);
 
-  // ── Nodes (vertices of an icosahedron) ──────────────────────────────────
-  const COUNT_NODES  = MOBILE ? 60 : 110;
-  const COUNT_EDGES  = MOBILE ? 90 : 180;
+  // ── Reduced node/edge counts ─────────────────────────────────────────────
+  // Mobile: 40 nodes / 60 edges  (was 60/90)
+  // Desktop: 70 nodes / 120 edges (was 110/180)
+  const COUNT_NODES  = MOBILE ? 40 : 70;
+  const COUNT_EDGES  = MOBILE ? 60 : 120;
   const RADIUS       = 8;
 
   const nodes = [];
@@ -61,9 +78,8 @@ function buildHeroScene() {
     ptPos[i * 3]     = nodes[i].x;
     ptPos[i * 3 + 1] = nodes[i].y;
     ptPos[i * 3 + 2] = nodes[i].z;
-    // White to light-grey gradient based on height
     const t = (nodes[i].y + RADIUS) / (RADIUS * 2);
-    const brightness = 0.55 + t * 0.45; // range 0.55 to 1.0
+    const brightness = 0.55 + t * 0.45;
     ptColors[i * 3]     = brightness;
     ptColors[i * 3 + 1] = brightness;
     ptColors[i * 3 + 2] = brightness;
@@ -83,8 +99,6 @@ function buildHeroScene() {
 
   // ── Edge lines ──────────────────────────────────────────────────────────
   const DIST_THRESHOLD = RADIUS * 0.65;
-  const linePositions  = new Float32Array(COUNT_EDGES * 2 * 3);
-  const lineColors     = new Float32Array(COUNT_EDGES * 2 * 3);
   const edgePairs      = [];
   let edgeCount = 0;
 
@@ -128,13 +142,19 @@ function buildHeroScene() {
   const composer = new EffectComposer(renderer);
   composer.addPass(new RenderPass(scene, camera));
 
-  const bloomPass = new UnrealBloomPass(
-    new THREE.Vector2(window.innerWidth, window.innerHeight),
-    MOBILE ? 0.9 : 1.35,  // strength
-    0.45,                  // radius
-    0.12                   // threshold
-  );
-  composer.addPass(bloomPass);
+  if (!LOW_END) {
+    // Skip bloom entirely on low-end devices — huge GPU savings
+    const bloomPass = new UnrealBloomPass(
+      new THREE.Vector2(
+        MOBILE ? window.innerWidth * 0.5 : window.innerWidth,
+        MOBILE ? window.innerHeight * 0.5 : window.innerHeight
+      ),
+      MOBILE ? 0.7 : 1.1,  // reduced strength (was 0.9/1.35)
+      0.4,
+      0.15
+    );
+    composer.addPass(bloomPass);
+  }
   composer.addPass(new OutputPass());
 
   // ── Resize ───────────────────────────────────────────────────────────────
@@ -145,7 +165,6 @@ function buildHeroScene() {
     composer.setSize(w, h);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
-    bloomPass.resolution.set(w, h);
   }
   resize();
   window.addEventListener('resize', resize, { passive: true });
@@ -155,7 +174,6 @@ function buildHeroScene() {
     const posArr  = ptGeo.attributes.position.array;
     const cPosArr = lineGeo.attributes.position.array;
 
-    // Mouse offset for parallax
     const mx = (MOUSE.x - 0.5) * 3;
     const my = (MOUSE.y - 0.5) * -2;
     scene.rotation.y = mx * 0.04;
@@ -184,16 +202,31 @@ function buildHeroScene() {
     lineGeo.attributes.position.needsUpdate = true;
   }
 
-  // ── Render loop ──────────────────────────────────────────────────────────
+  // ── Render loop with IntersectionObserver pause ───────────────────────────
   let rafId;
+  let isVisible = true;
+
   function tick() {
+    if (!isVisible) { rafId = null; return; }
     rafId = requestAnimationFrame(tick);
     if (!IS_REDUCED) updateNodes();
     composer.render();
   }
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      isVisible = entry.isIntersecting;
+      if (isVisible && !rafId) tick(); // resume
+    },
+    { threshold: 0 }
+  );
+  observer.observe(canvas);
   tick();
 
-  return () => cancelAnimationFrame(rafId);
+  return () => {
+    cancelAnimationFrame(rafId);
+    observer.disconnect();
+  };
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -203,8 +236,19 @@ function buildCtaScene() {
   const canvas = document.getElementById('cta-canvas');
   if (!canvas) return;
 
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+  // Skip on low-end mobile
+  if (MOBILE && LOW_END) {
+    canvas.style.display = 'none';
+    return;
+  }
+
+  const renderer = new THREE.WebGLRenderer({
+    canvas,
+    antialias: !MOBILE,
+    alpha: true,
+    powerPreference: 'high-performance',
+  });
+  renderer.setPixelRatio(MOBILE ? 1.0 : Math.min(window.devicePixelRatio, 1.5));
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.0;
   renderer.setClearColor(0x000000, 0);
@@ -233,22 +277,23 @@ function buildCtaScene() {
   const wire    = new THREE.Mesh(wireGeo, wireMat);
   scene.add(wire);
 
-  // ── Orbiting torus ring ──────────────────────────────────────────────────
-  const torusGeo = new THREE.TorusGeometry(3.2, 0.025, 8, 80);
+  // ── Orbiting torus rings ─────────────────────────────────────────────────
+  // Reduced segment counts: torus1 8,60 (was 8,80), torus2 6,40 (was 6,60)
+  const torusGeo = new THREE.TorusGeometry(3.2, 0.025, 8, 60);
   const torusMat = new THREE.MeshBasicMaterial({ color: 0xa055b4, transparent: true, opacity: 0.45 });
   const torus1   = new THREE.Mesh(torusGeo, torusMat);
   torus1.rotation.x = Math.PI / 3;
   scene.add(torus1);
 
-  const torus2   = new THREE.Mesh(
-    new THREE.TorusGeometry(3.8, 0.015, 6, 60),
+  const torus2 = new THREE.Mesh(
+    new THREE.TorusGeometry(3.8, 0.015, 6, 40),
     new THREE.MeshBasicMaterial({ color: 0x0afbff, transparent: true, opacity: 0.25 })
   );
   torus2.rotation.x = Math.PI / 5;
   torus2.rotation.z = Math.PI / 4;
   scene.add(torus2);
 
-  // ── Ambient + directional lights ─────────────────────────────────────────
+  // ── Lights ───────────────────────────────────────────────────────────────
   scene.add(new THREE.AmbientLight(0x112233, 1.5));
   const dirLight = new THREE.DirectionalLight(0x00e5e8, 3.5);
   dirLight.position.set(4, 6, 5);
@@ -257,18 +302,21 @@ function buildCtaScene() {
   dirLight2.position.set(-4, -3, 3);
   scene.add(dirLight2);
 
-  // ── Point light orbiting ─────────────────────────────────────────────────
   const pLight = new THREE.PointLight(0x0afbff, 4, 12);
   scene.add(pLight);
 
-  // ── Bloom ────────────────────────────────────────────────────────────────
+  // ── Bloom (skip on low-end) ───────────────────────────────────────────────
   const composer = new EffectComposer(renderer);
   composer.addPass(new RenderPass(scene, camera));
-  const bloom = new UnrealBloomPass(
-    new THREE.Vector2(512, 512),
-    1.6, 0.4, 0.05
-  );
-  composer.addPass(bloom);
+  if (!LOW_END) {
+    const bloom = new UnrealBloomPass(
+      new THREE.Vector2(MOBILE ? 256 : 512, MOBILE ? 256 : 512),
+      MOBILE ? 1.0 : 1.6,
+      0.4,
+      0.05
+    );
+    composer.addPass(bloom);
+  }
   composer.addPass(new OutputPass());
 
   function resize() {
@@ -282,16 +330,16 @@ function buildCtaScene() {
   resize();
   window.addEventListener('resize', resize, { passive: true });
 
-  // Use Timer (Clock is deprecated in Three.js r161+)
   const timer = new THREE.Timer();
   let rafId;
+  let isVisible = false; // start paused — only render when in view
 
   function tick() {
+    if (!isVisible) { rafId = null; return; }
     rafId = requestAnimationFrame(tick);
     timer.update();
     const t = timer.getElapsed();
     if (!IS_REDUCED) {
-      // Rotate shapes
       ico.rotation.x = t * 0.20;
       ico.rotation.y = t * 0.28;
       wire.rotation.copy(ico.rotation);
@@ -299,14 +347,12 @@ function buildCtaScene() {
       torus2.rotation.y = t * 0.14;
       torus2.rotation.x = Math.PI / 5 + t * 0.08;
 
-      // Orbit the point light
       pLight.position.set(
         Math.sin(t * 0.9) * 4,
         Math.cos(t * 0.7) * 3,
         Math.cos(t * 1.1) * 3
       );
 
-      // Mouse parallax on scene
       const mx = (MOUSE.x - 0.5) * 0.8;
       const my = (MOUSE.y - 0.5) * -0.5;
       scene.rotation.y += (mx - scene.rotation.y) * 0.05;
@@ -314,9 +360,21 @@ function buildCtaScene() {
     }
     composer.render();
   }
-  tick();
 
-  return () => cancelAnimationFrame(rafId);
+  // Only render CTA scene when visible in viewport
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      isVisible = entry.isIntersecting;
+      if (isVisible && !rafId) tick(); // resume
+    },
+    { threshold: 0 }
+  );
+  observer.observe(canvas);
+
+  return () => {
+    cancelAnimationFrame(rafId);
+    observer.disconnect();
+  };
 }
 
 // ── Boot ──────────────────────────────────────────────────────────────────

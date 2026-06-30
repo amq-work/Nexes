@@ -1,36 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Client-First Culture — Digital Nexes Insights</title>
-  <meta name="description" content="Expert insights from Digital Nexes on technology, web design, SEO, digital marketing, AI, and business growth. Practical knowledge from practitioners." />
-  <meta property="og:type" content="website" />
-  <meta name="google-site-verification" content="fBCWCPBUqQz6GWeuxFCkisb5FXFLLVc3yzmfD9mjaHs" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insights &amp; Blog — Digital Nexes | Technology, Design &amp; Growth</title>
+  <meta name="description" content="Expert insights from Digital Nexes on technology, web design, SEO, digital marketing, AI, and business growth. Practical knowledge from practitioners.">
+  <meta property="og:type" content="website">
+  <meta name="google-site-verification" content="fBCWCPBUqQz6GWeuxFCkisb5FXFLLVc3yzmfD9mjaHs">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+  
+    <link rel="icon" type="image/png" href="/favicon.png">
 </head>
 <body>
-  <div id="page-loader" aria-hidden="true"><div class="loader-brand"><svg width="32" height="32" viewBox="0 0 26 26" fill="none"><polygon points="13,1 25,7.5 25,18.5 13,25 1,18.5 1,7.5" stroke="#ffffff" stroke-width="1.5" fill="none"/><circle cx="13" cy="13" r="2.5" fill="#ffffff"/></svg><span>Digital Nexes</span></div><div class="loader-bar-wrap"><div class="loader-bar"></div></div><p class="loader-copy">Digital Growth Studio</p></div>
+  <div id="page-loader" class="skeleton-screen" aria-hidden="true">
+    <div class="sk-nav">
+      <div class="sk-logo"></div>
+      <div class="sk-links"></div>
+    </div>
+    <div class="sk-hero">
+      <div class="sk-title"></div>
+      <div class="sk-title short"></div>
+      <div class="sk-sub"></div>
+      <div class="sk-btn"></div>
+    </div>
+  </div>
   <div id="cursor-dot" aria-hidden="true"></div><div id="cursor-ring" aria-hidden="true"></div><div id="scroll-progress" aria-hidden="true"></div>
       <header class="navbar" id="navbar">
     <div class="container nav-inner">
       <a href="/" class="logo" id="logo-link">
-        <svg class="logo-mark" width="26" height="26" viewBox="0 0 26 26" fill="none">
-          <polygon points="13,1 25,7.5 25,18.5 13,25 1,18.5 1,7.5" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" fill="none"/>
-          <polygon points="13,7 19,10.5 19,17.5 13,21 7,17.5 7,10.5" fill="rgba(255,255,255,0.06)"/>
-          <circle cx="13" cy="13" r="2.5" fill="#ffffff"/>
-        </svg>
-        <span>Digital Nexes</span>
+        <img src="/logo.png" alt="Digital Nexes Logo" class="logo-mark" style="height: 48px; width: auto;">
       </a>
       <nav class="nav-links" id="nav-links" role="navigation" aria-label="Primary navigation">
-        <a href="/"       data-page="index">Home</a>
-        <a href="/about"       data-page="about">About</a>
-        <a href="/services"    data-page="services">Services</a>
-        <a href="/projects"    data-page="projects">Work</a>
-        <a href="/careers"     data-page="careers">Careers</a>
-        <a href="/blog"        data-page="blog">Insights</a>
-        <a href="/contact"     data-page="contact">Contact</a>
+        <a href="/" data-page="index">Home</a>
+        <a href="/about" data-page="about">About</a>
+        <a href="/services" data-page="services">Services</a>
+        <a href="/projects" data-page="projects">Work</a>
+        <a href="/careers" data-page="careers">Careers</a>
+        <a href="/blog" data-page="blog">Insights</a>
+        <a href="/contact" data-page="contact">Contact</a>
       </nav>
       <a href="/contact" class="btn-primary nav-cta" id="nav-cta">Let's Talk</a>
       <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
@@ -40,121 +45,44 @@
   </header>
 
   <main>
-  <section class="page-hero" id="blog-hero">
+
+  <!-- ARTICLE HERO -->
+  <section class="page-hero" style="min-height: 50vh; display: flex; align-items: center; justify-content: center; padding-top: 120px;">
     <div class="hero-glass-grid"></div>
-    <div class="container page-hero-inner">
-      <p class="eyebrow reveal-hero">Insights</p>
-      <h1 class="page-hero-title reveal-hero scramble"><span class="gradient-text">Client-First Culture</span></h1>
-      <p class="page-hero-sub reveal-hero">Practical insights on technology, design, SEO, digital marketing, AI, and business growth — written by the team building real digital products every day.</p>
-    </div>
-  </section>
-
-  <!-- CATEGORY FILTER -->
-  <section class="section" id="blog-filter" style="padding-top: 0; padding-bottom: 24px;">
-    <div class="container">
-      <div class="filter-bar" id="blog-filter-bar" role="group" aria-label="Article categories">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="technology">Technology</button>
-        <button class="filter-btn" data-filter="design">Design</button>
-        <button class="filter-btn" data-filter="seo">SEO</button>
-        <button class="filter-btn" data-filter="marketing">Marketing</button>
-        <button class="filter-btn" data-filter="ai">Artificial Intelligence</button>
-        <button class="filter-btn" data-filter="business">Business Growth</button>
-        <button class="filter-btn" data-filter="development">Development</button>
+    <div class="container page-hero-inner" style="max-width: 800px; text-align: left;">
+      <p class="eyebrow reveal-hero">Studio Advantage · June 2024</p>
+      <h1 class="page-hero-title reveal-hero scramble" style="font-size: 3.5rem; text-align: left; margin-bottom: 24px;">Client-First Culture</h1>
+      <div class="article-meta reveal-hero" style="display: flex; align-items: center; gap: 16px; color: var(--grey-600);">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #fff; color: #000; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px;">DN</div>
+          <span>Digital Nexes Team</span>
+        </div>
+        <span>·</span>
+        <span>5 min read</span>
       </div>
     </div>
   </section>
 
-  <!-- FEATURED ARTICLE -->
-  <section class="section" id="blog-featured" style="padding-top: 24px;">
-    <div class="container">
-      <article class="blog-featured-card reveal-card" data-category="design uiux">
-        <div class="bfc-meta"><span class="bfc-cat">Design</span><span class="bfc-date">June 2024</span><span class="bfc-read">8 min read</span></div>
-        <h2 class="bfc-title">Why Your Website's UX Is Costing You More Than Your Ad Spend</h2>
-        <p class="bfc-excerpt">Most businesses invest heavily in driving traffic — Google Ads, SEO, social media — while completely ignoring the experience waiting for visitors when they arrive. Poor UX silently destroys the ROI of every marketing channel. Here's what to fix first.</p>
-        <div class="bfc-footer"><div class="bfc-author"><div class="bfc-avatar">DN</div><span>Digital Nexes Team</span></div><span class="bfc-link">Read Article →</span></div>
-      </article>
-
-      <!-- ARTICLE GRID -->
-      <div class="blog-grid" id="blog-grid" data-reveal-stagger>
-
-        <article class="blog-card reveal-card" data-category="seo technology">
-          <div class="bc-meta"><span class="bc-cat">SEO</span><span class="bc-date">June 2024</span></div>
-          <h3 class="bc-title">The 10 Technical SEO Fixes That Deliver the Fastest Results</h3>
-          <p class="bc-excerpt">Not all SEO tasks are created equal. These 10 technical fixes consistently deliver the fastest ranking improvements — ranked by impact and implementation difficulty.</p>
-          <div class="bc-footer"><span class="bc-read">6 min</span><span class="bc-link">Read →</span></div>
-        </article>
-
-        <article class="blog-card reveal-card" data-category="design">
-          <div class="bc-meta"><span class="bc-cat">Design</span><span class="bc-date">May 2024</span></div>
-          <h3 class="bc-title">Design Systems: Why Every Growing Business Needs One</h3>
-          <p class="bc-excerpt">A design system is not just a Figma component library. It is the single most important investment for maintaining brand consistency as your team and product scale.</p>
-          <div class="bc-footer"><span class="bc-read">7 min</span><span class="bc-link">Read →</span></div>
-        </article>
-
-        <article class="blog-card reveal-card" data-category="ai technology">
-          <div class="bc-meta"><span class="bc-cat">AI</span><span class="bc-date">May 2024</span></div>
-          <h3 class="bc-title">How We're Using AI to Accelerate Client Project Delivery</h3>
-          <p class="bc-excerpt">AI tools are transforming how we work — from research and wireframing to code generation and content optimization. Here's our honest take on what actually works.</p>
-          <div class="bc-footer"><span class="bc-read">9 min</span><span class="bc-link">Read →</span></div>
-        </article>
-
-        <article class="blog-card reveal-card" data-category="marketing business">
-          <div class="bc-meta"><span class="bc-cat">Marketing</span><span class="bc-date">April 2024</span></div>
-          <h3 class="bc-title">The B2B Digital Marketing Funnel: A Practical Guide</h3>
-          <p class="bc-excerpt">Most B2B marketing fails because it treats the purchase decision as a single moment rather than a multi-stage journey. Here's how to build a funnel that actually converts.</p>
-          <div class="bc-footer"><span class="bc-read">11 min</span><span class="bc-link">Read →</span></div>
-        </article>
-
-        <article class="blog-card reveal-card" data-category="development technology">
-          <div class="bc-meta"><span class="bc-cat">Development</span><span class="bc-date">April 2024</span></div>
-          <h3 class="bc-title">When to Build Custom Software vs. Use Off-the-Shelf Solutions</h3>
-          <p class="bc-excerpt">Custom software is powerful — but expensive and time-consuming. Off-the-shelf tools are fast — but constraining. Here's the framework we use to help clients make the right decision.</p>
-          <div class="bc-footer"><span class="bc-read">8 min</span><span class="bc-link">Read →</span></div>
-        </article>
-
-        <article class="blog-card reveal-card" data-category="business">
-          <div class="bc-meta"><span class="bc-cat">Business Growth</span><span class="bc-date">March 2024</span></div>
-          <h3 class="bc-title">Digital Presence Audit: 15 Things to Fix on Your Website Today</h3>
-          <p class="bc-excerpt">Most business websites are leaving significant revenue on the table due to avoidable mistakes. This checklist covers the 15 highest-impact improvements across design, copy, SEO, and performance.</p>
-          <div class="bc-footer"><span class="bc-read">12 min</span><span class="bc-link">Read →</span></div>
-        </article>
-
-        <article class="blog-card reveal-card" data-category="seo marketing">
-          <div class="bc-meta"><span class="bc-cat">SEO</span><span class="bc-date">March 2024</span></div>
-          <h3 class="bc-title">Local SEO for Service Businesses: The Complete 2024 Playbook</h3>
-          <p class="bc-excerpt">Local search is the highest-intent traffic channel for service businesses. This playbook covers everything you need to dominate local search results in your area.</p>
-          <div class="bc-footer"><span class="bc-read">15 min</span><span class="bc-link">Read →</span></div>
-        </article>
-
-        <article class="blog-card reveal-card" data-category="design development">
-          <div class="bc-meta"><span class="bc-cat">Design</span><span class="bc-date">February 2024</span></div>
-          <h3 class="bc-title">The Designer-Developer Handoff: How to Eliminate Rework</h3>
-          <p class="bc-excerpt">Miscommunication between designers and developers is one of the most expensive inefficiencies in digital product development. Here's our structured handoff process.</p>
-          <div class="bc-footer"><span class="bc-read">7 min</span><span class="bc-link">Read →</span></div>
-        </article>
-
-        <article class="blog-card reveal-card" data-category="ai technology business">
-          <div class="bc-meta"><span class="bc-cat">AI</span><span class="bc-date">February 2024</span></div>
-          <h3 class="bc-title">AI Won't Replace Your Team — But It Will Replace Teams That Don't Use It</h3>
-          <p class="bc-excerpt">The businesses that thrive in the AI era are not those that replace humans with AI — they are those that amplify human intelligence with AI tools. Here's what that looks like in practice.</p>
-          <div class="bc-footer"><span class="bc-read">10 min</span><span class="bc-link">Read →</span></div>
-        </article>
-
-      </div>
+  <!-- ARTICLE CONTENT -->
+  <section class="section" style="padding-top: 40px; padding-bottom: 120px;">
+    <div class="container" style="max-width: 800px; margin: 0 auto; color: var(--grey-600); line-height: 1.8; font-size: 1.1rem;">
+      <p style="margin-bottom: 24px; font-size: 1.25rem; color: #fff;">This is a full article page for <strong>Client-First Culture</strong>. It replaces the old listing duplicate with a dedicated reading layout.</p>
+      
+      <p style="margin-bottom: 24px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.</p>
+      
+      <h2 style="color: #fff; margin: 48px 0 24px; font-size: 2rem;">The Challenge</h2>
+      <p style="margin-bottom: 24px;">Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem.</p>
+      
+      <blockquote style="border-left: 4px solid #fff; padding-left: 24px; margin: 40px 0; font-size: 1.4rem; color: #fff; font-style: italic;">
+        "Digital growth doesn't happen by accident. It requires a systematic approach, rigorous testing, and an obsession with measurable outcomes."
+      </blockquote>
+      
+      <h2 style="color: #fff; margin: 48px 0 24px; font-size: 2rem;">Our Approach</h2>
+      <p style="margin-bottom: 24px;">Proin eget tortor risus. Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada.</p>
+      
+      <a href="/blog" class="btn-ghost" style="margin-top: 48px; display: inline-flex;">← Back to All Articles</a>
     </div>
   </section>
-
-  <section class="section cta-section" id="blog-cta">
-    <div class="container"><div class="cta-inner reveal-scale">
-      <p class="eyebrow">Stay in the Loop</p>
-      <h2 class="cta-heading">Get New Insights in Your Inbox</h2>
-      <p>We publish practical insights on design, development, SEO, and business growth. No fluff, no filler — just what's actually useful.</p>
-      <div class="cta-actions"><a href="/contact" class="btn-primary">Subscribe →</a><a href="/services" class="btn-ghost">Our Services</a></div>
-    </div></div>
-  </section>
-    
-  
 
 </main>
 
@@ -169,15 +97,15 @@
         <form id="whatsapp-lead-form" class="flf-form">
           <div class="form-row">
             <div class="form-group">
-              <input type="text" id="wa-name" placeholder="Enter your full name" required />
+              <input type="text" id="wa-name" placeholder="Enter your full name" required="">
             </div>
             <div class="form-group">
-              <input type="email" id="wa-email" placeholder="Enter your email address" required />
+              <input type="email" id="wa-email" placeholder="Enter your email address" required="">
             </div>
           </div>
           <div class="form-group">
-            <select id="wa-service" required>
-              <option value="" disabled selected>Service Required</option>
+            <select id="wa-service" required="">
+              <option value="" disabled="" selected="">Service Required</option>
               <option value="UI/UX Design">UI/UX Design</option>
               <option value="Website Development">Website Development</option>
               <option value="Web Application Development">Web Application Development</option>
@@ -192,7 +120,7 @@
             </select>
           </div>
           <div class="form-group">
-            <textarea id="wa-message" placeholder="Tell us about your project, goals, requirements, or challenges..." required rows="4"></textarea>
+            <textarea id="wa-message" placeholder="Tell us about your project, goals, requirements, or challenges..." required="" rows="4"></textarea>
           </div>
           <button type="submit" class="btn-primary">Start Conversation</button>
         </form>
@@ -201,12 +129,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="/" class="logo footer-logo" id="footer-logo">
-            <svg class="logo-mark" width="24" height="24" viewBox="0 0 26 26" fill="none">
-              <polygon points="13,1 25,7.5 25,18.5 13,25 1,18.5 1,7.5" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" fill="none"/>
-              <polygon points="13,7 19,10.5 19,17.5 13,21 7,17.5 7,10.5" fill="rgba(255,255,255,0.05)"/>
-              <circle cx="13" cy="13" r="2.5" fill="#ffffff"/>
-            </svg>
-            <span>Digital Nexes</span>
+            <img src="/logo.png" alt="Digital Nexes Logo" class="logo-mark" style="height: 48px; width: auto;">
           </a>
           <p class="footer-tagline">A growth-focused digital studio helping businesses establish, optimize, and scale their digital presence.</p>
         </div>
@@ -234,7 +157,7 @@
             <a href="mailto:info@digitalnexes.com">info@digitalnexes.com</a>
             <a href="tel:03455073802">03455073802</a>
             <a href="/careers">Careers</a>
-            <a href="/community">Community</a>
+            
           </div>
         </div>
       </div>
@@ -261,5 +184,6 @@
     });
   </script>
   <script type="module" src="/src/page.js"></script>
-</body>
-</html>
+
+
+</body></html>

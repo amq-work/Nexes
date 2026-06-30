@@ -1,0 +1,39 @@
+const fs = require('fs');
+
+let htaccess = fs.readFileSync('public/.htaccess', 'utf8');
+
+const securityHeaders = `
+# ==============================================================================
+# SECURITY HEADERS
+# ==============================================================================
+<IfModule mod_headers.c>
+    # 1. Content Security Policy (CSP)
+    # Allows self, Google Fonts, and Google reCAPTCHA. Blocks everything else.
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; frame-src https://www.google.com/recaptcha/; img-src 'self' data:; connect-src 'self';"
+
+    # 2. Prevent Clickjacking (disallow embedding in iframes)
+    Header always set X-Frame-Options "DENY"
+
+    # 3. Prevent MIME-type sniffing
+    Header always set X-Content-Type-Options "nosniff"
+
+    # 4. Referrer Policy
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # 5. Strict Transport Security (HSTS)
+    # Enforces HTTPS for 1 year
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+    # 6. Permissions Policy
+    # Disable sensitive browser APIs
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=()"
+</IfModule>
+`;
+
+if (!htaccess.includes('Content-Security-Policy')) {
+  htaccess += securityHeaders;
+  fs.writeFileSync('public/.htaccess', htaccess);
+  console.log("Security headers appended to public/.htaccess");
+} else {
+  console.log("Security headers already exist in public/.htaccess");
+}
