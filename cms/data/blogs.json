@@ -1,0 +1,82 @@
+[
+  {
+    "id": "blog_1783041244858",
+    "title": "test",
+    "subtitle": "",
+    "slug": "test",
+    "featuredImage": "/assets/logo.webp",
+    "date": "July 2026",
+    "readingTime": "1 min read",
+    "category": "Technology",
+    "tags": [
+      "AI",
+      "Digital Transformation",
+      "Strategy"
+    ],
+    "status": "Published",
+    "seoTitle": "test | Digital Nexes",
+    "metaDescription": "",
+    "canonicalUrl": "https://digitalnexes.com/insights/test",
+    "openGraphImage": "/assets/logo.webp",
+    "robots": "Index",
+    "blocks": [
+      {
+        "id": "blk_1783041232633_1",
+        "type": "Paragraph",
+        "content": ""
+      },
+      {
+        "id": "blk_1783041232633_2",
+        "type": "H2 Heading",
+        "content": ""
+      },
+      {
+        "id": "blk_1783041232633_3",
+        "type": "Paragraph",
+        "content": ""
+      }
+    ],
+    "createdAt": "2026-07-03T01:14:04.858Z",
+    "updatedAt": "2026-07-03T01:14:04.858Z"
+  },
+  {
+    "id": "blog_1783041972616",
+    "title": "hi",
+    "subtitle": "",
+    "slug": "hi",
+    "featuredImage": "/assets/logo.webp",
+    "date": "July 2026",
+    "readingTime": "1 min read",
+    "category": "Technology",
+    "tags": [
+      "AI",
+      "Digital Transformation",
+      "Strategy"
+    ],
+    "status": "Published",
+    "seoTitle": "hi | Digital Nexes",
+    "metaDescription": "",
+    "canonicalUrl": "https://digitalnexes.com/insights/hi",
+    "openGraphImage": "/assets/logo.webp",
+    "robots": "Index",
+    "blocks": [
+      {
+        "id": "blk_1783041943443_1",
+        "type": "Paragraph",
+        "content": ""
+      },
+      {
+        "id": "blk_1783041943443_2",
+        "type": "H2 Heading",
+        "content": ""
+      },
+      {
+        "id": "blk_1783041943443_3",
+        "type": "Paragraph",
+        "content": ""
+      }
+    ],
+    "createdAt": "2026-07-03T01:26:12.616Z",
+    "updatedAt": "2026-07-03T01:26:12.616Z"
+  }
+]

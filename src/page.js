@@ -10,17 +10,14 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { initWhatsAppForm } from './whatsapp.js';
 
 gsap.registerPlugin(ScrollTrigger);
+gsap.defaults({ overwrite: 'auto', force3D: true });
+ScrollTrigger.config({ limitCallbacks: true, ignoreMobileResize: true });
 
 const IS_REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const IS_TOUCH   = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+// Use screen width instead of touch detection — many laptops have touch AND a mouse
+const IS_TOUCH   = window.innerWidth <= 768;
 
 initWhatsAppForm();
-
-// ── 1. Page Loader ────────────────────────────────────────────────────────────
-const loader = document.getElementById('page-loader');
-window.addEventListener('load', () => {
-  setTimeout(() => loader?.classList.add('done'), 600);
-});
 
 // ── 2. Lenis smooth scroll ────────────────────────────────────────────────────
 const lenis = new Lenis({
@@ -81,10 +78,13 @@ if (!IS_TOUCH && !IS_REDUCED) {
       ry += (my - ry) * 0.14;
       setPos(ring, rx, ry);
     })();
-    document.querySelectorAll('a, button, .team-row, .team-featured, .why-row, .industry-card, .project-card, .blog-card, .service-block, .value-card, .story-item, .process-step, .career-card, .community-card').forEach(el => {
-      el.addEventListener('mouseenter', () => { dot.classList.add('hover'); ring.classList.add('hover'); });
-      el.addEventListener('mouseleave', () => { dot.classList.remove('hover'); ring.classList.remove('hover'); });
-    });
+    const selector = 'a, button, .team-row, .team-featured, .why-row, .industry-card, .project-card, .blog-card, .service-block, .value-card, .story-item, .process-step, .career-card, .community-card';
+    document.addEventListener('mouseover', e => {
+      if (e.target.closest(selector)) { dot.classList.add('hover'); ring.classList.add('hover'); }
+    }, { passive: true });
+    document.addEventListener('mouseout', e => {
+      if (e.target.closest(selector)) { dot.classList.remove('hover'); ring.classList.remove('hover'); }
+    }, { passive: true });
   }
 }
 
@@ -221,8 +221,9 @@ if (!IS_TOUCH && !IS_REDUCED) {
   const tiltTargets = document.querySelectorAll('.career-card, .community-card, .service-detail-card, .roadmap-about-card, .vision-card, .internship-card, .project-full, .cs-card, .blog-card, .blog-featured-card');
   tiltTargets.forEach(card => {
     const MAX = 6;
+    card.addEventListener('mouseenter', () => { card._cachedBounds = card.getBoundingClientRect(); }, { passive: true });
     card.addEventListener('mousemove', e => {
-      const r  = card.getBoundingClientRect();
+      const r  = card._cachedBounds || card.getBoundingClientRect();
       const dx = (e.clientX - (r.left + r.width  / 2)) / (r.width  / 2);
       const dy = (e.clientY - (r.top  + r.height / 2)) / (r.height / 2);
       gsap.to(card, {
@@ -232,13 +233,13 @@ if (!IS_TOUCH && !IS_REDUCED) {
         ease: 'power2.out',
         duration: 0.35,
       });
-    });
+    }, { passive: true });
     card.addEventListener('mouseleave', () => {
       gsap.to(card, {
         rotateX: 0, rotateY: 0,
         ease: 'elastic.out(1, 0.5)',
         duration: 1.0,
       });
-    });
+    }, { passive: true });
   });
 }

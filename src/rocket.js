@@ -146,7 +146,18 @@ export function buildRocketScene() {
   const mouse = new THREE.Vector2(-9999, -9999);
   let isHovering = false;
 
-  const getCanvasBounds = () => canvas.getBoundingClientRect();
+  let cachedBounds = canvas.getBoundingClientRect();
+  let boundsDirty = false;
+  window.addEventListener('scroll', () => { boundsDirty = true; }, { passive: true });
+  window.addEventListener('resize', () => { boundsDirty = true; }, { passive: true });
+
+  const getCanvasBounds = () => {
+    if (boundsDirty) {
+      cachedBounds = canvas.getBoundingClientRect();
+      boundsDirty = false;
+    }
+    return cachedBounds;
+  };
 
   // Only track mouse on desktop
   if (!MOBILE) {

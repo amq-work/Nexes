@@ -3,21 +3,17 @@ import './style.css';
 import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { buildRocketScene } from './rocket.js';
 import { initWhatsAppForm } from './whatsapp.js';
 
 gsap.registerPlugin(ScrollTrigger);
+gsap.defaults({ overwrite: 'auto', force3D: true });
+ScrollTrigger.config({ limitCallbacks: true, ignoreMobileResize: true });
 
 const IS_REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const IS_TOUCH   = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+// Use screen width instead of touch detection — many laptops have touch AND a mouse
+const IS_TOUCH   = window.innerWidth <= 768;
 
 initWhatsAppForm();
-
-// ── 1. Page Loader ───────────────────────────────────────────────────────────
-const loader = document.getElementById('page-loader');
-window.addEventListener('load', () => {
-  setTimeout(() => loader?.classList.add('done'), 200); // reduced for efficiency
-});
 
 // ── 2. Lenis smooth scroll ───────────────────────────────────────────────────
 // Disable smooth-scroll entirely on mobile — native scroll is faster
@@ -36,8 +32,6 @@ gsap.ticker.lagSmoothing(0);
 const progressBar = document.getElementById('scroll-progress');
 const navbar = document.getElementById('navbar');
 lenis.on('scroll', ({ scroll, limit }) => {
-  // Update ScrollTrigger
-  ScrollTrigger.update();
   if (limit <= 0) return;
   const pct = scroll / limit;
   // Gradient shader
@@ -100,20 +94,20 @@ if (!IS_TOUCH && !IS_REDUCED) {
       setPos(ring, rx, ry);
     })();
 
-    // Hover scale on interactive elements
-    const interactiveEls = document.querySelectorAll(
-      'a, button, .team-card, .work-card, .svc-card, .why-card, .industry-card, .faq-btn, .roadmap-card, .stat-card, .vm-card'
-    );
-    interactiveEls.forEach(el => {
-      el.addEventListener('mouseenter', () => {
+    // Hover scale on interactive elements via event delegation
+    const selector = 'a, button, .team-card, .work-card, .svc-card, .why-card, .industry-card, .faq-btn, .roadmap-card, .stat-card, .vm-card';
+    document.addEventListener('mouseover', e => {
+      if (e.target.closest(selector)) {
         dot.classList.add('hover');
         ring.classList.add('hover');
-      });
-      el.addEventListener('mouseleave', () => {
+      }
+    }, { passive: true });
+    document.addEventListener('mouseout', e => {
+      if (e.target.closest(selector)) {
         dot.classList.remove('hover');
         ring.classList.remove('hover');
-      });
-    });
+      }
+    }, { passive: true });
   }
 }
 
@@ -256,40 +250,80 @@ if (!IS_REDUCED) {
   });
 }
 
-// ── 12. Services — Horizontal Sticky Scroll ────────────────────────────────────
-(function initServicesHScroll() {
-  const outer  = document.getElementById('services-outer');
-  const track  = document.getElementById('services-track');
-  const dots   = Array.from(document.querySelectorAll('.svc-dot'));
-  if (!outer || !track) return;
+// ── 12. Services — Responsive Rendering & Horizontal Sticky Scroll ─────────────
+(function initServicesSection() {
+  const mount = document.getElementById('services-mount');
+  if (!mount) return;
 
-  const cards = Array.from(track.querySelectorAll('.svc-card'));
+  let currentMode = null;
+  let svcScrollTrigger = null;
 
-  // Animate cards in from the right initially
-  gsap.set(cards, { x: 80, opacity: 0 });
+  function renderServices() {
+    const isMobile = window.innerWidth <= 768;
+    const targetMode = isMobile ? 'mobile' : 'desktop';
+    if (currentMode === targetMode) return;
+    currentMode = targetMode;
 
-  ScrollTrigger.create({
-    trigger: outer,
-    start: 'top top',
-    end: 'bottom bottom',
-    onEnter() {
-      gsap.to(cards, { x: 0, opacity: 1, duration: 1.2, ease: 'power3.out', stagger: 0.08 });
-    },
-    onUpdate(self) {
-      // Calculate how far to scroll the track horizontally
-      const trackWidth = track.scrollWidth;
-      const viewportW  = window.innerWidth;
-      const maxScroll  = trackWidth - viewportW + 64; // 64px padding buffer
-      const x = -(self.progress * maxScroll);
-      gsap.to(track, { x, duration: 0.8, ease: 'power3.out', overwrite: true });
+    if (svcScrollTrigger) { svcScrollTrigger.kill(); svcScrollTrigger = null; }
+    mount.innerHTML = '';
 
-      // Update active dot
-      const activeDotIdx = Math.min(
-        cards.length - 1,
-        Math.floor(self.progress * cards.length * 1.001)
-      );
-      dots.forEach((d, i) => d.classList.toggle('active', i === activeDotIdx));
-    },
+    if (isMobile) {
+      // Render ONLY static mobile Core Services component
+      const template = document.getElementById('services-mobile-template');
+      if (template) mount.appendChild(template.content.cloneNode(true));
+      // No GSAP timelines or ScrollTriggers initialized on mobile!
+    } else {
+      // Render ONLY desktop GSAP Services component
+      const template = document.getElementById('services-desktop-template');
+      if (template) mount.appendChild(template.content.cloneNode(true));
+
+      const outer = document.getElementById('services-outer');
+      const track = document.getElementById('services-track');
+      const dots  = Array.from(document.querySelectorAll('.svc-dot'));
+      if (!outer || !track) return;
+
+      const cards = Array.from(track.querySelectorAll('.svc-card'));
+      gsap.set(cards, { x: 80, opacity: 0 });
+
+      svcScrollTrigger = ScrollTrigger.create({
+        trigger: outer,
+        start: 'top top',
+        end: 'bottom bottom',
+        onEnter() {
+          gsap.to(cards, { x: 0, opacity: 1, duration: 1.2, ease: 'power3.out', stagger: 0.08 });
+        },
+        onUpdate(self) {
+          const trackWidth = track.scrollWidth;
+          const viewportW  = window.innerWidth;
+          const maxScroll  = trackWidth - viewportW + 64; // 64px padding buffer
+          const x = -(self.progress * maxScroll);
+          gsap.to(track, { x, duration: 0.8, ease: 'power3.out', overwrite: true });
+
+          const activeDotIdx = Math.min(
+            cards.length - 1,
+            Math.floor(self.progress * cards.length * 1.001)
+          );
+          dots.forEach((d, i) => d.classList.toggle('active', i === activeDotIdx));
+        },
+      });
+
+      if (!IS_REDUCED) {
+        const servicesHeader = document.querySelector('.services-sticky-header');
+        if (servicesHeader) {
+          gsap.from(servicesHeader, {
+            scrollTrigger: { trigger: '#services-outer', start: 'top 80%', once: true },
+            y: 40, opacity: 0, duration: 0.9, ease: 'power3.out',
+          });
+        }
+      }
+    }
+  }
+
+  renderServices();
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(renderServices, 150);
   });
 })();
 
@@ -373,19 +407,63 @@ if (!IS_REDUCED) {
   });
 })();
 
-// ── 13b. Projects List Reveal ─────────────────────────────────────────────────────
-(function initProjectsReveal() {
-  const items = document.querySelectorAll('.project-item');
-  if (!items.length) return;
-  items.forEach((item, i) => {
-    gsap.fromTo(item,
-      { opacity: 0, x: -40 },
-      {
-        opacity: 1, x: 0, duration: 1.2, ease: 'power3.out',
-        scrollTrigger: { trigger: item, start: 'top 85%', once: true },
-        delay: i * 0.12,
-      }
-    );
+// ── 13b. Projects Carousel & Header ──────────────────────────────────────────
+(function initProjectCarousel() {
+  const workHeaderEls = document.querySelectorAll('.work-header-anim');
+  if (workHeaderEls.length > 0) {
+    gsap.from(workHeaderEls, {
+      scrollTrigger: {
+        trigger: '.work-header-anim-container',
+        start: 'top 85%',
+        once: true
+      },
+      opacity: 0,
+      y: 40,
+      duration: 1,
+      stagger: 0.15,
+      ease: 'power3.out'
+    });
+  }
+
+  const stackedCards = gsap.utils.toArray('.stacked-card');
+  if (stackedCards.length === 0) return;
+
+  stackedCards.forEach((card, i) => {
+    // 1. Incoming animation: Card scales up and fades in as it slides into place
+    if (i > 0) {
+      gsap.fromTo(card,
+        { scale: 0.95, opacity: 0.7, boxShadow: '0 0px 0px rgba(0,0,0,0)' },
+        {
+          scale: 1,
+          opacity: 1,
+          boxShadow: '0 -20px 40px rgba(0,0,0,0.5)',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top bottom',
+            end: 'top 12.5vh', // Matches the sticky top position in CSS
+            scrub: true
+          }
+        }
+      );
+    }
+
+    // 2. Outgoing animation: Current card scales down slightly and darkens as the NEXT card slides over it
+    if (i < stackedCards.length - 1) {
+      const nextCard = stackedCards[i + 1];
+      gsap.to(card, {
+        scale: 0.95,
+        opacity: 0,
+        filter: 'blur(8px)',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: nextCard,
+          start: 'top 50%',
+          end: 'top 17.5vh', // Closes out slightly before it reaches the top
+          scrub: true
+        }
+      });
+    }
   });
 })();
 
@@ -410,8 +488,9 @@ if (!IS_TOUCH && !IS_REDUCED) {
   const tiltTargets = document.querySelectorAll('.team-card, .why-card, .industry-card, .roadmap-card, .vm-card, .svc-card, .stat-card');
   tiltTargets.forEach(card => {
     const MAX = 6;
+    card.addEventListener('mouseenter', () => { card._cachedBounds = card.getBoundingClientRect(); }, { passive: true });
     card.addEventListener('mousemove', e => {
-      const r  = card.getBoundingClientRect();
+      const r  = card._cachedBounds || card.getBoundingClientRect();
       const dx = (e.clientX - (r.left + r.width  / 2)) / (r.width  / 2);
       const dy = (e.clientY - (r.top  + r.height / 2)) / (r.height / 2);
       gsap.to(card, {
@@ -421,14 +500,14 @@ if (!IS_TOUCH && !IS_REDUCED) {
         ease: 'power2.out',
         duration: 0.35,
       });
-    });
+    }, { passive: true });
     card.addEventListener('mouseleave', () => {
       gsap.to(card, {
         rotateX: 0, rotateY: 0,
         ease: 'elastic.out(1, 0.5)',
         duration: 1.0,
       });
-    });
+    }, { passive: true });
   });
 }
 
@@ -527,19 +606,14 @@ Object.entries(navMap).forEach(([sId, nId]) => {
   });
 });
 
-// ── 22. Services section parallax header ──────────────────────────────────────
-if (!IS_REDUCED) {
-  const servicesHeader = document.querySelector('.services-sticky-header');
-  if (servicesHeader) {
-    gsap.from(servicesHeader, {
-      scrollTrigger: { trigger: '#services-outer', start: 'top 80%', once: true },
-      y: 40, opacity: 0, duration: 0.9, ease: 'power3.out',
-    });
-  }
-}
+// ── 22. Services section parallax header (moved to initServicesSection) ──────
 
 // ── 23. Particle Rocket (3D Three.js) ─────────────────────────────────────────
-buildRocketScene();
+if (document.getElementById('rocket-canvas')) {
+  import('./rocket.js').then((module) => {
+    module.buildRocketScene();
+  });
+}
 
 // ── 14. Stacking Testimonials GSAP ───────────────────────────────────────────────
 (function initTestimonialsStack() {

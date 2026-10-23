@@ -4,8 +4,9 @@
 // Exposes window.GradientShader.setScroll(0..1)
 (function () {
   'use strict';
-
-  const IS_REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  function initGradient() {
+    const IS_REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const canvas = document.getElementById('gradient-canvas');
   if (!canvas) return;
@@ -147,4 +148,13 @@
   window.GradientShader = {
     setScroll(v) { scroll = Math.max(0, Math.min(1, v)); },
   };
+} // end init function
+
+// Defer WebGL initialization until after critical page load
+if (window.requestIdleCallback) {
+  window.requestIdleCallback(initGradient, { timeout: 2000 });
+} else {
+  setTimeout(initGradient, 500);
+}
+
 })();

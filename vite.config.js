@@ -2,12 +2,27 @@ import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import fs from 'fs';
 
-const htmlFiles = fs.readdirSync(__dirname).filter(file => file.endsWith('.html'));
-const inputMap = {};
-htmlFiles.forEach(file => {
-  const name = file.replace('.html', '');
-  inputMap[name] = resolve(__dirname, file);
-});
+// ── Pages to bundle (CMS excluded intentionally) ──────────────────────────────
+const pages = [
+  'index',
+  'about',
+  'services',
+  'projects',
+  'contact',
+  'blog',
+  'blog-view',
+  'careers',
+  'case-studies',
+  // Case study pages
+  'nestly-for-labors',
+  'nexcafe',
+  'al-ahad-dental',
+  'falah-welfare',
+];
+
+const inputMap = Object.fromEntries(
+  pages.map(name => [name, resolve(__dirname, `${name}.html`)])
+);
 
 function cleanUrlsPlugin() {
   return {
@@ -16,6 +31,10 @@ function cleanUrlsPlugin() {
       server.middlewares.use((req, res, next) => {
         if (req.url === '/') return next();
         const url = req.url.split('?')[0].split('#')[0];
+        if (url.startsWith('/insights/')) {
+          req.url = '/blog-view.html' + (req.url.includes('?') ? '?' + req.url.split('?')[1] : '');
+          return next();
+        }
         if (!url.includes('.')) {
           const filePath = resolve(__dirname, url.slice(1) + '.html');
           if (fs.existsSync(filePath)) {
@@ -30,7 +49,7 @@ function cleanUrlsPlugin() {
 
 export default defineConfig({
   root: '.',
-  base: './',
+  base: '/',
   publicDir: 'public',
   plugins: [cleanUrlsPlugin()],
   build: {
@@ -67,5 +86,10 @@ export default defineConfig({
   server: {
     port: 4200,
     open: true,
+    proxy: {
+      '/api': 'http://localhost:3001',
+      '/uploads': 'http://localhost:3001',
+      '/cms': 'http://localhost:3001'
+    }
   },
 });

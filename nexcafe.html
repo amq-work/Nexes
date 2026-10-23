@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexCafe Case Study — Digital Nexes</title>
+  <meta name="description" content="A premium digital ordering experience and brand showcase built for a modern café.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/webp" href="/favicon.webp">
+  <link rel="stylesheet" href="/src/style.css" />
+  <link rel="stylesheet" href="/src/pages.css" />
+</head>
+<body>
+  <div id="cursor-dot" aria-hidden="true"></div><div id="cursor-ring" aria-hidden="true"></div><div id="scroll-progress" aria-hidden="true"></div>
+  
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="/" class="logo" id="logo-link">
+        <img src="/logo.webp" alt="Digital Nexes Logo" class="logo-mark" width="160" height="48" decoding="async" style="height: 48px; width: auto;">
+      </a>
+      <nav class="nav-links" id="nav-links" role="navigation" aria-label="Primary navigation">
+        <a href="/" data-page="index">Home</a>
+        <a href="/about" data-page="about">About</a>
+        <a href="/services" data-page="services">Services</a>
+        <a href="/projects" data-page="projects">Work</a>
+        <a href="/careers" data-page="careers">Careers</a>
+        <a href="/blog" data-page="blog">Insights</a>
+        <a href="/contact" data-page="contact">Contact</a>
+      </nav>
+      <a href="/contact" class="btn-primary nav-cta" id="nav-cta">Let's Talk</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="cs-page-hero">
+      <div class="container">
+        <div class="cs-hero-tags">
+          <span class="cs-hero-tag">Web App</span>
+          <span class="cs-hero-tag">UI/UX Design</span>
+        </div>
+        <h1 class="cs-page-title">NexCafe</h1>
+        <p class="cs-page-sub">A premium digital ordering experience and brand showcase built for a modern café, focusing on seamless customer journeys and aesthetic appeal.</p>
+        <a href="https://thenexcafe.vercel.app/" target="_blank" rel="noopener noreferrer" class="cs-live-btn">Visit Live Site <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+        <div class="cs-hero-img">
+          <img src="/projects/NexCafe.webp" alt="NexCafe App Mockup" loading="lazy" decoding="async" width="800" height="600" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        
+        <div class="cs-meta-grid">
+          <div class="cs-meta-item">
+            <h4>Role</h4>
+            <p>UI/UX & Frontend Dev</p>
+          </div>
+          <div class="cs-meta-item">
+            <h4>Timeline</h4>
+            <p>6 Weeks</p>
+          </div>
+          <div class="cs-meta-item">
+            <h4>Industry</h4>
+            <p>Food & Beverage</p>
+          </div>
+          <div class="cs-meta-item">
+            <h4>Tech</h4>
+            <p>Next.js, Stripe</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-body-section">
+      <div class="container cs-body-container">
+        <div class="cs-phase">
+          <h3><span>01.</span> The NexCafé Platform: Understanding the Digital Landscape</h3>
+          <p>NexCafé is a full-stack digital hub that manages, schedules, and optimizes restaurant dining, table allocations, and kitchen prep workflows. The platform eliminates traditional consumer and operational friction-points: unpredictable peak-hour seating delays, food wastage from unannounced large orders, opaque reservation tracking, and inventory spoilage. By utilizing an automated web interface and floor map visualizer, NexCafé coordinates complex kitchen logistics, making fine dining as predictable and transparent as modern logistics platforms.</p>
+          
+          <div class="cs-sub-phase" style="margin-top: 20px;">
+            <h4>1.1 The Digital Dining Paradigm</h4>
+            <p>NexCafé operates as a modern centralized restaurant orchestrator. Rather than hosting an open-ended listing site where consumers deal with disjointed phone calls and delayed seatings, NexCafé retains end-to-end responsibility for table matching and prep synchronization, ensuring that only verified reservations reach the kitchen pipeline.</p>
+          </div>
+          <div class="cs-sub-phase" style="margin-top: 20px;">
+            <h4>1.2 Structural Integrity and Quality Assurance</h4>
+            <p>Operational efficiency is preserved by admitting real-time table inventory and verified customer bookings. All reservations clear OTP verification, producing a unique Customer ID that anchors the guest's dining profile across pre-orders, dietary notes, and deposit status.</p>
+          </div>
+          <div class="cs-sub-phase" style="margin-top: 20px;">
+            <h4>1.3 Unified Client Interfaces</h4>
+            <p>NexCafé bridges frontend customer ease with complex backend kitchen queuing. Through dynamic floor map visualization, automated OTP booking wizards, and pre-order meal integration, guests remain completely informed from the moment they select a table to the moment their dish arrives at the table.</p>
+          </div>
+        </div>
+
+        <div class="cs-phase">
+          <h3><span>02.</span> Core Architecture and Interactive App Capabilities</h3>
+          <p>The NexCafé system comprises several high-fidelity modules working in concert. These elements are designed to reduce customer wait times, mitigate kitchen load spikes, and drive maximum operational efficiency through direct visualization and deposit commitments.</p>
+          
+          <div class="cs-sub-phase" style="margin-top: 20px;">
+            <h4>2.1 Interactive Floor Map & Live Table Engine</h4>
+            <p>Our interactive floor plan renders accurate seating layouts (Main Dining Hall, Garden Patio, Private Dining Room, Chef's Counter). Guests select exact available tables matching their party size, receiving instant table hold status and seamless OTP validation.</p>
+          </div>
+          
+          <div class="cs-sub-phase" style="margin-top: 20px;">
+            <h4>2.2 Kitchen Optimization & Meal Pre-Ordering System</h4>
+            <p>To eliminate kitchen prep bottlenecks and lengthy table decision times, NexCafé allows guests to select dishes, special dietary notes, and chef specials ahead of arrival. Pre-ordered items are linked directly to the customer's verified Customer ID.</p>
+          </div>
+
+          <div class="cs-sub-phase" style="margin-top: 20px;">
+            <h4>2.3 Waste-Mitigation Deposit Structure (50% Pre-Prep Fee)</h4>
+            <p>To drive guest commitment and prevent costly ingredient waste, pre-order checkouts require a 50% deposit. This fee secures the allocation of seasonal organic ingredients while guaranteeing revenue protection for the restaurant against no-shows.</p>
+          </div>
+        </div>
+
+        <div class="cs-phase">
+          <h3><span>03.</span> The Customer Value Proposition</h3>
+          <p>For the average diner, managing reservation availability and enduring long table prep waits can be frustrating. NexCafé transforms dining into a premium, effortless, and highly reassuring utility.</p>
+          <ul class="project-feature-list" style="margin-top: 16px;">
+            <li><strong>Drastic Table Wait-Time Elimination:</strong> With pre-ordered meals linked to confirmed table reservations, dishes arrive promptly upon seating, reducing average table prep delay from 35 minutes down to zero minutes.</li>
+            <li><strong>Total Pricing & Order Transparency:</strong> By establishing transparent itemized bills with exact tax, service charges, and deposit credit breakdowns, guests receive guaranteed billing clarity before stepping into the restaurant.</li>
+            <li><strong>Seamless Verification with Unique Customer ID:</strong> The auto-generated Customer ID (e.g. CUST-5819) serves as a unified pass for table seating, kitchen pre-prep tracking, and billing deduction, eliminating confusion or lost reservations.</li>
+          </ul>
+        </div>
+
+        <div class="cs-phase">
+          <h3><span>04.</span> The Enterprise Case: Why Modern Restaurants Must Adapt</h3>
+          <p>Restaurant business models face high operational inefficiencies, severe food waste costs, fluctuating dinner rushes, and low profit margins. The NexCafé system addresses these critical corporate bottlenecks directly.</p>
+          <ul class="project-feature-list" style="margin-top: 16px;">
+            <li><strong>Stabilization through Pre-Prep Deposit Revenue:</strong> Traditional contractors and restaurants suffer heavy financial losses from no-shows and last-minute cancellations. The 50% pre-prep deposit secures upfront capital that covers raw ingredient costs and protects overall profitability.</li>
+            <li><strong>Optimizing Kitchen Labor Routing & Prep Scheduling:</strong> By centralizing pre-orders hours before dinner service, executive chefs accurately forecast prep portions, prep workstations, and staffing levels, eliminating kitchen chaos during peak hours.</li>
+            <li><strong>Shifting to Sustainable Zero-Waste Operations:</strong> By preparing exact portions based on verified customer pre-orders, kitchens reduce organic ingredient waste by up to 65%, directly improving gross margins and environmental sustainability.</li>
+          </ul>
+        </div>
+
+        <div class="cs-phase">
+          <h3><span>05.</span> Kitchen Management & Operational Empowerment</h3>
+          <p>Beyond being a premium customer utility, NexCafé operates as a powerful management engine for kitchen staff and floor managers. By providing real-time demand-matching, NexCafé completely eliminates manual ordering delays.</p>
+          
+          <div class="cs-sub-phase" style="margin-top: 20px;">
+            <h4>5.1 Real-Time Floor Map & Occupancy Tracking</h4>
+            <p>Floor managers track table statuses (Available, Reserved, Occupied) dynamically across zones, maximizing table turnover rates, seating density, and dining hall throughput.</p>
+          </div>
+          <div class="cs-sub-phase" style="margin-top: 20px;">
+            <h4>5.2 Rapid Customer ID Lookup & Prep Synchronization</h4>
+            <p>NexCafé replaces slow manual order checks with instant Customer ID validation. Kitchen staff cross-reference Customer IDs to sync cooking start times with guest table arrival, ensuring every course is served at peak temperature.</p>
+          </div>
+          <div class="cs-sub-phase" style="margin-top: 20px;">
+            <h4>5.3 High-Earning Operations vs. Food Wastage & Delays</h4>
+            <p>Traditional restaurants waste valuable table turns and organic inventory due to unpredicted kitchen surges. NexCafé routes pre-vetted, deposit-backed orders directly to kitchen stations, ensuring chefs focus on culinary craft rather than firefighting peak-hour bottlenecks.</p>
+          </div>
+        </div>
+</div>
+    </section>
+  </main>
+
+  <footer class="creative-footer" id="footer">
+  <div class="cf-marquee-wrap">
+    <div class="cf-marquee">
+      <span>HAVE AN IDEA?</span><span class="cf-dot">✦</span>
+      <span>LET'S BUILD IT</span><span class="cf-dot">✦</span>
+      <span>HAVE AN IDEA?</span><span class="cf-dot">✦</span>
+      <span>LET'S BUILD IT</span><span class="cf-dot">✦</span>
+      <span>HAVE AN IDEA?</span><span class="cf-dot">✦</span>
+      <span>LET'S BUILD IT</span><span class="cf-dot">✦</span>
+      <!-- Seamless duplicate -->
+      <span>HAVE AN IDEA?</span><span class="cf-dot">✦</span>
+      <span>LET'S BUILD IT</span><span class="cf-dot">✦</span>
+      <span>HAVE AN IDEA?</span><span class="cf-dot">✦</span>
+      <span>LET'S BUILD IT</span><span class="cf-dot">✦</span>
+      <span>HAVE AN IDEA?</span><span class="cf-dot">✦</span>
+      <span>LET'S BUILD IT</span><span class="cf-dot">✦</span>
+    </div>
+  </div>
+
+  <div class="container cf-inner">
+    <div class="cf-grid">
+      <div class="cf-left">
+        <a href="/" class="cf-logo">
+          <img src="/logo.webp" alt="Digital Nexes Logo" width="173" height="52" loading="lazy" decoding="async" style="height: 52px; width: auto;">
+        </a>
+        <p class="cf-tagline">Seven disciplines. One integrated studio. Building digital products that establish, optimize, and scale.</p>
+        
+        <div class="cf-contact">
+          <a href="mailto:info@digitalnexes.com">info@digitalnexes.com</a>
+          <a href="tel:03455073802">03455073802</a>
+        </div>
+
+        <div class="cf-socials">
+          <a href="https://www.linkedin.com/in/aayan-qureshi/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://www.instagram.com/digitalnexes?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer">Instagram</a>
+        </div>
+      </div>
+
+      <div class="cf-right">
+        <div class="cf-links-col">
+          <h4>Menu</h4>
+          <a href="/about">About Studio</a>
+          <a href="/services">Our Services</a>
+          <a href="/projects">Selected Work</a>
+          <a href="/blog">Insights &amp; News</a>
+          <a href="/contact">Start a Project</a>
+        </div>
+        <div class="cf-links-col">
+          <h4>Services</h4>
+          <a href="/services">UI/UX Design</a>
+          <a href="/services">Web Development</a>
+          <a href="/services">SEO &amp; Growth</a>
+          <a href="/services">Digital Marketing</a>
+          <a href="/services">Custom Software</a>
+        </div>
+        <div class="cf-links-col">
+          <h4>Legal</h4>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="/careers">Careers</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  
+  <div class="cf-bottom">
+    <p>© 2025 Digital Nexes. All rights reserved.</p>
+    <a href="#" class="cf-back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;">Back to top ↑</a>
+  </div>
+</footer>
+
+  <script type="module" src="/src/page.js"></script>
+</body>
+</html>

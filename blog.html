@@ -9,26 +9,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
   
     <link rel="icon" type="image/webp" href="/favicon.webp">
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+  <link rel="stylesheet" href="/src/style.css" />
 </head>
 <body>
-  <div id="page-loader" class="skeleton-screen" aria-hidden="true">
-    <div class="sk-nav">
-      <div class="sk-logo"></div>
-      <div class="sk-links"></div>
-    </div>
-    <div class="sk-hero">
-      <div class="sk-title"></div>
-      <div class="sk-title short"></div>
-      <div class="sk-sub"></div>
-      <div class="sk-btn"></div>
-    </div>
-  </div>
   <div id="cursor-dot" aria-hidden="true"></div><div id="cursor-ring" aria-hidden="true"></div><div id="scroll-progress" aria-hidden="true"></div>
       <header class="navbar" id="navbar">
     <div class="container nav-inner">
       <a href="/" class="logo" id="logo-link">
-        <img src="/logo.webp" alt="Digital Nexes Logo" class="logo-mark" style="height: 48px; width: auto;">
+        <img src="/logo.webp" alt="Digital Nexes Logo" class="logo-mark" width="160" height="48" decoding="async" style="height: 48px; width: auto;">
       </a>
       <nav class="nav-links" id="nav-links" role="navigation" aria-label="Primary navigation">
         <a href="/" data-page="index">Home</a>
@@ -71,78 +60,14 @@
         <p class="fi-header-sub">Hand-picked articles from the Digital Nexes team on the thinking, strategy, and systems behind our work.</p>
       </div>
 
-      <!-- Top Row: Hero Card + Two Stacked Cards -->
-      <div class="fi-top-row">
-
-        <!-- Hero Card (large) -->
-        <a href="/blog-integrated-studio" class="fi-hero-card reveal-card">
-          <div class="fi-hero-num">01</div>
-          <div class="fi-hero-body">
-            <span class="fi-cat-tag">Studio Advantage</span>
-            <h3 class="fi-hero-title">Integrated Studio Model</h3>
-            <p class="fi-hero-excerpt">Design, development, marketing, and strategy under one roof. No handoff friction — your brand and product stay coherent from day one. We've built a system that treats every discipline as connected, not siloed.</p>
-            <div class="fi-hero-footer">
-              <span class="fi-read-time">5 min read</span>
-              <span class="fi-cta">Read Article <span class="fi-arrow">→</span></span>
-            </div>
-          </div>
-        </a>
-
-        <!-- Right Stack -->
-        <div class="fi-stack">
-          <a href="/blog-rapid-delivery" class="fi-side-card reveal-card">
-            <div class="fi-side-top">
-              <span class="fi-cat-tag">Studio Advantage</span>
-              <span class="fi-side-num">02</span>
-            </div>
-            <h3 class="fi-side-title">Rapid, Structured Delivery</h3>
-            <p class="fi-side-excerpt">We move fast without breaking things. Every project runs on a clear timeline with milestones, demos, and accountability checkpoints built in.</p>
-            <span class="fi-cta">Read Article <span class="fi-arrow">→</span></span>
-          </a>
-
-          <a href="/blog-results-obsessed" class="fi-side-card reveal-card">
-            <div class="fi-side-top">
-              <span class="fi-cat-tag">Studio Advantage</span>
-              <span class="fi-side-num">03</span>
-            </div>
-            <h3 class="fi-side-title">Results-Obsessed</h3>
-            <p class="fi-side-excerpt">We don't ship and disappear. Every decision is tied to measurable business outcomes — traffic, conversion, retention, or revenue.</p>
-            <span class="fi-cta">Read Article <span class="fi-arrow">→</span></span>
-          </a>
-        </div>
+      <!-- Top Row: Hero Card + Two Stacked Cards (Dynamically populated by CMS) -->
+      <div class="fi-top-row" id="fi-top-row">
+        <!-- Dynamic CMS Featured Articles -->
       </div>
 
-      <!-- Bottom Row: Three Cards -->
-      <div class="fi-bottom-row">
-        <a href="/blog-client-first" class="fi-mini-card reveal-card">
-          <div class="fi-mini-top">
-            <span class="fi-cat-tag">Studio Advantage</span>
-            <span class="fi-mini-num">04</span>
-          </div>
-          <h3 class="fi-mini-title">Client-First Culture</h3>
-          <p class="fi-mini-excerpt">Your success is our success. We act as a genuine partner — transparent about risks, proactive with solutions, and invested in your long-term growth.</p>
-          <span class="fi-cta">Read Article <span class="fi-arrow">→</span></span>
-        </a>
-
-        <a href="/blog-data-led" class="fi-mini-card reveal-card">
-          <div class="fi-mini-top">
-            <span class="fi-cat-tag">Studio Advantage</span>
-            <span class="fi-mini-num">05</span>
-          </div>
-          <h3 class="fi-mini-title">Data-Led Decisions</h3>
-          <p class="fi-mini-excerpt">Intuition is validated with data. From UX research to campaign analytics, we let the numbers guide every creative and strategic call.</p>
-          <span class="fi-cta">Read Article <span class="fi-arrow">→</span></span>
-        </a>
-
-        <a href="/blog-proven-industry" class="fi-mini-card reveal-card">
-          <div class="fi-mini-top">
-            <span class="fi-cat-tag">Studio Advantage</span>
-            <span class="fi-mini-num">06</span>
-          </div>
-          <h3 class="fi-mini-title">Proven Across Industries</h3>
-          <p class="fi-mini-excerpt">Healthcare, tech, real estate, education, e-commerce, and more. Our cross-sector experience means tested solutions, not costly experiments.</p>
-          <span class="fi-cta">Read Article <span class="fi-arrow">→</span></span>
-        </a>
+      <!-- Bottom Row: Three Cards (Dynamically populated by CMS) -->
+      <div class="fi-bottom-row" id="fi-bottom-row">
+        <!-- Dynamic CMS Featured Articles -->
       </div>
 
     </div>
@@ -164,80 +89,11 @@
         <button class="filter-btn" data-filter="development">Development</button>
       </div>
 
-      <!-- ARTICLE GRID -->
+      <!-- ARTICLE GRID (Dynamically populated by CMS) -->
       <div class="blog-grid" id="blog-grid" data-reveal-stagger="" style="margin-bottom: 64px; margin-top: 32px;">
-        <a href="/blog-technical-seo" class="blog-card reveal-card" data-category="seo technology">
-          <div class="bc-meta"><span class="bc-cat">SEO</span><span class="bc-date">June 2024</span></div>
-          <h3 class="bc-title">The 10 Technical SEO Fixes That Deliver the Fastest Results</h3>
-          <p class="bc-excerpt">Not all SEO tasks are created equal. These 10 technical fixes consistently deliver the fastest ranking improvements — ranked by impact and implementation difficulty.</p>
-          <div class="bc-footer"><span class="bc-read">6 min</span><span class="bc-link">Read Article →</span></div>
-        </a>
-        <a href="/blog-design-systems" class="blog-card reveal-card" data-category="design">
-          <div class="bc-meta"><span class="bc-cat">Design</span><span class="bc-date">May 2024</span></div>
-          <h3 class="bc-title">Design Systems: Why Every Growing Business Needs One</h3>
-          <p class="bc-excerpt">A design system is not just a Figma component library. It is the single most important investment for maintaining brand consistency as your team and product scale.</p>
-          <div class="bc-footer"><span class="bc-read">7 min</span><span class="bc-link">Read Article →</span></div>
-        </a>
-        <a href="/blog-using-ai" class="blog-card reveal-card" data-category="ai technology">
-          <div class="bc-meta"><span class="bc-cat">AI</span><span class="bc-date">May 2024</span></div>
-          <h3 class="bc-title">How We're Using AI to Accelerate Client Project Delivery</h3>
-          <p class="bc-excerpt">AI tools are transforming how we work — from research and wireframing to code generation and content optimization. Here's our honest take on what actually works.</p>
-          <div class="bc-footer"><span class="bc-read">9 min</span><span class="bc-link">Read Article →</span></div>
-        </a>
-        <a href="/blog-b2b-funnel" class="blog-card reveal-card" data-category="marketing business">
-          <div class="bc-meta"><span class="bc-cat">Marketing</span><span class="bc-date">April 2024</span></div>
-          <h3 class="bc-title">The B2B Digital Marketing Funnel: A Practical Guide</h3>
-          <p class="bc-excerpt">Most B2B marketing fails because it treats the purchase decision as a single moment rather than a multi-stage journey. Here's how to build a funnel that actually converts.</p>
-          <div class="bc-footer"><span class="bc-read">11 min</span><span class="bc-link">Read Article →</span></div>
-        </a>
-        <a href="/blog-custom-software" class="blog-card reveal-card" data-category="development technology">
-          <div class="bc-meta"><span class="bc-cat">Development</span><span class="bc-date">April 2024</span></div>
-          <h3 class="bc-title">When to Build Custom Software vs. Use Off-the-Shelf Solutions</h3>
-          <p class="bc-excerpt">Custom software is powerful — but expensive and time-consuming. Off-the-shelf tools are fast — but constraining. Here's the framework we use to help clients make the right decision.</p>
-          <div class="bc-footer"><span class="bc-read">8 min</span><span class="bc-link">Read Article →</span></div>
-        </a>
-        <a href="/blog-presence-audit" class="blog-card reveal-card" data-category="business">
-          <div class="bc-meta"><span class="bc-cat">Business Growth</span><span class="bc-date">March 2024</span></div>
-          <h3 class="bc-title">Digital Presence Audit: 15 Things to Fix on Your Website Today</h3>
-          <p class="bc-excerpt">Most business websites are leaving significant revenue on the table due to avoidable mistakes. This checklist covers the 15 highest-impact improvements across design, copy, SEO, and performance.</p>
-          <div class="bc-footer"><span class="bc-read">12 min</span><span class="bc-link">Read Article →</span></div>
-        </a>
-        <a href="/blog-local-seo" class="blog-card reveal-card" data-category="seo marketing">
-          <div class="bc-meta"><span class="bc-cat">SEO</span><span class="bc-date">March 2024</span></div>
-          <h3 class="bc-title">Local SEO for Service Businesses: The Complete 2024 Playbook</h3>
-          <p class="bc-excerpt">Local search is the highest-intent traffic channel for service businesses. This playbook covers everything you need to dominate local search results in your area.</p>
-          <div class="bc-footer"><span class="bc-read">15 min</span><span class="bc-link">Read Article →</span></div>
-        </a>
-        <a href="/blog-dev-handoff" class="blog-card reveal-card" data-category="design development">
-          <div class="bc-meta"><span class="bc-cat">Design</span><span class="bc-date">February 2024</span></div>
-          <h3 class="bc-title">The Designer-Developer Handoff: How to Eliminate Rework</h3>
-          <p class="bc-excerpt">Miscommunication between designers and developers is one of the most expensive inefficiencies in digital product development. Here's our structured handoff process.</p>
-          <div class="bc-footer"><span class="bc-read">7 min</span><span class="bc-link">Read Article →</span></div>
-        </a>
-        <a href="/blog-budget" class="blog-card reveal-card" data-category="ai technology business">
-          <div class="bc-meta"><span class="bc-cat">Business Growth</span><span class="bc-date">February 2024</span></div>
-          <h3 class="bc-title">How to Budget for Your Next Digital Transformation</h3>
-          <p class="bc-excerpt">Digital transformation projects frequently go over budget because of poor initial scoping. Here is how we accurately project costs and timelines for complex builds.</p>
-          <div class="bc-footer"><span class="bc-read">8 min</span><span class="bc-link">Read Article →</span></div>
-        </a>
-        <a href="/blog-page-speed" class="blog-card reveal-card" data-category="development technology">
-          <div class="bc-meta"><span class="bc-cat">Development</span><span class="bc-date">January 2024</span></div>
-          <h3 class="bc-title">How Page Speed Directly Impacts Your Conversion Rate</h3>
-          <p class="bc-excerpt">A one-second delay in page response can result in a 7% reduction in conversions. Here are the most effective ways to optimize web performance.</p>
-          <div class="bc-footer"><span class="bc-read">6 min</span><span class="bc-link">Read Article →</span></div>
-        </a>
-        <a href="/blog-color-psychology" class="blog-card reveal-card" data-category="design">
-          <div class="bc-meta"><span class="bc-cat">Design</span><span class="bc-date">January 2024</span></div>
-          <h3 class="bc-title">The Psychology of Color in UI Design</h3>
-          <p class="bc-excerpt">Color is a powerful communication tool. We break down how different color palettes influence user perception, trust, and ultimately, behavior.</p>
-          <div class="bc-footer"><span class="bc-read">8 min</span><span class="bc-link">Read Article →</span></div>
-        </a>
-        <a href="/blog-ecommerce-architecture" class="blog-card reveal-card" data-category="technology development">
-          <div class="bc-meta"><span class="bc-cat">Technology</span><span class="bc-date">December 2023</span></div>
-          <h3 class="bc-title">Building a Scalable E-commerce Architecture</h3>
-          <p class="bc-excerpt">Scaling an e-commerce platform requires more than just adding servers. It demands an architecture built to handle sudden traffic spikes and complex integrations.</p>
-          <div class="bc-footer"><span class="bc-read">11 min</span><span class="bc-link">Read Article →</span></div>
-        </a>
+        <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; color: rgba(255,255,255,0.5);">
+          Loading published articles...
+        </div>
       </div>
     </div>
   </section>
@@ -292,7 +148,7 @@
             <textarea id="wa-message" placeholder="Tell us about your project, goals, requirements, or challenges..." required="" rows="4"></textarea>
           </div>
           
-            <div class="g-recaptcha" data-sitekey="6Lfl4j0tAAAAAHPe3u3URXHoq5BSRYO6njcJOsJg" style="margin-bottom: 20px;"></div>
+
           <button type="submit" class="btn-primary">Start Conversation</button>
         </form>
       </div>
@@ -300,7 +156,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="/" class="logo footer-logo" id="footer-logo">
-            <img src="/logo.webp" alt="Digital Nexes Logo" class="logo-mark" style="height: 48px; width: auto;">
+            <img src="/logo.webp" alt="Digital Nexes Logo" class="logo-mark" width="160" height="48" loading="lazy" decoding="async" style="height: 48px; width: auto;">
           </a>
           <p class="footer-tagline">A growth-focused digital studio helping businesses establish, optimize, and scale their digital presence.</p>
         </div>
@@ -355,6 +211,4 @@
     });
   </script>
   <script type="module" src="/src/page.js"></script>
-
-
 </body></html>

@@ -1,5 +1,11 @@
 RewriteEngine On
 
+# Do not apply website rewrite rules to /cms subfolder
+RewriteRule ^cms($|/) - [L]
+
+# Route /insights/[slug] to /blog-view.html
+RewriteRule ^insights/[^/]+/?$ /blog-view.html [L,QSA]
+
 # Remove .html extension from URLs
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -11,12 +17,48 @@ RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^.]+)\.html\ HTTP
 RewriteRule ^([^.]+)\.html$ /$1 [R=301,L]
 
 # ==============================================================================
+# CACHING STRATEGY FOR VITE STATIC DEPLOYMENT
+# ==============================================================================
+<IfModule mod_headers.c>
+    # 1. HTML & Clean URLs — NEVER cache HTML so updated changes appear immediately after hosting push!
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+    </FilesMatch>
+
+    # Apply no-cache to root path / and extensionless clean URLs
+    <If "%{REQUEST_URI} !~ m#^/assets/# && %{REQUEST_URI} !~ m#\.(js|css|webp|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot)$#i">
+        Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+    </If>
+
+    # 2. Hashed Static Assets (/assets/ folder & media) — Cache for 1 year (immutable)
+    # Because Vite attaches content hashes to filenames (e.g., index-UeGedJl8.js), these files never conflict!
+    <FilesMatch "\.(js|css|woff|woff2|ttf|eot|png|jpg|jpeg|gif|webp|svg|ico)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+</IfModule>
+
+# ==============================================================================
+# GZIP & BROTLI COMPRESSION FOR OPTIMIZED PERFORMANCE
+# ==============================================================================
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json application/xml image/svg+xml font/woff2 font/woff
+</IfModule>
+
+<IfModule mod_brotli.c>
+    AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/xml text/css text/javascript application/javascript application/json application/xml image/svg+xml font/woff2 font/woff
+</IfModule>
+
+# ==============================================================================
 # SECURITY HEADERS
 # ==============================================================================
 <IfModule mod_headers.c>
     # 1. Content Security Policy (CSP)
     # Allows self, Google Fonts, and Google reCAPTCHA. Blocks everything else.
-    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; frame-src https://www.google.com/recaptcha/; img-src 'self' data:; connect-src 'self';"
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; frame-src https://www.google.com/recaptcha/; img-src 'self' data: https: http:; connect-src 'self' https://digitalnexes.com https://www.digitalnexes.com http://localhost:3001 http://localhost:4200;"
 
     # 2. Prevent Clickjacking (disallow embedding in iframes)
     Header always set X-Frame-Options "DENY"
@@ -24,14 +66,18 @@ RewriteRule ^([^.]+)\.html$ /$1 [R=301,L]
     # 3. Prevent MIME-type sniffing
     Header always set X-Content-Type-Options "nosniff"
 
-    # 4. Referrer Policy
-    Header always set Referrer-Policy "strict-origin-when-cross-origin"
-
-    # 5. Strict Transport Security (HSTS)
-    # Enforces HTTPS for 1 year
+    # 4. Strict-Transport-Security (HSTS)
+    # Enforces HTTPS for 1 year with subdomains and preload
     Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 
-    # 6. Permissions Policy
+    # 5. Cross-Origin Policies (COOP & CORP)
+    Header always set Cross-Origin-Opener-Policy "same-origin"
+    Header always set Cross-Origin-Resource-Policy "cross-origin"
+
+    # 6. Referrer-Policy
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # 7. Permissions-Policy
     # Disable sensitive browser APIs
     Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=()"
 </IfModule>

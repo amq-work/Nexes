@@ -1,0 +1,48 @@
+# ==============================================================================
+# DIGITAL NEXES CMS SUBDIRECTORY — digitalnexes.com/cms
+# CloudLinux Node.js Selector / Phusion Passenger Compatible
+# ==============================================================================
+
+PassengerEnabled on
+PassengerNodejs /usr/local/bin/node
+
+RewriteEngine On
+
+# 1. Force HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# 2. Disable Directory Listing
+Options -Indexes
+
+# 3. Route ALL requests through Node.js (Passenger)
+#    Static files in admin/ and uploads/ are served directly
+#    Everything else goes to server.js
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ server.js [QSA,L]
+
+# 4. Block direct access to sensitive files and directories
+<FilesMatch "(^\.|\.(env|git|tmp)$|users\.json|audit\.json|package(-lock)?\.json)">
+    Require all denied
+</FilesMatch>
+
+# Block direct access to sensitive internal folders
+RedirectMatch 404 ^/(cms/)?(data|logs|config)(/|$)
+
+# 5. Security Headers
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "DENY"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=()"
+    Header always set Cross-Origin-Resource-Policy "cross-origin"
+    Header always set Cross-Origin-Opener-Policy "same-origin-allow-popups"
+
+    Header always set Access-Control-Allow-Credentials "true"
+</IfModule>
+
+# 6. Gzip Compression for Admin UI assets
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>

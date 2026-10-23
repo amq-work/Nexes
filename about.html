@@ -14,23 +14,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
   
     <link rel="icon" type="image/webp" href="/favicon.webp">
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+  <link rel="stylesheet" href="/src/style.css" />
 </head>
 <body>
-
-  <!-- PAGE LOADER -->
-  <div id="page-loader" class="skeleton-screen" aria-hidden="true">
-    <div class="sk-nav">
-      <div class="sk-logo"></div>
-      <div class="sk-links"></div>
-    </div>
-    <div class="sk-hero">
-      <div class="sk-title"></div>
-      <div class="sk-title short"></div>
-      <div class="sk-sub"></div>
-      <div class="sk-btn"></div>
-    </div>
-  </div>
     
 
   <!-- CUSTOM CURSOR -->
@@ -44,7 +31,7 @@
       <header class="navbar" id="navbar">
     <div class="container nav-inner">
       <a href="/" class="logo" id="logo-link">
-        <img src="/logo.webp" alt="Digital Nexes Logo" class="logo-mark" style="height: 48px; width: auto;">
+        <img src="/logo.webp" alt="Digital Nexes Logo" class="logo-mark" width="160" height="48" decoding="async" style="height: 48px; width: auto;">
       </a>
       <nav class="nav-links" id="nav-links" role="navigation" aria-label="Primary navigation">
         <a href="/" data-page="index">Home</a>
@@ -354,7 +341,7 @@
             <textarea id="wa-message" placeholder="Tell us about your project, goals, requirements, or challenges..." required="" rows="4"></textarea>
           </div>
           
-            <div class="g-recaptcha" data-sitekey="6Lfl4j0tAAAAAHPe3u3URXHoq5BSRYO6njcJOsJg" style="margin-bottom: 20px;"></div>
+
           <button type="submit" class="btn-primary">Start Conversation</button>
         </form>
       </div>
@@ -362,7 +349,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="/" class="logo footer-logo" id="footer-logo">
-            <img src="/logo.webp" alt="Digital Nexes Logo" class="logo-mark" style="height: 48px; width: auto;">
+            <img src="/logo.webp" alt="Digital Nexes Logo" class="logo-mark" width="160" height="48" loading="lazy" decoding="async" style="height: 48px; width: auto;">
           </a>
           <p class="footer-tagline">A growth-focused digital studio helping businesses establish, optimize, and scale their digital presence.</p>
         </div>

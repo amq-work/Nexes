@@ -13,22 +13,23 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600&amp;display=swap" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
     <link rel="icon" type="image/webp" href="/favicon.webp">
+  <link rel="stylesheet" href="/src/style.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "DIGITAL NEXES",
+    "url": "https://digitalnexes.com",
+    "logo": "https://digitalnexes.com/favicon.webp",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "info@digitalnexes.com",
+      "contactType": "customer support"
+    }
+  }
+  </script>
 </head>
 <body>
-
-  <!-- ══ PAGE LOADER ═══════════════════════════════════════════════════════ -->
-  <div id="page-loader" class="skeleton-screen" aria-hidden="true">
-    <div class="sk-nav">
-      <div class="sk-logo"></div>
-      <div class="sk-links"></div>
-    </div>
-    <div class="sk-hero">
-      <div class="sk-title"></div>
-      <div class="sk-title short"></div>
-      <div class="sk-sub"></div>
-      <div class="sk-btn"></div>
-    </div>
-  </div>
     
 
   <!-- ══ CUSTOM CURSOR ══════════════════════════════════════════════════════ -->
@@ -47,7 +48,7 @@
       <header class="navbar" id="navbar">
     <div class="container nav-inner">
       <a href="/" class="logo" id="logo-link">
-        <img src="/logo.webp" alt="Digital Nexes Logo" class="logo-mark" style="height: 48px; width: auto;">
+        <img src="/logo.webp" alt="Digital Nexes Logo" class="logo-mark" width="160" height="48" decoding="async" style="height: 48px; width: auto;">
       </a>
       <nav class="nav-links" id="nav-links" role="navigation" aria-label="Primary navigation">
         <a href="/" data-page="index">Home</a>
@@ -207,100 +208,152 @@
   ════════════════════════════════════════════════════════════════════════════ -->
   <section class="section services-section" id="services" style="padding: 0;">
     <!-- This outer div creates the scroll space for the sticky pin -->
-    <div class="services-sticky-outer" id="services-outer" style="height: 500vh;">
-      <div class="services-sticky-inner" id="services-sticky">
-        <div class="services-sticky-header">
-          <div>
-            <p class="eyebrow">What We Do</p>
-            <h2 class="section-title" style="margin-bottom: 0; text-align: left;">Our Core Services</h2>
+    <!-- Mount point for responsive JS rendering -->
+    <div id="services-mount"></div>
+
+    <!-- Desktop GSAP Template (Inert until mounted by JS on desktop > 768px) -->
+    <template id="services-desktop-template">
+      <div class="services-sticky-outer" id="services-outer" style="height: 500vh;">
+        <div class="services-sticky-inner" id="services-sticky">
+          <div class="services-sticky-header">
+            <div>
+              <p class="eyebrow">What We Do</p>
+              <h2 class="section-title" style="margin-bottom: 0; text-align: left;">Our Core Services</h2>
+            </div>
+            <div class="services-progress" id="svc-progress">
+              <div class="svc-dot active" id="sdot-0"></div>
+              <div class="svc-dot" id="sdot-1"></div>
+              <div class="svc-dot" id="sdot-2"></div>
+              <div class="svc-dot" id="sdot-3"></div>
+              <div class="svc-dot" id="sdot-4"></div>
+              <div class="svc-dot" id="sdot-5"></div>
+              <div class="svc-dot" id="sdot-6"></div>
+            </div>
           </div>
-          <div class="services-progress" id="svc-progress">
-            <div class="svc-dot active" id="sdot-0"></div>
-            <div class="svc-dot" id="sdot-1"></div>
-            <div class="svc-dot" id="sdot-2"></div>
-            <div class="svc-dot" id="sdot-3"></div>
-            <div class="svc-dot" id="sdot-4"></div>
-            <div class="svc-dot" id="sdot-5"></div>
-            <div class="svc-dot" id="sdot-6"></div>
-          </div>
-        </div>
-        <div class="services-track-wrap">
-          <div class="services-track" id="services-track">
+          <div class="services-track-wrap">
+            <div class="services-track" id="services-track">
 
-            <a href="/services.html#design-services" class="svc-card" id="svc-uiux" style="text-decoration: none;">
-              <span class="svc-number">01</span>
-              <div class="svc-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg>
-              </div>
-              <h3 class="svc-title">UI/UX Design</h3>
-              <p class="svc-body">User-centered interfaces built from research, not assumptions. Wireframes, prototypes, and high-fidelity designs that convert and delight.</p>
-              <span class="svc-tag">Design</span>
-            </a>
+              <a href="/services.html#design-services" class="svc-card" id="svc-uiux" style="text-decoration: none;">
+                <span class="svc-number">01</span>
+                <div class="svc-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg>
+                </div>
+                <h3 class="svc-title">UI/UX Design</h3>
+                <p class="svc-body">User-centered interfaces built from research, not assumptions. Wireframes, prototypes, and high-fidelity designs that convert and delight.</p>
+                <span class="svc-tag">Design</span>
+              </a>
 
-            <a href="/services.html#dev-services" class="svc-card" id="svc-web" style="text-decoration: none;">
-              <span class="svc-number">02</span>
-              <div class="svc-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-              </div>
-              <h3 class="svc-title">Website Development</h3>
-              <p class="svc-body">Performant, scalable web applications built with modern frameworks. From marketing sites to complex platforms — clean code guaranteed.</p>
-              <span class="svc-tag">Development</span>
-            </a>
+              <a href="/services.html#dev-services" class="svc-card" id="svc-web" style="text-decoration: none;">
+                <span class="svc-number">02</span>
+                <div class="svc-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                </div>
+                <h3 class="svc-title">Website Development</h3>
+                <p class="svc-body">Performant, scalable web applications built with modern frameworks. From marketing sites to complex platforms — clean code guaranteed.</p>
+                <span class="svc-tag">Development</span>
+              </a>
 
-            <a href="/services.html#marketing-services" class="svc-card" id="svc-seo" style="text-decoration: none;">
-              <span class="svc-number">03</span>
-              <div class="svc-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path><path d="M11 8v6M8 11h6"></path></svg>
-              </div>
-              <h3 class="svc-title">SEO</h3>
-              <p class="svc-body">Data-driven search optimization that builds organic authority. Technical audits, on-page optimization, content strategy, and structured reporting.</p>
-              <span class="svc-tag">Growth</span>
-            </a>
+              <a href="/services.html#marketing-services" class="svc-card" id="svc-seo" style="text-decoration: none;">
+                <span class="svc-number">03</span>
+                <div class="svc-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path><path d="M11 8v6M8 11h6"></path></svg>
+                </div>
+                <h3 class="svc-title">SEO</h3>
+                <p class="svc-body">Data-driven search optimization that builds organic authority. Technical audits, on-page optimization, content strategy, and structured reporting.</p>
+                <span class="svc-tag">Growth</span>
+              </a>
 
-            <a href="/services.html#marketing-services" class="svc-card" id="svc-mkt" style="text-decoration: none;">
-              <span class="svc-number">04</span>
-              <div class="svc-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
-              </div>
-              <h3 class="svc-title">Digital Marketing</h3>
-              <p class="svc-body">Full-funnel campaigns across paid, social, and email. Strategy, creative, targeting, and analytics — managed as a unified growth engine.</p>
-              <span class="svc-tag">Marketing</span>
-            </a>
+              <a href="/services.html#marketing-services" class="svc-card" id="svc-mkt" style="text-decoration: none;">
+                <span class="svc-number">04</span>
+                <div class="svc-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                </div>
+                <h3 class="svc-title">Digital Marketing</h3>
+                <p class="svc-body">Full-funnel campaigns across paid, social, and email. Strategy, creative, targeting, and analytics — managed as a unified growth engine.</p>
+                <span class="svc-tag">Marketing</span>
+              </a>
 
-            <a href="/services.html#design-services" class="svc-card" id="svc-brand" style="text-decoration: none;">
-              <span class="svc-number">05</span>
-              <div class="svc-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"></path></svg>
-              </div>
-              <h3 class="svc-title">Branding &amp; Identity</h3>
-              <p class="svc-body">Strategic brand systems that differentiate and endure. Logo, color, type, voice, and visual language — built to scale across every touchpoint.</p>
-              <span class="svc-tag">Branding</span>
-            </a>
+              <a href="/services.html#design-services" class="svc-card" id="svc-brand" style="text-decoration: none;">
+                <span class="svc-number">05</span>
+                <div class="svc-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"></path></svg>
+                </div>
+                <h3 class="svc-title">Branding &amp; Identity</h3>
+                <p class="svc-body">Strategic brand systems that differentiate and endure. Logo, color, type, voice, and visual language — built to scale across every touchpoint.</p>
+                <span class="svc-tag">Branding</span>
+              </a>
 
-            <a href="/services.html#biz-services" class="svc-card" id="svc-biz" style="text-decoration: none;">
-              <span class="svc-number">06</span>
-              <div class="svc-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-              </div>
-              <h3 class="svc-title">Business Development</h3>
-              <p class="svc-body">Go-to-market strategy, partnership development, pitch decks, and growth frameworks. We help you scale with purpose and precision.</p>
-              <span class="svc-tag">Strategy</span>
-            </a>
+              <a href="/services.html#biz-services" class="svc-card" id="svc-biz" style="text-decoration: none;">
+                <span class="svc-number">06</span>
+                <div class="svc-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                </div>
+                <h3 class="svc-title">Business Development</h3>
+                <p class="svc-body">Go-to-market strategy, partnership development, pitch decks, and growth frameworks. We help you scale with purpose and precision.</p>
+                <span class="svc-tag">Strategy</span>
+              </a>
 
-            <a href="/services.html#dev-services" class="svc-card" id="svc-sw" style="text-decoration: none;">
-              <span class="svc-number">07</span>
-              <div class="svc-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg>
-              </div>
-              <h3 class="svc-title">Custom Software</h3>
-              <p class="svc-body">Bespoke SaaS platforms, web apps, dashboards, and internal tools. From MVP to enterprise — engineered for reliability and growth at every stage.</p>
-              <span class="svc-tag">Engineering</span>
-            </a>
+              <a href="/services.html#dev-services" class="svc-card" id="svc-sw" style="text-decoration: none;">
+                <span class="svc-number">07</span>
+                <div class="svc-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg>
+                </div>
+                <h3 class="svc-title">Custom Software</h3>
+                <p class="svc-body">Bespoke SaaS platforms, web apps, dashboards, and internal tools. From MVP to enterprise — engineered for reliability and growth at every stage.</p>
+                <span class="svc-tag">Engineering</span>
+              </a>
 
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </template>
+
+    <!-- Mobile Static Template (Inert until mounted by JS on mobile <= 768px) -->
+    <template id="services-mobile-template">
+      <div class="services-mobile-only container" style="padding: 80px 0;">
+        <div class="services-mobile-header" style="margin-bottom: 32px;">
+          <p class="eyebrow">What We Do</p>
+          <h2 class="section-title" style="margin-bottom: 0;">Our Core Services</h2>
+        </div>
+        <div class="services-mobile-stack" style="display: flex; flex-direction: column; gap: 24px;">
+          
+          <!-- Card 1: Product Design -->
+          <a href="/services.html#design-services" class="svc-card static-card" style="text-decoration: none; width: 100%; min-height: auto; padding: 32px;">
+            <div class="svc-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg>
+            </div>
+            <h3 class="svc-title">Product Design</h3>
+            <p class="svc-body">Research-driven product design that transforms ideas into intuitive digital experiences and scalable design systems.</p>
+            <span class="svc-tag">Design</span>
+          </a>
+          
+          <!-- Card 2: Software Development -->
+          <a href="/services.html#dev-services" class="svc-card static-card" style="text-decoration: none; width: 100%; min-height: auto; padding: 32px;">
+            <div class="svc-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg>
+            </div>
+            <h3 class="svc-title">Software Development</h3>
+            <p class="svc-body">High-performance websites, web applications, SaaS platforms, and automation systems engineered for scalability.</p>
+            <span class="svc-tag">Development</span>
+          </a>
+
+          <!-- Card 3: Growth & Digital Marketing -->
+          <a href="/services.html#marketing-services" class="svc-card static-card" style="text-decoration: none; width: 100%; min-height: auto; padding: 32px;">
+            <div class="svc-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+            </div>
+            <h3 class="svc-title">Growth &amp; Digital Marketing</h3>
+            <p class="svc-body">Growth strategies powered by SEO, digital marketing, analytics, and business consulting to generate measurable results.</p>
+            <span class="svc-tag">Growth</span>
+          </a>
+        </div>
+        
+        <div class="services-mobile-cta" style="margin-top: 40px; text-align: center;">
+          <a href="/services.html" class="btn-primary">Explore More</a>
+        </div>
+      </div>
+    </template>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════════════════
@@ -488,35 +541,35 @@
       </div>
       <div class="industries-grid">
         <div class="industry-card reveal-card">
-          <h4 class="industry-name">Healthcare</h4>
+          <h3 class="industry-name">Healthcare</h4>
           <p class="industry-body">HIPAA-aware platforms, patient portals, and specialized digital marketing to grow medical practices and health networks.</p>
         </div>
         <div class="industry-card reveal-card">
-          <h4 class="industry-name">Technology</h4>
+          <h3 class="industry-name">Technology</h4>
           <p class="industry-body">Scalable SaaS architecture, tech branding, and go-to-market strategies for software companies and digital-first businesses.</p>
         </div>
         <div class="industry-card reveal-card">
-          <h4 class="industry-name">Real Estate</h4>
+          <h3 class="industry-name">Real Estate</h4>
           <p class="industry-body">Property platforms, virtual tours, CRM integrations, and high-converting lead funnels for agents and developers.</p>
         </div>
         <div class="industry-card reveal-card">
-          <h4 class="industry-name">Education</h4>
+          <h3 class="industry-name">Education</h4>
           <p class="industry-body">E-learning systems, enrollment portals, and digital campuses designed for modern learners and institutions.</p>
         </div>
         <div class="industry-card reveal-card">
-          <h4 class="industry-name">E-commerce</h4>
+          <h3 class="industry-name">E-commerce</h4>
           <p class="industry-body">High-performance storefronts optimized for seamless checkout experiences and maximum conversion rates.</p>
         </div>
         <div class="industry-card reveal-card">
-          <h4 class="industry-name">Startups</h4>
+          <h3 class="industry-name">Startups</h4>
           <p class="industry-body">Agile MVP development, foundational branding, and rapid growth systems to reach product-market fit fast.</p>
         </div>
         <div class="industry-card reveal-card">
-          <h4 class="industry-name">Agencies</h4>
+          <h3 class="industry-name">Agencies</h4>
           <p class="industry-body">White-label development, overflow design support, and technical partnerships to help agencies deliver at scale.</p>
         </div>
         <div class="industry-card reveal-card">
-          <h4 class="industry-name">Professional Services</h4>
+          <h3 class="industry-name">Professional Services</h4>
           <p class="industry-body">Authoritative branding, secure client portals, and inbound marketing for law firms, advisors, and consultants.</p>
         </div>
       </div>
@@ -528,75 +581,107 @@
   ════════════════════════════════════════════════════════════════════════════ -->
   <section class="section" id="work">
     <div class="container">
-      <div class="section-header">
-        <p class="eyebrow reveal-text">Featured Work</p>
-        <h2 class="section-title scramble reveal-text">Projects We're Proud Of</h2>
-        <p class="section-sub reveal-text">A look at digital products and solutions we've shipped for real clients.</p>
+      <div class="section-header work-header-anim-container">
+        <p class="eyebrow work-header-anim">Featured Work</p>
+        <h2 class="section-title work-header-anim">Projects We're Proud Of</h2>
+        <p class="section-sub work-header-anim">A look at digital products and solutions we've shipped for real clients.</p>
       </div>
 
-      <div class="projects-list">
-
+      <div class="stacked-portfolio-container" id="stacked-portfolio">
+        
         <!-- Project 1 -->
-        <article class="project-item reveal-card" id="proj-1">
-          <div class="project-num">01</div>
-          <div class="project-visual">
-            <div class="project-gradient pg-1"></div>
-            <div class="project-visual-label">Platform · 2024</div>
-          </div>
-          <div class="project-info">
-            <div class="project-tags-top">
-              <span class="proj-tag">Custom Software</span>
-              <span class="proj-tag">UI/UX Design</span>
-              <span class="proj-tag">Development</span>
+        <article class="stacked-card">
+          <div class="stacked-card-inner">
+            <div class="sc-content">
+              <h3 class="sc-title">Nestly - For Labors</h3>
+              <p class="sc-desc">A full-stack digital hub that manages, schedules, and dispatches vetted home care experts using real-time geolocation, upfront pricing calculations, and subscription models. It empowers service providers with seamless self-registration and matching, while offering customers multi-tier subscription plans. This ensures a transparent, reliable, and swift solution to local home maintenance.</p>
+              <div class="sc-tags">
+                <span class="sc-tag">Real-time Dispatch</span>
+                <span class="sc-tag">Cost Calculator</span>
+                <span class="sc-tag">Subscriptions</span>
+              </div>
+              <div style="margin-top: 40px;">
+                <a href="#" class="btn-ghost">View Live Site ↗</a>
+              </div>
             </div>
-            <h3 class="project-title">Team Time Track</h3>
-            <p class="project-desc">A team productivity and time-monitoring platform featuring analytics dashboards, project-level reporting, and manager-facing insights for distributed teams.</p>
-            <div class="project-arrow">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
-              View Case Study
-            </div>
+            <a href="/nestly-for-labors" class="sc-mockup pg-1">
+              <img src="/projects/Nestly.webp" alt="Nestly Mockup" loading="lazy" decoding="async" width="800" height="600">
+              <div class="sc-mockup-overlay">
+                <span class="sc-btn">View Case Study <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg></span>
+              </div>
+            </a>
           </div>
         </article>
 
         <!-- Project 2 -->
-        <article class="project-item reveal-card" id="proj-2">
-          <div class="project-num">02</div>
-          <div class="project-visual">
-            <div class="project-gradient pg-2"></div>
-            <div class="project-visual-label">System · 2024</div>
-          </div>
-          <div class="project-info">
-            <div class="project-tags-top">
-              <span class="proj-tag">Custom Software</span>
-              <span class="proj-tag">UX Design</span>
+        <article class="stacked-card">
+          <div class="stacked-card-inner">
+            <div class="sc-content">
+              <h3 class="sc-title">NexCafe</h3>
+              <p class="sc-desc">A premium digital ordering experience and brand showcase built for a modern café, focusing on seamless customer journeys and aesthetic appeal. The platform integrates an intuitive mobile-first interface with secure payment gateways, streamlining the online ordering process. It elevates the café's digital presence, resulting in significantly higher mobile engagement.</p>
+              <div class="sc-tags">
+                <span class="sc-tag">Mobile-First</span>
+                <span class="sc-tag">Digital Ordering</span>
+                <span class="sc-tag">Payments</span>
+              </div>
+              <div style="margin-top: 40px;">
+                <a href="#" class="btn-ghost">View Live Site ↗</a>
+              </div>
             </div>
-            <h3 class="project-title">Freelance PM System</h3>
-            <p class="project-desc">End-to-end project tracking: client management, milestones, payments, and invoicing — all in one platform built for modern freelancers.</p>
-            <div class="project-arrow">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
-              View Case Study
-            </div>
+            <a href="/nexcafe" class="sc-mockup pg-2">
+              <img src="/projects/NexCafe.webp" alt="NexCafe Mockup" loading="lazy" decoding="async" width="800" height="600">
+              <div class="sc-mockup-overlay">
+                <span class="sc-btn">View Case Study <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg></span>
+              </div>
+            </a>
           </div>
         </article>
 
         <!-- Project 3 -->
-        <article class="project-item reveal-card" id="proj-3">
-          <div class="project-num">03</div>
-          <div class="project-visual">
-            <div class="project-gradient pg-3"></div>
-            <div class="project-visual-label">Case Study · 2024</div>
+        <article class="stacked-card">
+          <div class="stacked-card-inner">
+            <div class="sc-content">
+              <h3 class="sc-title">Al Ahad Dental Care</h3>
+              <p class="sc-desc">Website redesign consultation, content strategy, and SEO enhancements to significantly boost organic visibility and patient conversions. By implementing a patient-first information architecture and optimizing local search signals, the new platform dramatically outpaces competitors. It features a streamlined appointment request flow that simplifies the user journey.</p>
+              <div class="sc-tags">
+                <span class="sc-tag">Patient-First UX</span>
+                <span class="sc-tag">Local SEO</span>
+                <span class="sc-tag">Lead Gen</span>
+              </div>
+              <div style="margin-top: 40px;">
+                <a href="#" class="btn-ghost">View Live Site ↗</a>
+              </div>
+            </div>
+            <a href="/al-ahad-dental" class="sc-mockup pg-3">
+              <img src="/projects/Al%20Ahad%20Dental%20Care.webp" alt="Al Ahad Dental Care Mockup" loading="lazy" decoding="async" width="800" height="600">
+              <div class="sc-mockup-overlay">
+                <span class="sc-btn">View Case Study <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg></span>
+              </div>
+            </a>
           </div>
-          <div class="project-info">
-            <div class="project-tags-top">
-              <span class="proj-tag">SEO</span>
-              <span class="proj-tag">UI/UX Consultation</span>
+        </article>
+
+        <!-- Project 4 -->
+        <article class="stacked-card">
+          <div class="stacked-card-inner">
+            <div class="sc-content">
+              <h3 class="sc-title">Falah Welfare Network</h3>
+              <p class="sc-desc">A comprehensive digital platform designed to support community welfare initiatives, streamline donations, and expand organizational reach. The system is built to handle global scale, offering secure, transparent contribution tracking and real-time impact reporting. It bridges the gap between donors and community needs with a visually engaging interface.</p>
+              <div class="sc-tags">
+                <span class="sc-tag">Donation Platform</span>
+                <span class="sc-tag">Impact Tracking</span>
+                <span class="sc-tag">Global Scale</span>
+              </div>
+              <div style="margin-top: 40px;">
+                <a href="#" class="btn-ghost">View Live Site ↗</a>
+              </div>
             </div>
-            <h3 class="project-title">Al Ahad Dental Care</h3>
-            <p class="project-desc">Website redesign consultation, content strategy, and SEO enhancements to significantly boost organic visibility and patient conversions.</p>
-            <div class="project-arrow">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
-              View Case Study
-            </div>
+            <a href="/falah-welfare" class="sc-mockup pg-4">
+              <img src="/projects/Falah%20Welfare%20Network.webp" alt="Falah Welfare Network Mockup" loading="lazy" decoding="async" width="800" height="600">
+              <div class="sc-mockup-overlay">
+                <span class="sc-btn">View Case Study <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg></span>
+              </div>
+            </a>
           </div>
         </article>
 
@@ -742,7 +827,7 @@
              <span class="bi-ed-badge">Studio Advantage</span>
           </div>
           <div class="bi-ed-content">
-            <h3 class="bi-ed-title">Why an Integrated Studio Model Wins Every Time</h3>
+            <h2 class="bi-ed-title" style="font-size: 1.5rem;">Why an Integrated Studio Model Wins Every Time</h3>
             <p class="bi-ed-excerpt">Design, development, marketing, and strategy under one roof. No handoff friction — your brand and product stay coherent from day one.</p>
             <div class="bi-ed-meta">
               <span>5 min read</span>
@@ -758,7 +843,7 @@
             <span class="bi-ed-num">02</span>
             <div class="bi-ed-item-content">
               <span class="bi-ed-category">SEO</span>
-              <h4 class="bi-ed-item-title">Technical SEO in 2025: What Actually Moves the Needle</h4>
+              <h3 class="bi-ed-item-title">Technical SEO in 2025: What Actually Moves the Needle</h4>
             </div>
             <span class="bi-ed-arrow">→</span>
           </a>
@@ -767,7 +852,7 @@
             <span class="bi-ed-num">03</span>
             <div class="bi-ed-item-content">
               <span class="bi-ed-category">AI &amp; Tech</span>
-              <h4 class="bi-ed-item-title">Using AI Without Losing Your Brand's Soul</h4>
+              <h3 class="bi-ed-item-title">Using AI Without Losing Your Brand's Soul</h4>
             </div>
             <span class="bi-ed-arrow">→</span>
           </a>
@@ -776,7 +861,7 @@
             <span class="bi-ed-num">04</span>
             <div class="bi-ed-item-content">
               <span class="bi-ed-category">Performance</span>
-              <h4 class="bi-ed-item-title">Page Speed is a Revenue Problem</h4>
+              <h3 class="bi-ed-item-title">Page Speed is a Revenue Problem</h4>
             </div>
             <span class="bi-ed-arrow">→</span>
           </a>
@@ -785,7 +870,7 @@
             <span class="bi-ed-num">05</span>
             <div class="bi-ed-item-content">
               <span class="bi-ed-category">Design</span>
-              <h4 class="bi-ed-item-title">Design Systems That Actually Scale</h4>
+              <h3 class="bi-ed-item-title">Design Systems That Actually Scale</h4>
             </div>
             <span class="bi-ed-arrow">→</span>
           </a>
@@ -794,7 +879,7 @@
             <span class="bi-ed-num">06</span>
             <div class="bi-ed-item-content">
               <span class="bi-ed-category">Marketing</span>
-              <h4 class="bi-ed-item-title">Building a B2B Funnel That Converts</h4>
+              <h3 class="bi-ed-item-title">Building a B2B Funnel That Converts</h4>
             </div>
             <span class="bi-ed-arrow">→</span>
           </a>
@@ -908,7 +993,7 @@
     <div class="cf-grid">
       <div class="cf-left">
         <a href="/" class="cf-logo">
-          <img src="/logo.webp" alt="Digital Nexes Logo" style="height: 52px; width: auto;">
+          <img src="/logo.webp" alt="Digital Nexes Logo" width="173" height="52" loading="lazy" decoding="async" style="height: 52px; width: auto;">
         </a>
         <p class="cf-tagline">Seven disciplines. One integrated studio. Building digital products that establish, optimize, and scale.</p>
         
@@ -918,9 +1003,8 @@
         </div>
 
         <div class="cf-socials">
-          <a href="#">LinkedIn</a>
-          <a href="#">Twitter</a>
-          <a href="#">Instagram</a>
+          <a href="https://www.linkedin.com/in/aayan-qureshi/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://www.instagram.com/digitalnexes?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer">Instagram</a>
         </div>
       </div>
 
@@ -960,7 +1044,7 @@
 </footer>
 
   <!-- ══ Scripts ════════════════════════════════════════════════════════════ -->
-  <script src="/gradient.js"></script>
+  <script src="/gradient.js" defer></script>
   <script type="module" src="/src/main.js"></script>
 
 

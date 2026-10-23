@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article Insights — Digital Nexes | Technology, Design & Growth</title>
+  <meta name="description" content="Read expert insights and strategic analysis from Digital Nexes on technology, design, SEO, and business transformation.">
+  <meta property="og:type" content="article">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/webp" href="/favicon.webp">
+  <style>
+    .article-content { color: rgba(255, 255, 255, 0.85); font-size: 1.15rem; line-height: 1.8; font-family: 'Plus Jakarta Sans', sans-serif; }
+    .article-h2 { font-family: 'Outfit', sans-serif; font-size: 1.85rem; font-weight: 700; color: #fff; margin-top: 48px; margin-bottom: 20px; }
+    .article-h3 { font-family: 'Outfit', sans-serif; font-size: 1.45rem; font-weight: 600; color: #fff; margin-top: 36px; margin-bottom: 16px; }
+    .article-h4 { font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 600; color: #fff; margin-top: 28px; margin-bottom: 12px; }
+    .article-p { margin-bottom: 24px; }
+    .article-quote { border-left: 3px solid #fff; padding: 24px 28px; background: rgba(255, 255, 255, 0.03); border-radius: 0 12px 12px 0; margin: 36px 0; font-style: italic; color: #fff; font-size: 1.2rem; }
+    .article-ul, .article-ol { margin-bottom: 28px; padding-left: 24px; display: flex; flex-direction: column; gap: 12px; }
+    .article-ul li, .article-ol li { color: rgba(255, 255, 255, 0.85); padding-left: 6px; }
+    .article-divider { border: none; height: 1px; background: rgba(255, 255, 255, 0.1); margin: 56px 0; }
+    .article-hero-figure, .article-figure { margin: 36px 0; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1); background: #111; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+    .article-hero-figure img, .article-figure img { width: 100%; height: auto; display: block; object-fit: cover; }
+    .article-figcaption { padding: 12px 16px; font-size: 0.85rem; color: rgba(255, 255, 255, 0.5); text-align: center; background: rgba(0, 0, 0, 0.4); border-top: 1px solid rgba(255, 255, 255, 0.05); }
+    .article-tag { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 6px 14px; border-radius: 100px; font-size: 0.8rem; color: rgba(255, 255, 255, 0.7); }
+    @media (max-width: 768px) {
+      .article-content { font-size: 1.05rem; }
+      .page-hero-title { font-size: 2rem !important; }
+    }
+  </style>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <div id="cursor-dot" aria-hidden="true"></div><div id="cursor-ring" aria-hidden="true"></div><div id="scroll-progress" aria-hidden="true"></div>
+  
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="/" class="logo" id="logo-link">
+        <img src="/logo.webp" alt="Digital Nexes Logo" class="logo-mark" width="160" height="48" decoding="async" style="height: 48px; width: auto;">
+      </a>
+      <nav class="nav-links" id="nav-links" role="navigation" aria-label="Primary navigation">
+        <a href="/" data-page="index">Home</a>
+        <a href="/about" data-page="about">About</a>
+        <a href="/services" data-page="services">Services</a>
+        <a href="/projects" data-page="projects">Work</a>
+        <a href="/careers" data-page="careers">Careers</a>
+        <a href="/blog" data-page="blog">Insights</a>
+        <a href="/contact" data-page="contact">Contact</a>
+      </nav>
+      <a href="/contact" class="btn-primary nav-cta" id="nav-cta">Let's Talk</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ARTICLE HERO -->
+    <section class="page-hero" id="article-hero" style="padding-bottom: 32px; padding-top: 140px;">
+      <div class="hero-glass-grid"></div>
+      <div class="container page-hero-inner" style="max-width: 900px; margin: 0 auto; text-align: left;">
+        <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 20px; flex-wrap: wrap;">
+          <span class="bc-cat" id="article-category" style="background: rgba(255,255,255,0.1); padding: 4px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 600; color: #fff; text-transform: uppercase; letter-spacing: 0.05em;">Insights</span>
+          <span id="article-date" style="color: rgba(255,255,255,0.6); font-size: 0.85rem;"></span>
+          <span style="color: rgba(255,255,255,0.3);">•</span>
+          <span id="article-read-time" style="color: rgba(255,255,255,0.6); font-size: 0.85rem;"></span>
+        </div>
+        <h1 class="page-hero-title reveal-hero" id="article-title" style="font-size: 2.75rem; line-height: 1.25; margin-bottom: 20px; color: #fff;">Loading article...</h1>
+        <p class="page-hero-sub reveal-hero" id="article-subtitle" style="font-size: 1.2rem; color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 32px; max-width: 100%;"></p>
+        <div id="article-tags-box" style="display: flex; gap: 8px; flex-wrap: wrap;"></div>
+      </div>
+    </section>
+
+    <!-- ARTICLE BODY & FEATURED IMAGE -->
+    <section class="section" style="padding-top: 0; padding-bottom: 80px;">
+      <div class="container" style="max-width: 860px; margin: 0 auto;">
+        <div id="article-featured-image-box" style="margin-bottom: 48px;"></div>
+        
+        <article class="article-content" id="article-body">
+          <div style="text-align: center; padding: 60px 0; color: rgba(255,255,255,0.5);">
+            Fetching article content...
+          </div>
+        </article>
+
+        <!-- ARTICLE FOOTER NAVIGATION -->
+        <div style="margin-top: 80px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+          <a href="/blog" class="btn-ghost" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 600;">← Back to All Insights</a>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <span style="font-size: 0.85rem; color: rgba(255,255,255,0.5);">Share:</span>
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener" class="btn-ghost" style="padding: 6px 12px; font-size: 0.85rem;">LinkedIn</a>
+            <a href="https://twitter.com" target="_blank" rel="noopener" class="btn-ghost" style="padding: 6px 12px; font-size: 0.85rem;">Twitter/X</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="section cta-section" id="blog-cta">
+      <div class="container"><div class="cta-inner reveal-scale">
+        <p class="eyebrow">Stay in the Loop</p>
+        <h2 class="cta-heading">Get New Insights in Your Inbox</h2>
+        <p>We publish practical insights on design, development, SEO, and business growth. No fluff, no filler — just what's actually useful.</p>
+        <div class="cta-actions"><a href="/contact" class="btn-primary">Subscribe →</a><a href="/services" class="btn-ghost">Our Services</a></div>
+      </div></div>
+    </section>
+  </main>
+
+  <footer class="footer" id="footer">
+    <div class="container footer-inner">
+
+      <div class="footer-lead-form glass-card">
+        <div class="flf-content">
+          <h3>Let's Build Something Great Together</h3>
+          <p>Interested in working with Digital Nexes? Tell us about your project and start the conversation directly through WhatsApp.</p>
+        </div>
+        <form id="whatsapp-lead-form" class="flf-form">
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text" id="wa-name" placeholder="Enter your full name" required="">
+            </div>
+            <div class="form-group">
+              <input type="email" id="wa-email" placeholder="Enter your email address" required="">
+            </div>
+          </div>
+          <div class="form-group">
+            <select id="wa-service" required="">
+              <option value="" disabled="" selected="">Service Required</option>
+              <option value="UI/UX Design">UI/UX Design</option>
+              <option value="Website Development">Website Development</option>
+              <option value="Web Application Development">Web Application Development</option>
+              <option value="Custom Software Development">Custom Software Development</option>
+              <option value="SEO">SEO</option>
+              <option value="Digital Marketing">Digital Marketing</option>
+              <option value="Branding">Branding</option>
+              <option value="Business Development">Business Development</option>
+              <option value="Automation Solutions">Automation Solutions</option>
+              <option value="Technology Consulting">Technology Consulting</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <textarea id="wa-message" placeholder="Tell us about your project, goals, requirements, or challenges..." required="" rows="4"></textarea>
+          </div>
+          <button type="submit" class="btn-primary">Start Conversation</button>
+        </form>
+      </div>
+
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="/" class="logo footer-logo" id="footer-logo">
+            <img src="/logo.webp" alt="Digital Nexes Logo" class="logo-mark" width="160" height="48" loading="lazy" decoding="async" style="height: 48px; width: auto;">
+          </a>
+          <p class="footer-tagline">A growth-focused digital studio helping businesses establish, optimize, and scale their digital presence.</p>
+        </div>
+        <div class="footer-links-group">
+          <div class="footer-col">
+            <h5>Services</h5>
+            <a href="/services">UI/UX Design</a>
+            <a href="/services">Website Development</a>
+            <a href="/services">SEO</a>
+            <a href="/services">Digital Marketing</a>
+            <a href="/services">Branding &amp; Identity</a>
+            <a href="/services">Business Development</a>
+            <a href="/services">Custom Software</a>
+          </div>
+          <div class="footer-col">
+            <h5>Company</h5>
+            <a href="/#why-us">Why Us</a>
+            <a href="/projects">Our Work</a>
+            <a href="/about">Team</a>
+            <a href="/about#roadmap">Roadmap</a>
+            <a href="/#faq">FAQ</a>
+          </div>
+          <div class="footer-col">
+            <h5>Contact</h5>
+            <a href="mailto:info@digitalnexes.com">info@digitalnexes.com</a>
+            <a href="tel:03455073802">03455073802</a>
+            <a href="/careers">Careers</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 Digital Nexes. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/page.js"></script>
+
+</body>
+</html>

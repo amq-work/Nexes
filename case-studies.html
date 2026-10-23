@@ -10,26 +10,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   
     <link rel="icon" type="image/webp" href="/favicon.webp">
+  <link rel="stylesheet" href="/src/style.css" />
 </head>
 <body>
-  <div id="page-loader" class="skeleton-screen" aria-hidden="true">
-    <div class="sk-nav">
-      <div class="sk-logo"></div>
-      <div class="sk-links"></div>
-    </div>
-    <div class="sk-hero">
-      <div class="sk-title"></div>
-      <div class="sk-title short"></div>
-      <div class="sk-sub"></div>
-      <div class="sk-btn"></div>
-    </div>
-  </div>
   <div id="cursor-dot" aria-hidden="true"></div><div id="cursor-ring" aria-hidden="true"></div><div id="scroll-progress" aria-hidden="true"></div>
 
       <header class="navbar" id="navbar">
     <div class="container nav-inner">
       <a href="/" class="logo" id="logo-link">
-        <img src="/logo.webp" alt="Digital Nexes Logo" class="logo-mark" style="height: 48px; width: auto;">
+        <img src="/logo.webp" alt="Digital Nexes Logo" class="logo-mark" width="160" height="48" decoding="async" style="height: 48px; width: auto;">
       </a>
       <nav class="nav-links" id="nav-links" role="navigation" aria-label="Primary navigation">
         <a href="/"       data-page="index">Home</a>
@@ -60,40 +49,40 @@
   <section class="section" id="cs-list">
     <div class="container">
 
-      <article class="cs-card reveal-card" id="cs-ttt">
+      <article class="cs-card reveal-card" id="cs-nestly">
         <div class="cs-card-header">
-          <div class="cs-meta"><span class="cs-tag">Software</span><span class="cs-tag">UI/UX</span><span class="cs-tag">Development</span><span class="cs-year">2024</span></div>
-          <h2 class="cs-title">Team Time Track</h2>
-          <p class="cs-subtitle">Building a productivity monitoring platform for distributed teams from scratch.</p>
+          <div class="cs-meta"><span class="cs-tag">SaaS</span><span class="cs-tag">UI/UX</span><span class="cs-tag">Development</span><span class="cs-year">2024</span></div>
+          <h2 class="cs-title">Nestly - For Labors</h2>
+          <p class="cs-subtitle">A Blueprint for Intelligent On-Demand Household Services Dispatch and Subscription-Based Home Care.</p>
         </div>
         <div class="cs-body">
           <div class="cs-phase">
-            <h3>01. Client Background</h3>
-            <p>The client manages a distributed team of 15+ professionals across multiple time zones. They lacked visibility into how time was being allocated across projects and had no reliable way to evaluate team productivity without manual reporting that consumed hours each week.</p>
+            <h3>01. The Digital Landscape</h3>
+            <p>Nestly is a full-stack digital hub that manages, schedules, and dispatches vetted home care experts (such as cleaning, plumbing, electrical, and heating specialists). The platform eliminates traditional consumer friction-points: lack of scheduling speed, opaque price bidding, and inconsistent quality in household repair crews. By utilizing an automated web interface, Nestly coordinates complex dispatch logistics, making home maintenance as predictable and transparent as modern ride-hailing services.</p>
           </div>
           <div class="cs-phase">
-            <h3>02. The Challenge</h3>
-            <p>Existing tools like Toggl and Harvest were either too simple to handle project hierarchy or too complex to gain team adoption. The client needed a purpose-built solution that matched their specific workflow — with both individual-facing and manager-facing layers.</p>
+            <h3>02. Structural Integrity</h3>
+            <p>Nestly operates as a modern centralized dispatcher. Rather than hosting an open-ended listing site where consumers must interview random technicians, Nestly retains responsibility for matching certified specialists, ensuring that only performance-monitored professionals reach the customer's property. Quality is preserved by admitting only top-tier licensed professionals who clear background vetting, licensure verification, and custom service exams, maintaining a unified Standard of Performance across all bookings.</p>
           </div>
           <div class="cs-phase">
-            <h3>03. Research &amp; Strategy</h3>
-            <p>We conducted interviews with 8 team members and 3 managers to map current workflows, identify friction points, and validate feature priorities. Key finding: managers needed automated summaries — they spent 3+ hours weekly on manual reporting.</p>
+            <h3>03. Core Architecture</h3>
+            <p>The Nestly system comprises several high-fidelity modules working in concert. These elements are designed to reduce user cognitive load and drive maximum engagement. A dynamic upfront estimate calculator calculates job labor and material rates upfront based on scope and difficulty factors, eliminating hidden fees. Furthermore, a multi-tier subscription structure drives lifetime loyalty and predictable income, while a live dispatch map tracker simulates real-time specialist location and progress.</p>
           </div>
           <div class="cs-phase">
-            <h3>04. Design &amp; Planning</h3>
-            <p>We designed two distinct UI layers: a clean, minimal tracker for individual contributors, and a data-dense analytics dashboard for managers. The product roadmap was structured into 3 phases: core tracking, reporting, then analytics intelligence.</p>
+            <h3>04. Customer Value</h3>
+            <p>For homeowners, Nestly transforms traditional reactive, high-stress home care into a premium, reassuring utility by drastically reducing lead times and providing total pricing predictability. Emergency slots are constantly reserved to bypass standard queues during severe weather or systemic outages, and annual 50-point health audits identify risks before they escalate.</p>
           </div>
           <div class="cs-phase">
-            <h3>05. Execution</h3>
-            <p>Built with React frontend, Node.js backend, and PostgreSQL. Rigorous QA across all user roles. We deployed with monitoring, error tracking, and weekly demo checkpoints throughout the 12-week build cycle.</p>
+            <h3>05. The Enterprise Case</h3>
+            <p>On the enterprise side, Nestly stabilizes cash flows for service businesses through recurring subscription revenue (such as Nestly Prime). By centralizing dispatches using real-time geolocation matching, businesses minimize technician idle time and optimize field labor routing, maximizing wrench-hours and overall profit margins.</p>
           </div>
           <div class="cs-results">
             <h3>06. Results</h3>
-            <div class="cs-stats"><div class="cs-stat"><span class="cs-stat-num">40%</span><span class="cs-stat-label">Less time on reporting</span></div><div class="cs-stat"><span class="cs-stat-num">3×</span><span class="cs-stat-label">Manager visibility</span></div><div class="cs-stat"><span class="cs-stat-num">92%</span><span class="cs-stat-label">Team adoption rate</span></div></div>
+            <div class="cs-stats"><div class="cs-stat"><span class="cs-stat-num">Same-Day</span><span class="cs-stat-label">Priority Scheduling</span></div><div class="cs-stat"><span class="cs-stat-num">15-20%</span><span class="cs-stat-label">Labor Cost Discount</span></div><div class="cs-stat"><span class="cs-stat-num">50-Point</span><span class="cs-stat-label">Annual Health Audit</span></div></div>
           </div>
           <div class="cs-takeaways">
             <h3>Key Takeaways</h3>
-            <ul><li>User interviews before design saves weeks of rework</li><li>Dual-audience products need two distinct information hierarchies</li><li>Regular client demos build trust and catch scope drift early</li></ul>
+            <ul><li>Centralized dispatching beats unvetted open directories</li><li>Upfront estimate calculators build absolute pricing trust</li><li>Subscription models stabilize cash flows for field services</li></ul>
           </div>
         </div>
       </article>
@@ -190,7 +179,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="/" class="logo footer-logo" id="footer-logo">
-            <img src="/logo.webp" alt="Digital Nexes Logo" class="logo-mark" style="height: 48px; width: auto;">
+            <img src="/logo.webp" alt="Digital Nexes Logo" class="logo-mark" width="160" height="48" loading="lazy" decoding="async" style="height: 48px; width: auto;">
           </a>
           <p class="footer-tagline">A growth-focused digital studio helping businesses establish, optimize, and scale their digital presence.</p>
         </div>

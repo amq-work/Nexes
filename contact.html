@@ -11,27 +11,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   
     <link rel="icon" type="image/webp" href="/favicon.webp">
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+  <link rel="stylesheet" href="/src/style.css" />
 </head>
 <body>
-  <div id="page-loader" class="skeleton-screen" aria-hidden="true">
-    <div class="sk-nav">
-      <div class="sk-logo"></div>
-      <div class="sk-links"></div>
-    </div>
-    <div class="sk-hero">
-      <div class="sk-title"></div>
-      <div class="sk-title short"></div>
-      <div class="sk-sub"></div>
-      <div class="sk-btn"></div>
-    </div>
-  </div>
   <div id="cursor-dot" aria-hidden="true"></div><div id="cursor-ring" aria-hidden="true"></div><div id="scroll-progress" aria-hidden="true"></div>
 
       <header class="navbar" id="navbar">
     <div class="container nav-inner">
       <a href="/" class="logo" id="logo-link">
-        <img src="/logo.webp" alt="Digital Nexes Logo" class="logo-mark" style="height: 48px; width: auto;">
+        <img src="/logo.webp" alt="Digital Nexes Logo" class="logo-mark" width="160" height="48" decoding="async" style="height: 48px; width: auto;">
       </a>
       <nav class="nav-links" id="nav-links" role="navigation" aria-label="Primary navigation">
         <a href="/"       data-page="index">Home</a>
@@ -121,7 +110,7 @@
             </div>
             <div class="form-group"><label for="pi-message">Project Description *</label><textarea id="pi-message" name="message" rows="5" required placeholder="Tell us about your project — what are you building, what problem does it solve, and what does success look like?"></textarea></div>
             
-            <div class="g-recaptcha" data-sitekey="6Lfl4j0tAAAAAHPe3u3URXHoq5BSRYO6njcJOsJg" style="margin-bottom: 20px;"></div>
+
             <button type="submit" class="btn-primary form-submit" id="pi-submit">Send Project Inquiry →</button>
           </form>
 
@@ -140,7 +129,7 @@
             </div>
             <div class="form-group"><label for="sr-message">What do you need? *</label><textarea id="sr-message" name="message" rows="5" required placeholder="Describe what you're looking for as specifically as possible."></textarea></div>
             
-            <div class="g-recaptcha" data-sitekey="6Lfl4j0tAAAAAHPe3u3URXHoq5BSRYO6njcJOsJg" style="margin-bottom: 20px;"></div>
+
             <button type="submit" class="btn-primary form-submit" id="sr-submit">Send Service Request →</button>
           </form>
 
@@ -157,7 +146,7 @@
             </div>
             <div class="form-group"><label for="pa-message">Tell Us About the Opportunity *</label><textarea id="pa-message" name="message" rows="5" required placeholder="Describe the partnership opportunity and what mutual value it creates."></textarea></div>
             
-            <div class="g-recaptcha" data-sitekey="6Lfl4j0tAAAAAHPe3u3URXHoq5BSRYO6njcJOsJg" style="margin-bottom: 20px;"></div>
+
             <button type="submit" class="btn-primary form-submit" id="pa-submit">Send Partnership Inquiry →</button>
           </form>
 
@@ -171,7 +160,7 @@
             <div class="form-group"><label for="g-subject">Subject</label><input type="text" id="g-subject" name="subject" placeholder="What's this about?" /></div>
             <div class="form-group"><label for="g-message">Message *</label><textarea id="g-message" name="message" rows="6" required placeholder="Write your message here..."></textarea></div>
             
-            <div class="g-recaptcha" data-sitekey="6Lfl4j0tAAAAAHPe3u3URXHoq5BSRYO6njcJOsJg" style="margin-bottom: 20px;"></div>
+
             <button type="submit" class="btn-primary form-submit" id="g-submit">Send Message →</button>
           </form>
 
@@ -265,7 +254,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="/" class="logo footer-logo" id="footer-logo">
-            <img src="/logo.webp" alt="Digital Nexes Logo" class="logo-mark" style="height: 48px; width: auto;">
+            <img src="/logo.webp" alt="Digital Nexes Logo" class="logo-mark" width="160" height="48" loading="lazy" decoding="async" style="height: 48px; width: auto;">
           </a>
           <p class="footer-tagline">A growth-focused digital studio helping businesses establish, optimize, and scale their digital presence.</p>
         </div>
